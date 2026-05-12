@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- =============================================
+         META TAGS Y CONFIGURACIÓN BÁSICA
+         ============================================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conoce más sobre nuestra empresa y equipo">
+    <title>Mi Sitio Web - About Us</title>
+    
+    <!-- Favicon (icono de la pestaña) -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+    <!-- =============================================
+         FUENTES DE GOOGLE FONTS
+         ============================================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+
+    <!-- =============================================
+         ESTILOS CSS - VARIABLES DE COLOR (MODO DÍA)
+         ============================================= -->
+    <style>
+        /* 
+         * VARIABLES CSS PARA EL TEMA DÍA
+         * Cambia estos valores para personalizar los colores del modo claro
+         */
+        :root {
+            --bg-color: #ffffff;                    /* Fondo principal */
+            --text-color: #333333;                  /* Color de texto general */
+            --navbar-bg: #ffffff;                   /* Fondo de la barra de navegación */
+            --navbar-text: #000000;                 /* Texto de la navegación */
+            --btn-bg: #007bff;                      /* Fondo de botones */
+            --btn-text: #ffffff;                    /* Texto de botones */
+            --card-bg: #ffffff;                     /* Fondo de tarjetas */
+            --card-shadow: rgba(0,0,0,0.1);         /* Sombra de tarjetas */
+            --footer-bg: #222222;                   /* Fondo del footer */
+            --footer-text: #ffffff;                 /* Texto del footer */
+            --accent-color: #007bff;                /* Color de acento para títulos */
+        }
+
+        /* 
+         * VARIABLES CSS PARA EL TEMA NOCHE
+         * Se activan cuando el body tiene la clase "dark-mode"
+         */
+        body.dark-mode {
+            --bg-color: #1a1a2e;
+            --text-color: #eaeaea;
+            --navbar-bg: #16213e;
+            --navbar-text: #ffffff;
+            --btn-bg: #e94560;
+            --btn-text: #ffffff;
+            --card-bg: #16213e;
+            --card-shadow: rgba(0,0,0,0.3);
+            --footer-bg: #0a0a14;
+            --footer-text: #eaeaea;
+            --accent-color: #e94560;
+        }
+
+        /* =============================================
+           RESET Y ESTILOS BASE
+           ============================================= */
+        * {
+            box-sizing: border-box;   /* Incluye padding y border en el tamaño total */
+            margin: 0;                /* Elimina márgenes por defecto */
+            padding: 0;               /* Elimina padding por defecto */
+        }
+        
+        body {
+            font-family: 'Mochiy Pop One', sans-serif;  /* Fuente principal */
+            background-color: var(--bg-color);          /* Usa variable CSS */
+            color: var(--text-color);
+            overflow-x: hidden;                         /* Evita scroll horizontal */
+            line-height: 1.6;                           /* Altura de línea para legibilidad */
+            transition: background-color 0.3s ease, color 0.3s ease;  /* Transición suave al cambiar tema */
+        }
+
+        a {
+            text-decoration: none;    /* Sin subrayado en enlaces */
+            color: inherit;           /* Hereda el color del padre */
+            transition: 0.3s;         /* Transición suave en hover */
+        }
+
+        img {
+            max-width: 100%;          /* Imágenes responsivas */
+            display: block;           /* Elimina espacio extra debajo de imágenes */
+        }
+
+        ul {
+            list-style: none;         /* Sin viñetas en listas */
+        }
+
+        /* =============================================
+           BARRA DE NAVEGACIÓN (NAVBAR)
+           ============================================= */
+        .navbar {
+            position: fixed;                      /* Fija en la parte superior */
+            top: 20px;                            /* Margen superior */
+            left: 50%;                            /* Centrada horizontalmente */
+            transform: translateX(-50%);          /* Ajuste para centrado perfecto */
+            width: calc(100% - 40px);             /* Ancho con márgenes laterales */
+            max-width: 1200px;                    /* Ancho máximo */
+            background: var(--navbar-bg);
+            z-index: 1000;                        /* Por encima de todo */
+            height: 70px;
+            display: flex;
+            align-items: center;                  /* Centrado vertical */
+            justify-content: space-between;       /* Espacio entre links y botón */
+            padding: 0 30px;
+            border-radius: 50px;                  /* Bordes redondeados (forma de píldora) */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);  /* Sombra suave */
+            transition: all 0.3s ease;            /* Animación en hover */
+        }
+
+        .navbar:hover {
+            box-shadow: 0 6px 30px rgba(0,0,0,0.15);  /* Sombra más fuerte al hover */
+            transform: translateX(-50%) translateY(-2px);  /* Pequeña elevación */
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;                /* Espacio entre enlaces */
+            flex-wrap: wrap;          /* Permite que los links salten de línea en móvil */
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: var(--navbar-text);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 25px;      /* Bordes redondeados en cada link */
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: var(--navbar-text);  /* Fondo del color del texto */
+            color: var(--navbar-bg);         /* Texto del color del fondo */
+            transform: translateY(-2px);     /* Pequeña elevación */
+        }
+
+        /* =============================================
+           BOTÓN DE CAMBIO DE TEMA (DÍA/NOCHE)
+           ============================================= */
+        .theme-toggle {
+            background: transparent;
+            border: 2px solid var(--navbar-text);
+            color: var(--navbar-text);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;         /* Botón circular */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            margin-left: 15px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--navbar-text);
+            color: var(--navbar-bg);
+            transform: rotate(15deg) scale(1.1);  /* Rotación y escala al hover */
+        }
+
+        .theme-toggle .icon-sun { display: none; }   /* Sol oculto por defecto */
+        .theme-toggle .icon-moon { display: block; } /* Luna visible por defecto */
+        
+        body.dark-mode .theme-toggle .icon-sun { display: block; }  /* Sol visible en modo noche */
+        body.dark-mode .theme-toggle .icon-moon { display: none; }  /* Luna oculta en modo noche */
+
+        /* =============================================
+           HERO SECTION ESTÁTICA (IMAGEN DE CABECERA)
+           ============================================= */
+        .hero-static {
+            position: relative;
+            height: 60vh;             /* 60% de la altura de la ventana */
+            min-height: 400px;        /* Altura mínima para móviles */
+            width: 100%;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .hero-static img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;        /* La imagen cubre todo sin deformarse */
+            position: absolute;
+            z-index: 1;
+        }
+
+        /* Capa oscura sobre la imagen para mejorar legibilidad del texto */
+        .hero-static::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+            z-index: 2;
+        }
+
+        .hero-static-content {
+            position: relative;
+            z-index: 3;               /* Por encima de la imagen y capa oscura */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .hero-static-content h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);  /* Tamaño responsivo */
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .hero-static-content p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            max-width: 600px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+        }
+
+        /* =============================================
+           SECCIONES DE MISIÓN Y VISIÓN
+           ============================================= */
+        .mission-section,
+        .vision-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 30px;
+            box-shadow: 0 4px 20px var(--card-shadow);
+            transition: background-color 0.3s ease;
+        }
+
+        .mission-section { margin-top: 60px; }
+        .vision-section { margin-top: 40px; }
+        
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;  /* 2 columnas iguales */
+            gap: 40px;
+            align-items: center;
+        }
+
+        .mv-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);  /* Usa variable de color de acento */
+        }
+
+        .mv-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .mv-icon {
+            font-size: 80px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .mv-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px var(--card-shadow);
+        }
+
+        /* =============================================
+           SECCIÓN DEL EQUIPO
+           ============================================= */
+        .team-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        .team-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .team-section .subtitle {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 50px;
+            opacity: 0.8;
+        }
+
+        body.dark-mode .team-section .subtitle {
+            color: #aaa;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  /* Grid responsivo */
+            gap: 30px;
+        }
+        
+        .team-card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);           /* Elevación al hover */
+            box-shadow: 0 10px 35px var(--card-shadow);
+        }
+
+        .team-card-img {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .team-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover .team-card-img img {
+            transform: scale(1.05);  /* Zoom suave en la imagen al hover */
+        }
+
+        .team-card-info {
+            padding: 25px;
+        }
+
+        .team-card-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .team-card-info .role {
+            font-size: 1rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .team-card-info p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .team-social a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .team-social a:hover {
+            transform: scale(1.15);  /* Crecimiento al hover */
+            opacity: 0.8;
+        }
+
+        /* =============================================
+           FOOTER
+           ============================================= */
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+            padding: 50px 20px;
+            margin: 80px 20px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        footer:hover {
+            box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+        }
+
+        footer a { color: var(--footer-text); text-decoration: underline; }
+        footer a:hover { opacity: 0.8; }
+
+        /* =============================================
+           RESPONSIVE DESIGN (MÓVIL)
+           ============================================= */
+        @media (max-width: 768px) {
+            /* Navbar responsive */
+            .navbar {
+                top: 10px;
+                width: calc(100% - 20px);
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+                border-radius: 30px;
+            }
+
+            .nav-links {
+                margin: 15px 0;
+                gap: 10px;
+            }
+
+            .nav-links a {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+
+            .theme-toggle {
+                margin: 10px auto 0;
+            }
+
+            /* Hero responsive */
+            .hero-static {
+                height: 50vh;
+                min-height: 300px;
+            }
+
+            .hero-static-content h1 {
+                font-size: 2rem;
+            }
+
+            /* Misión/Visión responsive - 1 columna */
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mission-section,
+            .vision-section {
+                margin-top: 30px;
+                padding: 40px 20px;
+            }
+
+            /* Team responsive */
+            .team-section {
+                padding: 40px 20px;
+            }
+
+            /* Footer responsive */
+            footer {
+                margin: 40px 10px 10px;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =============================================
+         BARRA DE NAVEGACIÓN
+         ============================================= -->
+    <nav class="navbar">
+        <!-- Enlaces de navegación -->
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#about">Nosotros</a></li>
+            <li><a href="index.html#servicios">Servicios</a></li>
+            <li><a href="index.html#galeria">Galería</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+            <li><a href="index.html#blog">Blog</a></li>
+        </ul>
+        
+        <!-- Botón para cambiar tema día/noche -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+            <span class="icon-sun">☀️</span>
+            <span class="icon-moon">🌙</span>
+        </button>
+    </nav>
+
+    <!-- =============================================
+         HERO SECTION ESTÁTICA (IMAGEN DE CABECERA)
+         ============================================= -->
+    <section class="hero-static">
+        <!-- Imagen de cabecera fija (no carrusel) -->
+        <img src="assets/about-hero.jpg" alt="Sobre Nosotros">
+        
+        <!-- Contenido del hero -->
+        <div class="hero-static-content">
+            <h1>Sobre Nosotros</h1>
+            <p>Conoce la historia, misión y visión detrás de nuestra empresa</p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         SECCIÓN DE MISIÓN
+         ============================================= -->
+    <section class="mission-section">
+        <div class="mv-grid">
+            <!-- Contenido de texto (izquierda) -->
+            <div class="mv-content">
+                <div class="mv-icon">🎯</div>  <!-- Emoji como icono -->
+                <h2>Nuestra Misión</h2>
+                <p>
+                    Crear experiencias únicas que inspiren y conecten a las personas con el mundo 
+                    que las rodea. Nos dedicamos a ofrecer servicios de la más alta calidad, 
+                    superando las expectativas de nuestros clientes en cada proyecto.
+                </p>
+                <p>
+                    Nuestro compromiso es la excelencia, la innovación y el desarrollo sostenible 
+                    en todo lo que hacemos.
+                </p>
+            </div>
+            
+            <!-- Imagen acompañante (derecha) -->
+            <div class="mv-image">
+                <img src="assets/mission.jpg" alt="Nuestra Misión">
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         SECCIÓN DE VISIÓN
+         ============================================= -->
+    <section class="vision-section">
+        <div class="mv-grid">
+            <!-- Imagen acompañante (izquierda) -->
+            <div class="mv-image">
+                <img src="assets/vision.jpg" alt="Nuestra Visión">
+            </div>
+            
+            <!-- Contenido de texto (derecha) -->
+            <div class="mv-content">
+                <div class="mv-icon">👁️</div>  <!-- Emoji como icono -->
+                <h2>Nuestra Visión</h2>
+                <p>
+                    Ser líderes en innovación y calidad, reconocidos mundialmente por nuestro 
+                    compromiso con la excelencia y el desarrollo de soluciones que marquen 
+                    la diferencia en la industria.
+                </p>
+                <p>
+                    Aspiramos a construir un futuro donde la tecnología y el talento humano 
+                    se unan para crear un impacto positivo en la sociedad.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         SECCIÓN DEL EQUIPO
+         ============================================= -->
+    <section class="team-section">
+        <h2>Nuestro Equipo</h2>
+        <p class="subtitle">Las personas increíbles detrás de nuestro éxito</p>
+        
+        <div class="team-grid">
+            <!-- =============================================
+                 MIEMBRO DEL EQUIPO 1
+                 ============================================= -->
+            <div class="team-card">
+                <div class="team-card-img">
+                    <img src="assets/team1.jpg" alt="María González">
+                </div>
+                <div class="team-card-info">
+                    <h3>María González</h3>
+                    <span class="role">CEO & Fundadora</span>
+                    <p>Líder visionaria con más de 15 años de experiencia en la industria. Apasionada por la innovación.</p>
+                    <div class="team-social">
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Email">📧</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- =============================================
+                 MIEMBRO DEL EQUIPO 2
+                 ============================================= -->
+            <div class="team-card">
+                <div class="team-card-img">
+                    <img src="assets/team2.jpg" alt="Carlos Rodríguez">
+                </div>
+                <div class="team-card-info">
+                    <h3>Carlos Rodríguez</h3>
+                    <span class="role">Director de Tecnología</span>
+                    <p>Ingeniero de software con experiencia en desarrollo de soluciones escalables y arquitectura cloud.</p>
+                    <div class="team-social">
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="GitHub">🐙</a>
+                        <a href="#" aria-label="Email">📧</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- =============================================
+                 MIEMBRO DEL EQUIPO 3
+                 ============================================= -->
+            <div class="team-card">
+                <div class="team-card-img">
+                    <img src="assets/team3.jpg" alt="Ana Martínez">
+                </div>
+                <div class="team-card-info">
+                    <h3>Ana Martínez</h3>
+                    <span class="role">Directora de Marketing</span>
+                    <p>Experta en estrategias digitales, branding y crecimiento de marcas en el entorno digital.</p>
+                    <div class="team-social">
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Email">📧</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- =============================================
+                 MIEMBRO DEL EQUIPO 4
+                 ============================================= -->
+            <div class="team-card">
+                <div class="team-card-img">
+                    <img src="assets/team4.jpg" alt="Luis Fernández">
+                </div>
+                <div class="team-card-info">
+                    <h3>Luis Fernández</h3>
+                    <span class="role">Diseñador Principal</span>
+                    <p>Creativo con ojo para el detalle, especializado en UX/UI y diseño de experiencias digitales.</p>
+                    <div class="team-social">
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="Behance">🎨</a>
+                        <a href="#" aria-label="Email">📧</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- =============================================
+                 MIEMBRO DEL EQUIPO 5
+                 ============================================= -->
+            <div class="team-card">
+                <div class="team-card-img">
+                    <img src="assets/team5.jpg" alt="Sofía López">
+                </div>
+                <div class="team-card-info">
+                    <h3>Sofía López</h3>
+                    <span class="role">Gerente de Ventas</span>
+                    <p>Especialista en relaciones con clientes y desarrollo de negocios estratégicos.</p>
+                    <div class="team-social">
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Email">📧</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- =============================================
+                 MIEMBRO DEL EQUIPO 6
+                 ============================================= -->
+            <div class="team-card">
+                <div class="team-card-img">
+                    <img src="assets/team6.jpg" alt="David Ruiz">
+                </div>
+                <div class="team-card-info">
+                    <h3>David Ruiz</h3>
+                    <span class="role">Coordinador de Proyectos</span>
+                    <p>Organizador nato con gran liderazgo, experto en metodologías ágiles y gestión de equipos.</p>
+                    <div class="team-social">
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Email">📧</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer>
+        <p>&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- =============================================
+         JAVASCRIPT
+         ============================================= -->
+    <script>
+        /* =============================================
+           FUNCIONALIDAD DEL CAMBIO DE TEMA (DÍA/NOCHE)
+           ============================================= */
+        const themeToggle = document.getElementById('themeToggle');  // Botón de toggle
+        const body = document.body;  // Elemento body
+        
+        /**
+         * Verificar si hay una preferencia guardada en localStorage
+         * localStorage permite guardar datos en el navegador del usuario
+         * que persisten incluso después de cerrar la página
+         */
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');  // Activar modo noche
+        }
+        
+        /**
+         * Event listener para el botón de cambio de tema
+         * Se ejecuta cada vez que el usuario hace clic en el botón
+         */
+        themeToggle.addEventListener('click', function() {
+            // Alternar la clase 'dark-mode' en el body
+            body.classList.toggle('dark-mode');
+            
+            // Guardar la preferencia en localStorage para futuras visitas
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>
