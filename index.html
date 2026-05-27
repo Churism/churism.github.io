@@ -3,49 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Empresa - Landing Page</title>
-    
-    <!-- Google Fonts: Mochiy Pop One -->
+    <meta name="description" content="Sitio web profesional con modo día/noche">
+    <title>Mi Sitio Web - Landing Page</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
 
     <style>
-        /* === VARIABLES DE COLOR - MODO DÍA === */
+        /* =============================================
+           VARIABLES CSS - TEMA DÍA (NO BLANCO PURO)
+           ============================================= */
         :root {
-            --bg-color: #ffffff;
-            --text-color: #333333;
-            --navbar-bg: #ffffff;
-            --navbar-text: #000000;
-            --gallery-bg: #f4f4f4;
-            --btn-bg: #007bff;
-            --btn-text: #ffffff;
-            --card-bg: #ffffff;
-            --feature-bg: #f0f0f0;
-            --split-bg: #f9f9f9;
-            --footer-bg: #222222;
-            --footer-text: #ffffff;
-            --card-shadow: rgba(0,0,0,0.1);
+            --bg-color: #fafafa;                    /* Fondo principal - gris muy claro */
+            --text-color: #000000;                  /* Texto negro puro (legibilidad) */
+            --navbar-bg: #f5f5f5;                   /* Navbar - gris claro */
+            --navbar-text: #000000;                 /* Texto navbar negro puro */
+            --gallery-bg: #f0f0f0;                  /* Galería - gris claro */
+            --btn-bg: #ff7227;                      /* BOTONES - NARANJA */
+            --btn-text: #ffffff;                    /* Texto botones blanco puro */
+            --card-bg: #ffffff;                     /* Tarjetas - blanco */
+            --card-shadow: rgba(0,0,0,0.08);        /* Sombra suave */
+            --feature-bg: #e9ecef;                  /* Features - gris claro */
+            --split-bg: #f8f9fa;                    /* Split sections - gris muy claro */
+            --footer-bg: #1a1a1a;                   /* Footer - gris muy oscuro */
+            --footer-text: #ffffff;                 /* Footer texto blanco puro */
+            --accent-color: #ff7227;                /* Color de acento - NARANJA */
         }
 
-        /* === MODO NOCHE === */
+        /* =============================================
+           VARIABLES CSS - TEMA NOCHE (NO NEGRO PURO)
+           ============================================= */
         body.dark-mode {
-            --bg-color: #1a1a2e;
-            --text-color: #eaeaea;
-            --navbar-bg: #16213e;
-            --navbar-text: #ffffff;
-            --gallery-bg: #0f3460;
-            --btn-bg: #e94560;
-            --btn-text: #ffffff;
-            --card-bg: #16213e;
-            --feature-bg: #1f4068;
-            --split-bg: #0f3460;
-            --footer-bg: #0a0a14;
-            --footer-text: #eaeaea;
-            --card-shadow: rgba(0,0,0,0.3);
+            --bg-color: #121212;                    /* Fondo - gris muy oscuro (no negro) */
+            --text-color: #ffffff;                  /* Texto blanco puro (legibilidad) */
+            --navbar-bg: #1a1a1a;                   /* Navbar - gris oscuro */
+            --navbar-text: #ffffff;                 /* Texto navbar blanco puro */
+            --gallery-bg: #252525;                  /* Galería - gris oscuro */
+            --btn-bg: #ff7227;                      /* BOTONES - NARANJA (mismo color) */
+            --btn-text: #ffffff;                    /* Texto botones blanco puro */
+            --card-bg: #1e1e1e;                     /* Tarjetas - gris oscuro */
+            --card-shadow: rgba(0,0,0,0.3);         /* Sombra más fuerte */
+            --feature-bg: #202020;                  /* Features - gris oscuro */
+            --split-bg: #1a1a1a;                    /* Split sections - gris oscuro */
+            --footer-bg: #0a0a0a;                   /* Footer - casi negro */
+            --footer-text: #ffffff;                 /* Footer texto blanco puro */
+            --accent-color: #ff7227;                /* Color de acento - NARANJA */
         }
 
-        /* === RESET & BASIC === */
+        /* =============================================
+           RESET Y ESTILOS BASE
+           ============================================= */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
@@ -56,11 +64,14 @@
             line-height: 1.6;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
+
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         img { max-width: 100%; display: block; }
         ul { list-style: none; }
 
-        /* === NAVBAR === */
+        /* =============================================
+           NAVBAR
+           ============================================= */
         .navbar {
             position: fixed;
             top: 20px;
@@ -79,16 +90,19 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
         }
+
         .navbar:hover {
             box-shadow: 0 6px 30px rgba(0,0,0,0.15);
             transform: translateX(-50%) translateY(-2px);
         }
+
         .nav-links {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
             justify-content: center;
         }
+
         .nav-links a {
             color: var(--navbar-text);
             font-weight: bold;
@@ -98,13 +112,16 @@
             border-radius: 25px;
             transition: all 0.3s ease;
         }
+
         .nav-links a:hover {
-            background: var(--navbar-text);
-            color: var(--navbar-bg);
+            background: var(--btn-bg);  /* Naranja al hover */
+            color: var(--btn-text);
             transform: translateY(-2px);
         }
 
-        /* === BOTÓN MODO DÍA/NOCHE === */
+        /* =============================================
+           BOTÓN TEMA DÍA/NOCHE
+           ============================================= */
         .theme-toggle {
             background: transparent;
             border: 2px solid var(--navbar-text);
@@ -120,17 +137,22 @@
             transition: all 0.3s ease;
             margin-left: 15px;
         }
+
         .theme-toggle:hover {
-            background: var(--navbar-text);
-            color: var(--navbar-bg);
+            background: var(--btn-bg);  /* Naranja al hover */
+            color: var(--btn-text);
             transform: rotate(15deg) scale(1.1);
+            border-color: var(--btn-bg);
         }
+
         .theme-toggle .icon-sun { display: none; }
         .theme-toggle .icon-moon { display: block; }
         body.dark-mode .theme-toggle .icon-sun { display: block; }
         body.dark-mode .theme-toggle .icon-moon { display: none; }
 
-        /* === HERO CAROUSEL === */
+        /* =============================================
+           HERO CARRUSEL
+           ============================================= */
         .hero-carousel {
             position: relative;
             height: 100vh;
@@ -138,6 +160,7 @@
             overflow: hidden;
             margin-top: 0;
         }
+
         .slide {
             position: absolute;
             top: 0;
@@ -148,7 +171,9 @@
             transition: opacity 1s ease-in-out;
             display: flex;
         }
+
         .slide.active { opacity: 1; }
+
         .slide img {
             width: 100%;
             height: 100%;
@@ -156,6 +181,7 @@
             position: absolute;
             z-index: 1;
         }
+
         .slide-content {
             position: relative;
             z-index: 2;
@@ -164,6 +190,7 @@
             padding: 20px;
             max-width: 90%;
         }
+
         .slide-content.center {
             align-self: center;
             justify-self: center;
@@ -171,6 +198,7 @@
             margin: auto;
             width: 100%;
         }
+
         .slide-content.top-left {
             align-self: flex-start;
             justify-self: flex-start;
@@ -179,6 +207,7 @@
             top: 20px;
             left: 20px;
         }
+
         .slide-content.top-right {
             align-self: flex-start;
             justify-self: flex-end;
@@ -187,6 +216,7 @@
             top: 20px;
             right: 20px;
         }
+
         .slide-content.bottom-left {
             align-self: flex-end;
             justify-self: flex-start;
@@ -195,6 +225,7 @@
             bottom: 20px;
             left: 20px;
         }
+
         .slide-content.bottom-right {
             align-self: flex-end;
             justify-self: flex-end;
@@ -203,20 +234,22 @@
             bottom: 20px;
             right: 20px;
         }
+
         .slide-content h1 {
             font-size: clamp(2rem, 5vw, 4rem);
             text-transform: uppercase;
             line-height: 1.2;
             word-wrap: break-word;
         }
+
         .slide-content h1 a {
             color: #fff;
             text-decoration: none;
             transition: opacity 0.3s;
         }
-        .slide-content h1 a:hover {
-            opacity: 0.8;
-        }
+
+        .slide-content h1 a:hover { opacity: 0.8; }
+
         .carousel-btn {
             position: absolute;
             top: 50%;
@@ -231,11 +264,14 @@
             border-radius: 50%;
             font-family: 'Mochiy Pop One', sans-serif;
         }
+
         .carousel-btn:hover { background: rgba(255,255,255,0.6); }
         .prev { left: 20px; }
         .next { right: 20px; }
 
-        /* === FEATURES === */
+        /* =============================================
+           FEATURES
+           ============================================= */
         .features-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -244,6 +280,7 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+
         .feature-block {
             padding: 40px 20px;
             text-align: center;
@@ -251,26 +288,33 @@
             background-color: var(--feature-bg);
             transition: transform 0.3s, background-color 0.3s ease, box-shadow 0.3s ease;
         }
+
         .feature-block:hover {
             transform: translateY(-8px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
+
         .feature-icon {
             width: 60px;
             height: 60px;
             margin: 0 auto 20px;
             object-fit: contain;
         }
+
         .feature-block p { font-size: 1.1rem; }
 
-        /* === GALLERY === */
+        /* =============================================
+           GALERÍA
+           ============================================= */
         .gallery-section {
             padding: 60px 0;
             background: var(--gallery-bg);
             text-align: center;
             transition: background-color 0.3s ease;
         }
+
         .gallery-section h2 { margin-bottom: 30px; font-size: 2rem; }
+
         .gallery-container {
             display: flex;
             overflow-x: auto;
@@ -279,19 +323,30 @@
             gap: 15px;
             scrollbar-width: thin;
         }
+
         .gallery-container::-webkit-scrollbar { height: 8px; }
         .gallery-container::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+
         .gallery-item {
             flex: 0 0 300px;
             scroll-snap-align: center;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 10px var(--card-shadow);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
-        .gallery-item img { width: 100%; height: 300px; object-fit: cover; transition: transform 0.3s; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
         .gallery-item:hover img { transform: scale(1.05); }
 
-        /* === SPLIT SECTIONS === */
+        /* =============================================
+           SPLIT SECTIONS
+           ============================================= */
         .split-section {
             display: flex;
             flex-wrap: wrap;
@@ -299,22 +354,30 @@
             padding: 80px 5%;
             gap: 40px;
         }
+
         .split-section.bg-alt {
             background-color: var(--split-bg);
             transition: background-color 0.3s ease;
             border-radius: 30px;
             margin: 20px 5%;
         }
+
         .split-text { flex: 1; min-width: 300px; }
         .split-image { flex: 1; min-width: 300px; }
-        .split-image img { width: 100%; border-radius: 20px; box-shadow: 0 4px 15px var(--card-shadow); }
+
+        .split-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
         .split-text h2 { font-size: 2.5rem; margin-bottom: 20px; line-height: 1.3; }
         .split-text p { margin-bottom: 30px; font-size: 1.1rem; }
         
         .custom-btn {
             display: inline-block;
             padding: 12px 30px;
-            background-color: var(--btn-bg);
+            background-color: var(--btn-bg);  /* NARANJA */
             color: var(--btn-text);
             border-radius: 30px;
             font-weight: bold;
@@ -323,11 +386,15 @@
             font-family: 'Mochiy Pop One', sans-serif;
             transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
         }
+
         .custom-btn:hover { opacity: 0.9; transform: translateY(-3px); }
 
-        /* === DESTINATIONS === */
+        /* =============================================
+           DESTINATIONS
+           ============================================= */
         .destinations-section { padding: 60px 20px; text-align: center; }
         .destinations-section h2 { font-size: 2rem; margin-bottom: 40px; }
+
         .destinations-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -335,6 +402,7 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+
         .destination-card {
             background: var(--card-bg);
             border-radius: 20px;
@@ -342,18 +410,21 @@
             box-shadow: 0 4px 10px var(--card-shadow);
             transition: transform 0.3s, background-color 0.3s ease, box-shadow 0.3s ease;
         }
+
         .destination-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
+
         .destination-card img { width: 100%; height: 250px; object-fit: cover; }
         .card-content { padding: 20px; }
+
         .card-btn {
             display: block;
             width: 100%;
             padding: 12px;
             margin-top: 15px;
-            background: var(--btn-bg);
+            background: var(--btn-bg);  /* NARANJA */
             color: var(--btn-text);
             text-align: center;
             border-radius: 25px;
@@ -361,24 +432,30 @@
             font-family: 'Mochiy Pop One', sans-serif;
             transition: opacity 0.3s, background-color 0.3s;
         }
+
         .card-btn:hover { opacity: 0.9; }
 
-        /* === BLOG === */
+        /* =============================================
+           BLOG
+           ============================================= */
         .blog-section {
             max-width: 1200px;
             margin: 60px auto;
             padding: 0 20px;
         }
+
         .blog-section h2 { 
             font-size: 2rem; 
             margin-bottom: 30px; 
             text-align: center; 
         }
+
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
+
         .blog-post-card {
             background: var(--card-bg);
             border-radius: 20px;
@@ -386,26 +463,31 @@
             box-shadow: 0 4px 10px var(--card-shadow);
             transition: transform 0.3s, background-color 0.3s ease, box-shadow 0.3s ease;
         }
+
         .blog-post-card:hover { 
             transform: translateY(-8px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
+
         .blog-post-card img { 
             width: 100%; 
             height: 250px; 
             object-fit: cover; 
         }
+
         .blog-post-card h3 { 
             padding: 20px;
             margin: 0;
             font-size: 1.3rem;
             line-height: 1.4;
         }
-        .blog-post-card h3 a:hover { 
-            opacity: 0.8; 
-        }
 
-        /* === FOOTER === */
+        .blog-post-card h3 a:hover { opacity: 0.8; }
+        .blog-post-card:nth-child(n+4) { display: none; }
+
+        /* =============================================
+           FOOTER
+           ============================================= */
         footer {
             background: var(--footer-bg);
             color: var(--footer-text);
@@ -417,16 +499,21 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
+
         footer:hover {
             box-shadow: 0 6px 30px rgba(0,0,0,0.2);
             transform: translateY(-3px);
         }
+
         footer a { color: var(--footer-text); text-decoration: underline; }
         footer a:hover { opacity: 0.8; }
 
-        /* === RESPONSIVE === */
+        /* =============================================
+           RESPONSIVE
+           ============================================= */
         @media (max-width: 768px) {
             .slide-content h1 { font-size: 2rem; }
+            
             .slide-content.top-left, .slide-content.top-right,
             .slide-content.bottom-left, .slide-content.bottom-right {
                 position: static;
@@ -434,11 +521,11 @@
                 margin: auto;
                 width: 100%;
             }
+
             .split-section { flex-direction: column; text-align: center; }
             .carousel-btn { padding: 10px 15px; font-size: 24px; }
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
+            .blog-grid { grid-template-columns: 1fr; }
+
             .navbar {
                 top: 10px;
                 width: calc(100% - 20px);
@@ -447,21 +534,12 @@
                 padding: 15px;
                 border-radius: 30px;
             }
-            .nav-links {
-                margin: 15px 0;
-                gap: 10px;
-            }
-            .nav-links a {
-                padding: 6px 12px;
-                font-size: 11px;
-            }
-            .theme-toggle {
-                margin: 10px auto 0;
-            }
-            footer {
-                margin: 40px 10px 10px;
-                border-radius: 20px;
-            }
+
+            .nav-links { margin: 15px 0; gap: 10px; }
+            .nav-links a { padding: 6px 12px; font-size: 11px; }
+            .theme-toggle { margin: 10px auto 0; }
+
+            footer { margin: 40px 10px 10px; border-radius: 20px; }
         }
     </style>
 </head>
@@ -471,11 +549,11 @@
     <nav class="navbar">
         <ul class="nav-links">
             <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#about">Nosotros</a></li>
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="#galeria">Galería</a></li>
-            <li><a href="#destinos">Destinos</a></li>
-            <li><a href="#blog">Blog</a></li>
             <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#blog">Blog</a></li>
         </ul>
         <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
             <span class="icon-sun">☀️</span>
@@ -483,83 +561,77 @@
         </button>
     </nav>
 
-    <!-- HERO CAROUSEL -->
-    <div class="hero-carousel" id="inicio">
-        <!-- Slide 1 -->
+    <!-- HERO CARRUSEL -->
+    <section class="hero-carousel" id="inicio">
         <div class="slide active">
-            <img src="https://churism.github.io/Images/hero/slide-1.jpg" alt="Slide 1">
+            <img src="assets/hero1.jpg" alt="Slide 1">
             <div class="slide-content center">
                 <h1><a href="#">Bienvenido</a></h1>
             </div>
         </div>
-        <!-- Slide 2 -->
         <div class="slide">
-            <img src="https://churism.github.io/Images/hero/slide-2.jpg" alt="Slide 2">
-            <div class="slide-content center">
+            <img src="assets/hero2.jpg" alt="Slide 2">
+            <div class="slide-content top-left">
                 <h1><a href="#">Explora</a></h1>
             </div>
         </div>
-        <!-- Slide 3 -->
         <div class="slide">
-            <img src="https://churism.github.io/Images/hero/slide-3.jpg" alt="Slide 3">
-            <div class="slide-content center">
+            <img src="assets/hero3.jpg" alt="Slide 3">
+            <div class="slide-content bottom-right">
                 <h1><a href="#">Descubre</a></h1>
             </div>
         </div>
-        <!-- Slide 4 -->
         <div class="slide">
-            <img src="https://churism.github.io/Images/hero/slide-4.jpg" alt="Slide 4">
+            <img src="assets/hero4.jpg" alt="Slide 4">
             <div class="slide-content center">
                 <h1><a href="#">Aventura</a></h1>
             </div>
         </div>
-        <!-- Slide 5 -->
         <div class="slide">
-            <img src="https://churism.github.io/Images/hero/slide-5.jpg" alt="Slide 5">
-            <div class="slide-content center">
+            <img src="assets/hero5.jpg" alt="Slide 5">
+            <div class="slide-content top-right">
                 <h1><a href="#">Viaja</a></h1>
             </div>
         </div>
-        <!-- Slide 6 -->
         <div class="slide">
-            <img src="https://churism.github.io/Images/hero/slide-6.jpg" alt="Slide 6">
-            <div class="slide-content center">
+            <img src="assets/hero6.jpg" alt="Slide 6">
+            <div class="slide-content bottom-left">
                 <h1><a href="#">Reserva</a></h1>
             </div>
         </div>
-
         <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
         <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
-    </div>
+    </section>
 
     <!-- FEATURES -->
     <section class="features-section" id="servicios">
         <div class="feature-block">
-            <img src="https://churism.github.io/Images/icons/icon1.png" alt="Icon 1" class="feature-icon">
+            <img src="assets/icon1.png" class="feature-icon" alt="Icono 1">
             <p>Calidad Premium</p>
         </div>
         <div class="feature-block">
-            <img src="https://churism.github.io/Images/icons/icon2.png" alt="Icon 2" class="feature-icon">
+            <img src="assets/icon2.png" class="feature-icon" alt="Icono 2">
             <p>Soporte 24/7</p>
         </div>
         <div class="feature-block">
-            <img src="https://churism.github.io/Images/icons/icon3.png" alt="Icon 3" class="feature-icon">
+            <img src="assets/icon3.png" class="feature-icon" alt="Icono 3">
             <p>Envío Rápido</p>
         </div>
         <div class="feature-block">
-            <img src="https://churism.github.io/Images/icons/icon4.png" alt="Icon 4" class="feature-icon">
+            <img src="assets/icon4.png" class="feature-icon" alt="Icono 4">
             <p>Garantía Total</p>
         </div>
     </section>
 
-    <!-- GALLERY -->
+    <!-- GALERÍA -->
     <section class="gallery-section" id="galeria">
         <h2>Galería Seleccionada</h2>
         <div class="gallery-container">
-            <div class="gallery-item"><img src="https://churism.github.io/Images/gallery/gallery-1.jpg" alt="Gallery 1"></div>
-            <div class="gallery-item"><img src="https://churism.github.io/Images/gallery/gallery-2.jpg" alt="Gallery 2"></div>
-            <div class="gallery-item"><img src="https://churism.github.io/Images/gallery/gallery-3.jpg" alt="Gallery 3"></div>
-            <div class="gallery-item"><img src="https://churism.github.io/Images/gallery/gallery-4.jpg" alt="Gallery 4"></div>
+            <div class="gallery-item"><img src="assets/gallery1.jpg" alt="Galería 1"></div>
+            <div class="gallery-item"><img src="assets/gallery2.jpg" alt="Galería 2"></div>
+            <div class="gallery-item"><img src="assets/gallery3.jpg" alt="Galería 3"></div>
+            <div class="gallery-item"><img src="assets/gallery4.jpg" alt="Galería 4"></div>
+            <div class="gallery-item"><img src="assets/gallery5.jpg" alt="Galería 5"></div>
         </div>
     </section>
 
@@ -571,46 +643,46 @@
             <a href="#" class="custom-btn">Leer Más</a>
         </div>
         <div class="split-image">
-            <img src="https://churism.github.io/Images/sections/split-1.jpg" alt="Split 1">
+            <img src="assets/split1.jpg" alt="Misión">
         </div>
     </section>
 
     <!-- DESTINATIONS -->
-    <section class="destinations-section" id="destinos">
+    <section class="destinations-section">
         <h2>Destinos Populares</h2>
         <div class="destinations-grid">
             <div class="destination-card">
-                <img src="https://churism.github.io/Images/destinations/dest-1.jpg" alt="Dest 1">
+                <img src="assets/dest1.jpg" alt="Destino 1">
                 <div class="card-content">
                     <a href="#" class="card-btn">Ver Más</a>
                 </div>
             </div>
             <div class="destination-card">
-                <img src="https://churism.github.io/Images/destinations/dest-2.jpg" alt="Dest 2">
+                <img src="assets/dest2.jpg" alt="Destino 2">
                 <div class="card-content">
                     <a href="#" class="card-btn">Ver Más</a>
                 </div>
             </div>
             <div class="destination-card">
-                <img src="https://churism.github.io/Images/destinations/dest-3.jpg" alt="Dest 3">
+                <img src="assets/dest3.jpg" alt="Destino 3">
                 <div class="card-content">
                     <a href="#" class="card-btn">Ver Más</a>
                 </div>
             </div>
             <div class="destination-card">
-                <img src="https://churism.github.io/Images/destinations/dest-4.jpg" alt="Dest 4">
+                <img src="assets/dest4.jpg" alt="Destino 4">
                 <div class="card-content">
                     <a href="#" class="card-btn">Ver Más</a>
                 </div>
             </div>
             <div class="destination-card">
-                <img src="https://churism.github.io/Images/destinations/dest-5.jpg" alt="Dest 5">
+                <img src="assets/dest5.jpg" alt="Destino 5">
                 <div class="card-content">
                     <a href="#" class="card-btn">Ver Más</a>
                 </div>
             </div>
             <div class="destination-card">
-                <img src="https://churism.github.io/Images/destinations/dest-6.jpg" alt="Dest 6">
+                <img src="assets/dest6.jpg" alt="Destino 6">
                 <div class="card-content">
                     <a href="#" class="card-btn">Ver Más</a>
                 </div>
@@ -621,7 +693,7 @@
     <!-- SPLIT 2 -->
     <section class="split-section bg-alt">
         <div class="split-image">
-            <img src="https://churism.github.io/Images/sections/split-2.jpg" alt="Split 2">
+            <img src="assets/split2.jpg" alt="Equipo">
         </div>
         <div class="split-text">
             <h2>Únete al Equipo</h2>
@@ -635,21 +707,15 @@
         <h2>Últimas Entradas</h2>
         <div class="blog-grid">
             <article class="blog-post-card">
-                <a href="#">
-                    <img src="images/blog1.jpg" alt="Blog 1">
-                </a>
+                <a href="#"><img src="assets/blog1.jpg" alt="Post 1"></a>
                 <h3><a href="#">Título del Post 1</a></h3>
             </article>
             <article class="blog-post-card">
-                <a href="#">
-                    <img src="images/blog2.jpg" alt="Blog 2">
-                </a>
+                <a href="#"><img src="assets/blog2.jpg" alt="Post 2"></a>
                 <h3><a href="#">Título del Post 2</a></h3>
             </article>
             <article class="blog-post-card">
-                <a href="#">
-                    <img src="images/blog3.jpg" alt="Blog 3">
-                </a>
+                <a href="#"><img src="assets/blog3.jpg" alt="Post 3"></a>
                 <h3><a href="#">Título del Post 3</a></h3>
             </article>
         </div>
@@ -657,13 +723,12 @@
 
     <!-- FOOTER -->
     <footer id="contacto">
-        <p>&copy; 2026 Tu Empresa. Todos los derechos reservados.</p>
-        <p><a href="mailto:info@tuempresa.com">info@tuempresa.com</a></p>
+        <p>&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
     </footer>
 
     <!-- JAVASCRIPT -->
     <script>
-        // === HERO CAROUSEL ===
+        // CARRUSEL
         let currentSlide = 0;
         const slides = document.querySelectorAll('.hero-carousel .slide');
         
@@ -680,21 +745,18 @@
             showSlide(currentSlide + direction);
         }
 
-        // Auto play every 5 seconds
         setInterval(() => moveSlide(1), 5000);
         showSlide(0);
 
-        // === THEME TOGGLE ===
+        // TEMA DÍA/NOCHE
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         
-        // Check saved theme
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             body.classList.add('dark-mode');
         }
         
-        // Toggle theme
         themeToggle.addEventListener('click', function() {
             body.classList.toggle('dark-mode');
             if (body.classList.contains('dark-mode')) {
