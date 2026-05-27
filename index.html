@@ -1,105 +1,128 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- =============================================
+         META TAGS Y CONFIGURACIÓN BÁSICA
+         ============================================= -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sitio web profesional con modo día/noche">
-    <title>Mi Sitio Web - Landing Page</title>
+    <meta name="description" content="Conoce más sobre nuestra empresa y equipo">
+    <title>Mi Sitio Web - About Us</title>
+    
+    <!-- Favicon (icono de la pestaña) -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+    <!-- =============================================
+         FUENTES DE GOOGLE FONTS
+         ============================================= -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
 
+    <!-- =============================================
+         ESTILOS CSS - VARIABLES DE COLOR (MODO DÍA)
+         ============================================= -->
     <style>
-        /* =============================================
-           VARIABLES CSS - TEMA DÍA (NO BLANCO PURO)
-           ============================================= */
+        /* 
+         * VARIABLES CSS PARA EL TEMA DÍA
+         * Cambia estos valores para personalizar los colores del modo claro
+         */
         :root {
-            --bg-color: #fafafa;                    /* Fondo principal - gris muy claro */
-            --text-color: #000000;                  /* Texto negro puro (legibilidad) */
-            --navbar-bg: #f5f5f5;                   /* Navbar - gris claro */
-            --navbar-text: #000000;                 /* Texto navbar negro puro */
-            --gallery-bg: #f0f0f0;                  /* Galería - gris claro */
-            --btn-bg: #ff7227;                      /* BOTONES - NARANJA */
-            --btn-text: #ffffff;                    /* Texto botones blanco puro */
-            --card-bg: #ffffff;                     /* Tarjetas - blanco */
-            --card-shadow: rgba(0,0,0,0.08);        /* Sombra suave */
-            --feature-bg: #e9ecef;                  /* Features - gris claro */
-            --split-bg: #f8f9fa;                    /* Split sections - gris muy claro */
-            --footer-bg: #1a1a1a;                   /* Footer - gris muy oscuro */
-            --footer-text: #ffffff;                 /* Footer texto blanco puro */
-            --accent-color: #ff7227;                /* Color de acento - NARANJA */
+            --bg-color: #ffffff;                    /* Fondo principal */
+            --text-color: #333333;                  /* Color de texto general */
+            --navbar-bg: #ffffff;                   /* Fondo de la barra de navegación */
+            --navbar-text: #000000;                 /* Texto de la navegación */
+            --btn-bg: #007bff;                      /* Fondo de botones */
+            --btn-text: #ffffff;                    /* Texto de botones */
+            --card-bg: #ffffff;                     /* Fondo de tarjetas */
+            --card-shadow: rgba(0,0,0,0.1);         /* Sombra de tarjetas */
+            --footer-bg: #222222;                   /* Fondo del footer */
+            --footer-text: #ffffff;                 /* Texto del footer */
+            --accent-color: #007bff;                /* Color de acento para títulos */
         }
 
-        /* =============================================
-           VARIABLES CSS - TEMA NOCHE (NO NEGRO PURO)
-           ============================================= */
+        /* 
+         * VARIABLES CSS PARA EL TEMA NOCHE
+         * Se activan cuando el body tiene la clase "dark-mode"
+         */
         body.dark-mode {
-            --bg-color: #121212;                    /* Fondo - gris muy oscuro (no negro) */
-            --text-color: #ffffff;                  /* Texto blanco puro (legibilidad) */
-            --navbar-bg: #1a1a1a;                   /* Navbar - gris oscuro */
-            --navbar-text: #ffffff;                 /* Texto navbar blanco puro */
-            --gallery-bg: #252525;                  /* Galería - gris oscuro */
-            --btn-bg: #ff7227;                      /* BOTONES - NARANJA (mismo color) */
-            --btn-text: #ffffff;                    /* Texto botones blanco puro */
-            --card-bg: #1e1e1e;                     /* Tarjetas - gris oscuro */
-            --card-shadow: rgba(0,0,0,0.3);         /* Sombra más fuerte */
-            --feature-bg: #202020;                  /* Features - gris oscuro */
-            --split-bg: #1a1a1a;                    /* Split sections - gris oscuro */
-            --footer-bg: #0a0a0a;                   /* Footer - casi negro */
-            --footer-text: #ffffff;                 /* Footer texto blanco puro */
-            --accent-color: #ff7227;                /* Color de acento - NARANJA */
+            --bg-color: #1a1a2e;
+            --text-color: #eaeaea;
+            --navbar-bg: #16213e;
+            --navbar-text: #ffffff;
+            --btn-bg: #e94560;
+            --btn-text: #ffffff;
+            --card-bg: #16213e;
+            --card-shadow: rgba(0,0,0,0.3);
+            --footer-bg: #0a0a14;
+            --footer-text: #eaeaea;
+            --accent-color: #e94560;
         }
 
         /* =============================================
            RESET Y ESTILOS BASE
            ============================================= */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;   /* Incluye padding y border en el tamaño total */
+            margin: 0;                /* Elimina márgenes por defecto */
+            padding: 0;               /* Elimina padding por defecto */
+        }
         
         body {
-            font-family: 'Mochiy Pop One', sans-serif;
-            background-color: var(--bg-color);
+            font-family: 'Mochiy Pop One', sans-serif;  /* Fuente principal */
+            background-color: var(--bg-color);          /* Usa variable CSS */
             color: var(--text-color);
-            overflow-x: hidden;
-            line-height: 1.6;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;                         /* Evita scroll horizontal */
+            line-height: 1.6;                           /* Altura de línea para legibilidad */
+            transition: background-color 0.3s ease, color 0.3s ease;  /* Transición suave al cambiar tema */
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        img { max-width: 100%; display: block; }
-        ul { list-style: none; }
+        a {
+            text-decoration: none;    /* Sin subrayado en enlaces */
+            color: inherit;           /* Hereda el color del padre */
+            transition: 0.3s;         /* Transición suave en hover */
+        }
+
+        img {
+            max-width: 100%;          /* Imágenes responsivas */
+            display: block;           /* Elimina espacio extra debajo de imágenes */
+        }
+
+        ul {
+            list-style: none;         /* Sin viñetas en listas */
+        }
 
         /* =============================================
-           NAVBAR
+           BARRA DE NAVEGACIÓN (NAVBAR)
            ============================================= */
         .navbar {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 40px);
-            max-width: 1200px;
+            position: fixed;                      /* Fija en la parte superior */
+            top: 20px;                            /* Margen superior */
+            left: 50%;                            /* Centrada horizontalmente */
+            transform: translateX(-50%);          /* Ajuste para centrado perfecto */
+            width: calc(100% - 40px);             /* Ancho con márgenes laterales */
+            max-width: 1200px;                    /* Ancho máximo */
             background: var(--navbar-bg);
-            z-index: 1000;
+            z-index: 1000;                        /* Por encima de todo */
             height: 70px;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            align-items: center;                  /* Centrado vertical */
+            justify-content: space-between;       /* Espacio entre links y botón */
             padding: 0 30px;
-            border-radius: 50px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            border-radius: 50px;                  /* Bordes redondeados (forma de píldora) */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);  /* Sombra suave */
+            transition: all 0.3s ease;            /* Animación en hover */
         }
 
         .navbar:hover {
-            box-shadow: 0 6px 30px rgba(0,0,0,0.15);
-            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.15);  /* Sombra más fuerte al hover */
+            transform: translateX(-50%) translateY(-2px);  /* Pequeña elevación */
         }
 
         .nav-links {
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+            gap: 15px;                /* Espacio entre enlaces */
+            flex-wrap: wrap;          /* Permite que los links salten de línea en móvil */
             justify-content: center;
         }
 
@@ -109,18 +132,18 @@
             text-transform: uppercase;
             font-size: 13px;
             padding: 8px 16px;
-            border-radius: 25px;
+            border-radius: 25px;      /* Bordes redondeados en cada link */
             transition: all 0.3s ease;
         }
 
         .nav-links a:hover {
-            background: var(--btn-bg);  /* Naranja al hover */
-            color: var(--btn-text);
-            transform: translateY(-2px);
+            background: var(--navbar-text);  /* Fondo del color del texto */
+            color: var(--navbar-bg);         /* Texto del color del fondo */
+            transform: translateY(-2px);     /* Pequeña elevación */
         }
 
         /* =============================================
-           BOTÓN TEMA DÍA/NOCHE
+           BOTÓN DE CAMBIO DE TEMA (DÍA/NOCHE)
            ============================================= */
         .theme-toggle {
             background: transparent;
@@ -128,7 +151,7 @@
             color: var(--navbar-text);
             width: 45px;
             height: 45px;
-            border-radius: 50%;
+            border-radius: 50%;         /* Botón circular */
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -139,351 +162,232 @@
         }
 
         .theme-toggle:hover {
-            background: var(--btn-bg);  /* Naranja al hover */
-            color: var(--btn-text);
-            transform: rotate(15deg) scale(1.1);
-            border-color: var(--btn-bg);
+            background: var(--navbar-text);
+            color: var(--navbar-bg);
+            transform: rotate(15deg) scale(1.1);  /* Rotación y escala al hover */
         }
 
-        .theme-toggle .icon-sun { display: none; }
-        .theme-toggle .icon-moon { display: block; }
-        body.dark-mode .theme-toggle .icon-sun { display: block; }
-        body.dark-mode .theme-toggle .icon-moon { display: none; }
+        .theme-toggle .icon-sun { display: none; }   /* Sol oculto por defecto */
+        .theme-toggle .icon-moon { display: block; } /* Luna visible por defecto */
+        
+        body.dark-mode .theme-toggle .icon-sun { display: block; }  /* Sol visible en modo noche */
+        body.dark-mode .theme-toggle .icon-moon { display: none; }  /* Luna oculta en modo noche */
 
         /* =============================================
-           HERO CARRUSEL
+           HERO SECTION ESTÁTICA (IMAGEN DE CABECERA)
            ============================================= */
-        .hero-carousel {
+        .hero-static {
             position: relative;
-            height: 100vh;
+            height: 60vh;             /* 60% de la altura de la ventana */
+            min-height: 400px;        /* Altura mínima para móviles */
             width: 100%;
             overflow: hidden;
             margin-top: 0;
         }
 
-        .slide {
+        .hero-static img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;        /* La imagen cubre todo sin deformarse */
+            position: absolute;
+            z-index: 1;
+        }
+
+        /* Capa oscura sobre la imagen para mejorar legibilidad del texto */
+        .hero-static::after {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            display: flex;
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+            z-index: 2;
         }
 
-        .slide.active { opacity: 1; }
+        .hero-static-content {
+            position: relative;
+            z-index: 3;               /* Por encima de la imagen y capa oscura */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+        }
 
-        .slide img {
+        .hero-static-content h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);  /* Tamaño responsivo */
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .hero-static-content p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            max-width: 600px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+        }
+
+        /* =============================================
+           SECCIONES DE MISIÓN Y VISIÓN
+           ============================================= */
+        .mission-section,
+        .vision-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 30px;
+            box-shadow: 0 4px 20px var(--card-shadow);
+            transition: background-color 0.3s ease;
+        }
+
+        .mission-section { margin-top: 60px; }
+        .vision-section { margin-top: 40px; }
+        
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;  /* 2 columnas iguales */
+            gap: 40px;
+            align-items: center;
+        }
+
+        .mv-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);  /* Usa variable de color de acento */
+        }
+
+        .mv-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .mv-icon {
+            font-size: 80px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .mv-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px var(--card-shadow);
+        }
+
+        /* =============================================
+           SECCIÓN DEL EQUIPO
+           ============================================= */
+        .team-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        .team-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .team-section .subtitle {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 50px;
+            opacity: 0.8;
+        }
+
+        body.dark-mode .team-section .subtitle {
+            color: #aaa;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  /* Grid responsivo */
+            gap: 30px;
+        }
+        
+        .team-card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);           /* Elevación al hover */
+            box-shadow: 0 10px 35px var(--card-shadow);
+        }
+
+        .team-card-img {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .team-card-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            position: absolute;
-            z-index: 1;
+            transition: transform 0.3s ease;
         }
 
-        .slide-content {
-            position: relative;
-            z-index: 2;
-            color: #fff;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-            padding: 20px;
-            max-width: 90%;
+        .team-card:hover .team-card-img img {
+            transform: scale(1.05);  /* Zoom suave en la imagen al hover */
         }
 
-        .slide-content.center {
-            align-self: center;
-            justify-self: center;
-            text-align: center;
-            margin: auto;
-            width: 100%;
+        .team-card-info {
+            padding: 25px;
         }
 
-        .slide-content.top-left {
-            align-self: flex-start;
-            justify-self: flex-start;
-            text-align: left;
-            position: absolute;
-            top: 20px;
-            left: 20px;
+        .team-card-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
         }
 
-        .slide-content.top-right {
-            align-self: flex-start;
-            justify-self: flex-end;
-            text-align: right;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
-        .slide-content.bottom-left {
-            align-self: flex-end;
-            justify-self: flex-start;
-            text-align: left;
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-        }
-
-        .slide-content.bottom-right {
-            align-self: flex-end;
-            justify-self: flex-end;
-            text-align: right;
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-        }
-
-        .slide-content h1 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            text-transform: uppercase;
-            line-height: 1.2;
-            word-wrap: break-word;
-        }
-
-        .slide-content h1 a {
-            color: #fff;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .slide-content h1 a:hover { opacity: 0.8; }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            background: rgba(255,255,255,0.3);
-            border: none;
-            color: white;
-            font-size: 30px;
-            padding: 15px 20px;
-            cursor: pointer;
-            border-radius: 50%;
-            font-family: 'Mochiy Pop One', sans-serif;
-        }
-
-        .carousel-btn:hover { background: rgba(255,255,255,0.6); }
-        .prev { left: 20px; }
-        .next { right: 20px; }
-
-        /* =============================================
-           FEATURES
-           ============================================= */
-        .features-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-block {
-            padding: 40px 20px;
-            text-align: center;
-            border-radius: 20px;
-            background-color: var(--feature-bg);
-            transition: transform 0.3s, background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature-block:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 20px;
-            object-fit: contain;
-        }
-
-        .feature-block p { font-size: 1.1rem; }
-
-        /* =============================================
-           GALERÍA
-           ============================================= */
-        .gallery-section {
-            padding: 60px 0;
-            background: var(--gallery-bg);
-            text-align: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .gallery-section h2 { margin-bottom: 30px; font-size: 2rem; }
-
-        .gallery-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding: 20px;
-            gap: 15px;
-            scrollbar-width: thin;
-        }
-
-        .gallery-container::-webkit-scrollbar { height: 8px; }
-        .gallery-container::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
-
-        .gallery-item {
-            flex: 0 0 300px;
-            scroll-snap-align: center;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover img { transform: scale(1.05); }
-
-        /* =============================================
-           SPLIT SECTIONS
-           ============================================= */
-        .split-section {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 80px 5%;
-            gap: 40px;
-        }
-
-        .split-section.bg-alt {
-            background-color: var(--split-bg);
-            transition: background-color 0.3s ease;
-            border-radius: 30px;
-            margin: 20px 5%;
-        }
-
-        .split-text { flex: 1; min-width: 300px; }
-        .split-image { flex: 1; min-width: 300px; }
-
-        .split-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .split-text h2 { font-size: 2.5rem; margin-bottom: 20px; line-height: 1.3; }
-        .split-text p { margin-bottom: 30px; font-size: 1.1rem; }
-        
-        .custom-btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: var(--btn-bg);  /* NARANJA */
-            color: var(--btn-text);
-            border-radius: 30px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            font-family: 'Mochiy Pop One', sans-serif;
-            transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
-        }
-
-        .custom-btn:hover { opacity: 0.9; transform: translateY(-3px); }
-
-        /* =============================================
-           DESTINATIONS
-           ============================================= */
-        .destinations-section { padding: 60px 20px; text-align: center; }
-        .destinations-section h2 { font-size: 2rem; margin-bottom: 40px; }
-
-        .destinations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .destination-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px var(--card-shadow);
-            transition: transform 0.3s, background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .destination-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .destination-card img { width: 100%; height: 250px; object-fit: cover; }
-        .card-content { padding: 20px; }
-
-        .card-btn {
+        .team-card-info .role {
+            font-size: 1rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
             display: block;
-            width: 100%;
-            padding: 12px;
+        }
+
+        .team-card-info p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
             margin-top: 15px;
-            background: var(--btn-bg);  /* NARANJA */
+        }
+
+        .team-social a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--btn-bg);
             color: var(--btn-text);
-            text-align: center;
-            border-radius: 25px;
-            font-weight: bold;
-            font-family: 'Mochiy Pop One', sans-serif;
-            transition: opacity 0.3s, background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
-        .card-btn:hover { opacity: 0.9; }
-
-        /* =============================================
-           BLOG
-           ============================================= */
-        .blog-section {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
+        .team-social a:hover {
+            transform: scale(1.15);  /* Crecimiento al hover */
+            opacity: 0.8;
         }
-
-        .blog-section h2 { 
-            font-size: 2rem; 
-            margin-bottom: 30px; 
-            text-align: center; 
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .blog-post-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px var(--card-shadow);
-            transition: transform 0.3s, background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .blog-post-card:hover { 
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .blog-post-card img { 
-            width: 100%; 
-            height: 250px; 
-            object-fit: cover; 
-        }
-
-        .blog-post-card h3 { 
-            padding: 20px;
-            margin: 0;
-            font-size: 1.3rem;
-            line-height: 1.4;
-        }
-
-        .blog-post-card h3 a:hover { opacity: 0.8; }
-        .blog-post-card:nth-child(n+4) { display: none; }
 
         /* =============================================
            FOOTER
@@ -509,23 +413,10 @@
         footer a:hover { opacity: 0.8; }
 
         /* =============================================
-           RESPONSIVE
+           RESPONSIVE DESIGN (MÓVIL)
            ============================================= */
         @media (max-width: 768px) {
-            .slide-content h1 { font-size: 2rem; }
-            
-            .slide-content.top-left, .slide-content.top-right,
-            .slide-content.bottom-left, .slide-content.bottom-right {
-                position: static;
-                text-align: center !important;
-                margin: auto;
-                width: 100%;
-            }
-
-            .split-section { flex-direction: column; text-align: center; }
-            .carousel-btn { padding: 10px 15px; font-size: 24px; }
-            .blog-grid { grid-template-columns: 1fr; }
-
+            /* Navbar responsive */
             .navbar {
                 top: 10px;
                 width: calc(100% - 20px);
@@ -535,230 +426,305 @@
                 border-radius: 30px;
             }
 
-            .nav-links { margin: 15px 0; gap: 10px; }
-            .nav-links a { padding: 6px 12px; font-size: 11px; }
-            .theme-toggle { margin: 10px auto 0; }
+            .nav-links {
+                margin: 15px 0;
+                gap: 10px;
+            }
 
-            footer { margin: 40px 10px 10px; border-radius: 20px; }
+            .nav-links a {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+
+            .theme-toggle {
+                margin: 10px auto 0;
+            }
+
+            /* Hero responsive */
+            .hero-static {
+                height: 50vh;
+                min-height: 300px;
+            }
+
+            .hero-static-content h1 {
+                font-size: 2rem;
+            }
+
+            /* Misión/Visión responsive - 1 columna */
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mission-section,
+            .vision-section {
+                margin-top: 30px;
+                padding: 40px 20px;
+            }
+
+            /* Team responsive */
+            .team-section {
+                padding: 40px 20px;
+            }
+
+            /* Footer responsive */
+            footer {
+                margin: 40px 10px 10px;
+                border-radius: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
+    <!-- =============================================
+         BARRA DE NAVEGACIÓN
+         ============================================= -->
     <nav class="navbar">
+        <!-- Enlaces de navegación -->
         <ul class="nav-links">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#about">Nosotros</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#galeria">Galería</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-            <li><a href="#blog">Blog</a></li>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#about">Nosotros</a></li>
+            <li><a href="index.html#servicios">Servicios</a></li>
+            <li><a href="index.html#galeria">Galería</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+            <li><a href="index.html#blog">Blog</a></li>
         </ul>
+        
+        <!-- Botón para cambiar tema día/noche -->
         <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
             <span class="icon-sun">☀️</span>
             <span class="icon-moon">🌙</span>
         </button>
     </nav>
 
-    <!-- HERO CARRUSEL -->
-    <section class="hero-carousel" id="inicio">
-        <div class="slide active">
-            <img src="assets/hero1.jpg" alt="Slide 1">
-            <div class="slide-content center">
-                <h1><a href="#">Bienvenido</a></h1>
-            </div>
-        </div>
-        <div class="slide">
-            <img src="assets/hero2.jpg" alt="Slide 2">
-            <div class="slide-content top-left">
-                <h1><a href="#">Explora</a></h1>
-            </div>
-        </div>
-        <div class="slide">
-            <img src="assets/hero3.jpg" alt="Slide 3">
-            <div class="slide-content bottom-right">
-                <h1><a href="#">Descubre</a></h1>
-            </div>
-        </div>
-        <div class="slide">
-            <img src="assets/hero4.jpg" alt="Slide 4">
-            <div class="slide-content center">
-                <h1><a href="#">Aventura</a></h1>
-            </div>
-        </div>
-        <div class="slide">
-            <img src="assets/hero5.jpg" alt="Slide 5">
-            <div class="slide-content top-right">
-                <h1><a href="#">Viaja</a></h1>
-            </div>
-        </div>
-        <div class="slide">
-            <img src="assets/hero6.jpg" alt="Slide 6">
-            <div class="slide-content bottom-left">
-                <h1><a href="#">Reserva</a></h1>
-            </div>
-        </div>
-        <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
-    </section>
-
-    <!-- FEATURES -->
-    <section class="features-section" id="servicios">
-        <div class="feature-block">
-            <img src="assets/icon1.png" class="feature-icon" alt="Icono 1">
-            <p>Calidad Premium</p>
-        </div>
-        <div class="feature-block">
-            <img src="assets/icon2.png" class="feature-icon" alt="Icono 2">
-            <p>Soporte 24/7</p>
-        </div>
-        <div class="feature-block">
-            <img src="assets/icon3.png" class="feature-icon" alt="Icono 3">
-            <p>Envío Rápido</p>
-        </div>
-        <div class="feature-block">
-            <img src="assets/icon4.png" class="feature-icon" alt="Icono 4">
-            <p>Garantía Total</p>
+    <!-- =============================================
+         HERO SECTION ESTÁTICA (IMAGEN DE CABECERA)
+         ============================================= -->
+    <section class="hero-static">
+        <!-- Imagen de cabecera fija (no carrusel) -->
+        <img src="assets/about-hero.jpg" alt="Sobre Nosotros">
+        
+        <!-- Contenido del hero -->
+        <div class="hero-static-content">
+            <h1>Sobre Nosotros</h1>
+            <p>Conoce la historia, misión y visión detrás de nuestra empresa</p>
         </div>
     </section>
 
-    <!-- GALERÍA -->
-    <section class="gallery-section" id="galeria">
-        <h2>Galería Seleccionada</h2>
-        <div class="gallery-container">
-            <div class="gallery-item"><img src="assets/gallery1.jpg" alt="Galería 1"></div>
-            <div class="gallery-item"><img src="assets/gallery2.jpg" alt="Galería 2"></div>
-            <div class="gallery-item"><img src="assets/gallery3.jpg" alt="Galería 3"></div>
-            <div class="gallery-item"><img src="assets/gallery4.jpg" alt="Galería 4"></div>
-            <div class="gallery-item"><img src="assets/gallery5.jpg" alt="Galería 5"></div>
+    <!-- =============================================
+         SECCIÓN DE MISIÓN
+         ============================================= -->
+    <section class="mission-section">
+        <div class="mv-grid">
+            <!-- Contenido de texto (izquierda) -->
+            <div class="mv-content">
+                <div class="mv-icon">🎯</div>  <!-- Emoji como icono -->
+                <h2>Nuestra Misión</h2>
+                <p>
+                    Crear experiencias únicas que inspiren y conecten a las personas con el mundo 
+                    que las rodea. Nos dedicamos a ofrecer servicios de la más alta calidad, 
+                    superando las expectativas de nuestros clientes en cada proyecto.
+                </p>
+                <p>
+                    Nuestro compromiso es la excelencia, la innovación y el desarrollo sostenible 
+                    en todo lo que hacemos.
+                </p>
+            </div>
+            
+            <!-- Imagen acompañante (derecha) -->
+            <div class="mv-image">
+                <img src="assets/mission.jpg" alt="Nuestra Misión">
+            </div>
         </div>
     </section>
 
-    <!-- SPLIT 1 -->
-    <section class="split-section">
-        <div class="split-text">
-            <h2>Nuestra Misión</h2>
-            <p>Creamos experiencias inolvidables con enfoque en calidad y satisfacción del cliente.</p>
-            <a href="#" class="custom-btn">Leer Más</a>
-        </div>
-        <div class="split-image">
-            <img src="assets/split1.jpg" alt="Misión">
+    <!-- =============================================
+         SECCIÓN DE VISIÓN
+         ============================================= -->
+    <section class="vision-section">
+        <div class="mv-grid">
+            <!-- Imagen acompañante (izquierda) -->
+            <div class="mv-image">
+                <img src="assets/vision.jpg" alt="Nuestra Visión">
+            </div>
+            
+            <!-- Contenido de texto (derecha) -->
+            <div class="mv-content">
+                <div class="mv-icon">👁️</div>  <!-- Emoji como icono -->
+                <h2>Nuestra Visión</h2>
+                <p>
+                    Ser líderes en innovación y calidad, reconocidos mundialmente por nuestro 
+                    compromiso con la excelencia y el desarrollo de soluciones que marquen 
+                    la diferencia en la industria.
+                </p>
+                <p>
+                    Aspiramos a construir un futuro donde la tecnología y el talento humano 
+                    se unan para crear un impacto positivo en la sociedad.
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- DESTINATIONS -->
-    <section class="destinations-section">
-        <h2>Destinos Populares</h2>
-        <div class="destinations-grid">
-            <div class="destination-card">
-                <img src="assets/dest1.jpg" alt="Destino 1">
-                <div class="card-content">
-                    <a href="#" class="card-btn">Ver Más</a>
+    <!-- =============================================
+         SECCIÓN DEL EQUIPO
+         ============================================= -->
+    <section class="team-section">
+        <h2>Nuestro Equipo</h2>
+        <p class="subtitle">Las personas increíbles detrás de nuestro éxito</p>
+        
+        <div class="team-grid">
+            <!-- =============================================
+                 MIEMBRO DEL EQUIPO 1
+                 ============================================= -->
+            <div class="team-card">
+                <div class="team-card-img">
+                    <img src="assets/team1.jpg" alt="María González">
+                </div>
+                <div class="team-card-info">
+                    <h3>María González</h3>
+                    <span class="role">CEO & Fundadora</span>
+                    <p>Líder visionaria con más de 15 años de experiencia en la industria. Apasionada por la innovación.</p>
+                    <div class="team-social">
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Email">📧</a>
+                    </div>
                 </div>
             </div>
-            <div class="destination-card">
-                <img src="assets/dest2.jpg" alt="Destino 2">
-                <div class="card-content">
-                    <a href="#" class="card-btn">Ver Más</a>
+            
+            <!-- =============================================
+                 MIEMBRO DEL EQUIPO 2
+                 ============================================= -->
+            <div class="team-card">
+                <div class="team-card-img">
+                    <img src="assets/team2.jpg" alt="Carlos Rodríguez">
+                </div>
+                <div class="team-card-info">
+                    <h3>Carlos Rodríguez</h3>
+                    <span class="role">Director de Tecnología</span>
+                    <p>Ingeniero de software con experiencia en desarrollo de soluciones escalables y arquitectura cloud.</p>
+                    <div class="team-social">
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="GitHub">🐙</a>
+                        <a href="#" aria-label="Email">📧</a>
+                    </div>
                 </div>
             </div>
-            <div class="destination-card">
-                <img src="assets/dest3.jpg" alt="Destino 3">
-                <div class="card-content">
-                    <a href="#" class="card-btn">Ver Más</a>
+            
+            <!-- =============================================
+                 MIEMBRO DEL EQUIPO 3
+                 ============================================= -->
+            <div class="team-card">
+                <div class="team-card-img">
+                    <img src="assets/team3.jpg" alt="Ana Martínez">
+                </div>
+                <div class="team-card-info">
+                    <h3>Ana Martínez</h3>
+                    <span class="role">Directora de Marketing</span>
+                    <p>Experta en estrategias digitales, branding y crecimiento de marcas en el entorno digital.</p>
+                    <div class="team-social">
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Email">📧</a>
+                    </div>
                 </div>
             </div>
-            <div class="destination-card">
-                <img src="assets/dest4.jpg" alt="Destino 4">
-                <div class="card-content">
-                    <a href="#" class="card-btn">Ver Más</a>
+            
+            <!-- =============================================
+                 MIEMBRO DEL EQUIPO 4
+                 ============================================= -->
+            <div class="team-card">
+                <div class="team-card-img">
+                    <img src="assets/team4.jpg" alt="Luis Fernández">
+                </div>
+                <div class="team-card-info">
+                    <h3>Luis Fernández</h3>
+                    <span class="role">Diseñador Principal</span>
+                    <p>Creativo con ojo para el detalle, especializado en UX/UI y diseño de experiencias digitales.</p>
+                    <div class="team-social">
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="Behance">🎨</a>
+                        <a href="#" aria-label="Email">📧</a>
+                    </div>
                 </div>
             </div>
-            <div class="destination-card">
-                <img src="assets/dest5.jpg" alt="Destino 5">
-                <div class="card-content">
-                    <a href="#" class="card-btn">Ver Más</a>
+            
+            <!-- =============================================
+                 MIEMBRO DEL EQUIPO 5
+                 ============================================= -->
+            <div class="team-card">
+                <div class="team-card-img">
+                    <img src="assets/team5.jpg" alt="Sofía López">
+                </div>
+                <div class="team-card-info">
+                    <h3>Sofía López</h3>
+                    <span class="role">Gerente de Ventas</span>
+                    <p>Especialista en relaciones con clientes y desarrollo de negocios estratégicos.</p>
+                    <div class="team-social">
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Email">📧</a>
+                    </div>
                 </div>
             </div>
-            <div class="destination-card">
-                <img src="assets/dest6.jpg" alt="Destino 6">
-                <div class="card-content">
-                    <a href="#" class="card-btn">Ver Más</a>
+            
+            <!-- =============================================
+                 MIEMBRO DEL EQUIPO 6
+                 ============================================= -->
+            <div class="team-card">
+                <div class="team-card-img">
+                    <img src="assets/team6.jpg" alt="David Ruiz">
+                </div>
+                <div class="team-card-info">
+                    <h3>David Ruiz</h3>
+                    <span class="role">Coordinador de Proyectos</span>
+                    <p>Organizador nato con gran liderazgo, experto en metodologías ágiles y gestión de equipos.</p>
+                    <div class="team-social">
+                        <a href="#" aria-label="LinkedIn">💼</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Email">📧</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SPLIT 2 -->
-    <section class="split-section bg-alt">
-        <div class="split-image">
-            <img src="assets/split2.jpg" alt="Equipo">
-        </div>
-        <div class="split-text">
-            <h2>Únete al Equipo</h2>
-            <p>Buscamos personas apasionadas para unirse a nuestro equipo global.</p>
-            <a href="#" class="custom-btn">Aplicar Ahora</a>
-        </div>
-    </section>
-
-    <!-- BLOG -->
-    <section class="blog-section" id="blog">
-        <h2>Últimas Entradas</h2>
-        <div class="blog-grid">
-            <article class="blog-post-card">
-                <a href="#"><img src="assets/blog1.jpg" alt="Post 1"></a>
-                <h3><a href="#">Título del Post 1</a></h3>
-            </article>
-            <article class="blog-post-card">
-                <a href="#"><img src="assets/blog2.jpg" alt="Post 2"></a>
-                <h3><a href="#">Título del Post 2</a></h3>
-            </article>
-            <article class="blog-post-card">
-                <a href="#"><img src="assets/blog3.jpg" alt="Post 3"></a>
-                <h3><a href="#">Título del Post 3</a></h3>
-            </article>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="contacto">
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer>
         <p>&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- JAVASCRIPT -->
+    <!-- =============================================
+         JAVASCRIPT
+         ============================================= -->
     <script>
-        // CARRUSEL
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-carousel .slide');
+        /* =============================================
+           FUNCIONALIDAD DEL CAMBIO DE TEMA (DÍA/NOCHE)
+           ============================================= */
+        const themeToggle = document.getElementById('themeToggle');  // Botón de toggle
+        const body = document.body;  // Elemento body
         
-        function showSlide(index) {
-            if (slides.length === 0) return;
-            if (index >= slides.length) currentSlide = 0;
-            else if (index < 0) currentSlide = slides.length - 1;
-            else currentSlide = index;
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[currentSlide].classList.add('active');
-        }
-
-        function moveSlide(direction) {
-            showSlide(currentSlide + direction);
-        }
-
-        setInterval(() => moveSlide(1), 5000);
-        showSlide(0);
-
-        // TEMA DÍA/NOCHE
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        
+        /**
+         * Verificar si hay una preferencia guardada en localStorage
+         * localStorage permite guardar datos en el navegador del usuario
+         * que persisten incluso después de cerrar la página
+         */
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
-            body.classList.add('dark-mode');
+            body.classList.add('dark-mode');  // Activar modo noche
         }
         
+        /**
+         * Event listener para el botón de cambio de tema
+         * Se ejecuta cada vez que el usuario hace clic en el botón
+         */
         themeToggle.addEventListener('click', function() {
+            // Alternar la clase 'dark-mode' en el body
             body.classList.toggle('dark-mode');
+            
+            // Guardar la preferencia en localStorage para futuras visitas
             if (body.classList.contains('dark-mode')) {
                 localStorage.setItem('theme', 'dark');
             } else {
