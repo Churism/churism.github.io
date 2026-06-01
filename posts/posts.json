@@ -12,21 +12,21 @@
   {
     "id": "post-002",
     "slug": "tutorial-github-pages",
-    "title": "🚀 Cómo subir tu web a GitHub Pages",
-    "excerpt": "Aprende paso a paso cómo publicar tu sitio web estático de forma gratuita usando GitHub Pages. Ideal para portafolios y proyectos personales.",
+    "title": "Top 10 Churism",
+    "excerpt": "El número tres el la longaniza de chillán",
     "image": "assets/posts/post-002-cover.jpg",
     "date": "2026-05-28",
-    "tags": ["tutorial", "github", "web"],
+    "tags": ["tutorial", "github", "churism"],
     "url": "posts/tutorial-github-pages.html"
   },
   {
     "id": "post-003",
     "slug": "diseno-moderno-2026",
-    "title": "🎨 Tendencias de diseño web para 2026",
-    "excerpt": "Exploramos las principales tendencias en diseño UI/UX que marcarán este año: modo oscuro, micro-interacciones y accesibilidad.",
+    "title": "Tendencias de churism para 2027",
+    "excerpt": "Exploramos las principales tendencias en churism que marcarán este año que viene.",
     "image": "assets/posts/post-003-cover.jpg",
     "date": "2026-05-20",
-    "tags": ["diseño", "tendencias", "ux"],
+    "tags": ["diseño", "tendencias", "churism"],
     "url": "posts/diseno-moderno-2026.html"
   }
 ]
