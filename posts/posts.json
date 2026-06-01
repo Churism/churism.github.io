@@ -1,13 +1,13 @@
 [
   {
-    "id": "post-001",
+    "id": "churism",
     "slug": "mi-primer-post",
-    "title": "✨ Mi Primer Post en el Blog ✨",
-    "excerpt": "Bienvenidos a nuestro nuevo espacio de contenido. Aquí compartiremos novedades, tutoriales y reflexiones sobre nuestro trabajo.",
+    "title": "✨ churism ✨",
+    "excerpt": "en este post hablamos del churism.",
     "image": "assets/posts/post-001-cover.jpg",
     "date": "2026-06-01",
-    "tags": ["anuncio", "blog", "novedades"],
-    "url": "posts/mi-primer-post.html"
+    "tags": ["anuncio", "blog", "churism"],
+    "url": "posts/Test.html"
   },
   {
     "id": "post-002",
