@@ -34,9 +34,9 @@
     "slug": "portillos",
     "title": "Nuestro último viaje a portillos",
     "excerpt": "Descubre lo que vimos en nuestro último viaje a portillos.",
-    "image": "assets/posts/post-003-cover.jpg",
+    "image": "https://imgur.com/FUvfHCn.jpg",
     "date": "2026-05-20",
     "tags": ["sponsor", "churism", "viaje"],
-    "url": "posts/diseno-moderno-2026.html"
+    "url": "posts/portillo.html"
   }
 ]
