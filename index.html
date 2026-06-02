@@ -11,47 +11,48 @@
     <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
 
     <style>
-                    /* =============================================
-           Saltar a linea 555 para ir al cambio de imagenes
-           ============================================= */
         /* =============================================
            VARIABLES CSS - TEMA DÍA (NO BLANCO PURO)
            ============================================= */
         :root {
-            --bg-color: #fafafa;                    /* Fondo principal - gris muy claro */
-            --text-color: #000000;                  /* Texto negro puro (legibilidad) */
-            --navbar-bg: #f5f5f5;                   /* Navbar - gris claro */
-            --navbar-text: #000000;                 /* Texto navbar negro puro */
-            --gallery-bg: #f0f0f0;                  /* Galería - gris claro */
-            --btn-bg: #ff7227;                      /* BOTONES - NARANJA */
-            --btn-text: #ffffff;                    /* Texto botones blanco puro */
-            --card-bg: #ffffff;                     /* Tarjetas - blanco */
-            --card-shadow: rgba(0,0,0,0.08);        /* Sombra suave */
-            --feature-bg: #e9ecef;                  /* Features - gris claro */
-            --split-bg: #f8f9fa;                    /* Split sections - gris muy claro */
-            --footer-bg: #1a1a1a;                   /* Footer - gris muy oscuro */
-            --footer-text: #ffffff;                 /* Footer texto blanco puro */
-            --accent-color: #ff7227;                /* Color de acento - NARANJA */
+            --bg-color: #fafafa;
+            --text-color: #000000;
+            --navbar-bg: #f5f5f5;
+            --navbar-text: #000000;
+            --gallery-bg: #f0f0f0;
+            --btn-bg: #ff7227;
+            --btn-text: #ffffff;
+            --card-bg: #ffffff;
+            --card-shadow: rgba(0,0,0,0.08);
+            --feature-bg: #e9ecef;
+            --split-bg: #f8f9fa;
+            --footer-bg: #1a1a1a;
+            --footer-text: #ffffff;
+            --accent-color: #ff7227;
+            --tag-bg: #ffe8d9;
+            --tag-text: #cc5b00;
         }
 
         /* =============================================
            VARIABLES CSS - TEMA NOCHE (NO NEGRO PURO)
            ============================================= */
         body.dark-mode {
-            --bg-color: #121212;                    /* Fondo - gris muy oscuro (no negro) */
-            --text-color: #ffffff;                  /* Texto blanco puro (legibilidad) */
-            --navbar-bg: #1a1a1a;                   /* Navbar - gris oscuro */
-            --navbar-text: #ffffff;                 /* Texto navbar blanco puro */
-            --gallery-bg: #252525;                  /* Galería - gris oscuro */
-            --btn-bg: #ff7227;                      /* BOTONES - NARANJA (mismo color) */
-            --btn-text: #ffffff;                    /* Texto botones blanco puro */
-            --card-bg: #1e1e1e;                     /* Tarjetas - gris oscuro */
-            --card-shadow: rgba(0,0,0,0.3);         /* Sombra más fuerte */
-            --feature-bg: #202020;                  /* Features - gris oscuro */
-            --split-bg: #1a1a1a;                    /* Split sections - gris oscuro */
-            --footer-bg: #0a0a0a;                   /* Footer - casi negro */
-            --footer-text: #ffffff;                 /* Footer texto blanco puro */
-            --accent-color: #ff7227;                /* Color de acento - NARANJA */
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --navbar-bg: #1a1a1a;
+            --navbar-text: #ffffff;
+            --gallery-bg: #252525;
+            --btn-bg: #ff7227;
+            --btn-text: #ffffff;
+            --card-bg: #1e1e1e;
+            --card-shadow: rgba(0,0,0,0.3);
+            --feature-bg: #202020;
+            --split-bg: #1a1a1a;
+            --footer-bg: #0a0a0a;
+            --footer-text: #ffffff;
+            --accent-color: #ff7227;
+            --tag-bg: #3d2a1f;
+            --tag-text: #ffb380;
         }
 
         /* =============================================
@@ -117,7 +118,7 @@
         }
 
         .nav-links a:hover {
-            background: var(--btn-bg);  /* Naranja al hover */
+            background: var(--btn-bg);
             color: var(--btn-text);
             transform: translateY(-2px);
         }
@@ -142,7 +143,7 @@
         }
 
         .theme-toggle:hover {
-            background: var(--btn-bg);  /* Naranja al hover */
+            background: var(--btn-bg);
             color: var(--btn-text);
             transform: rotate(15deg) scale(1.1);
             border-color: var(--btn-bg);
@@ -380,7 +381,7 @@
         .custom-btn {
             display: inline-block;
             padding: 12px 30px;
-            background-color: var(--btn-bg);  /* NARANJA */
+            background-color: var(--btn-bg);
             color: var(--btn-text);
             border-radius: 30px;
             font-weight: bold;
@@ -427,7 +428,7 @@
             width: 100%;
             padding: 12px;
             margin-top: 15px;
-            background: var(--btn-bg);  /* NARANJA */
+            background: var(--btn-bg);
             color: var(--btn-text);
             text-align: center;
             border-radius: 25px;
@@ -439,7 +440,7 @@
         .card-btn:hover { opacity: 0.9; }
 
         /* =============================================
-           BLOG
+           BLOG - SECCIÓN DINÁMICA
            ============================================= */
         .blog-section {
             max-width: 1200px;
@@ -465,6 +466,8 @@
             overflow: hidden;
             box-shadow: 0 4px 10px var(--card-shadow);
             transition: transform 0.3s, background-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .blog-post-card:hover { 
@@ -472,21 +475,86 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .blog-post-card img { 
+        .blog-post-card-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .blog-post-card-image img { 
             width: 100%; 
-            height: 250px; 
-            object-fit: cover; 
+            height: 100%; 
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .blog-post-card:hover .blog-post-card-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-post-card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .blog-post-card-date {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-bottom: 10px;
         }
 
         .blog-post-card h3 { 
-            padding: 20px;
-            margin: 0;
+            margin: 0 0 12px 0;
             font-size: 1.3rem;
             line-height: 1.4;
         }
 
         .blog-post-card h3 a:hover { opacity: 0.8; }
-        .blog-post-card:nth-child(n+4) { display: none; }
+
+        .blog-post-card-excerpt {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .blog-post-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .blog-post-tag {
+            padding: 4px 12px;
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .blog-post-card-read {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-top: auto;
+        }
+
+        .blog-post-card-read:hover { opacity: 0.8; }
+
+        /* Estado de carga y vacío */
+        .blog-loading, .blog-empty {
+            text-align: center;
+            padding: 40px 20px;
+            grid-column: 1 / -1;
+            opacity: 0.8;
+        }
+
+        .blog-empty { display: none; }
 
         /* =============================================
            FOOTER
@@ -705,22 +773,15 @@
         </div>
     </section>
 
-    <!-- BLOG -->
+    <!-- =============================================
+         BLOG - SECCIÓN DINÁMICA (CARGA DESDE JSON)
+         ============================================= -->
     <section class="blog-section" id="blog">
         <h2>Últimas Entradas</h2>
-        <div class="blog-grid">
-            <article class="blog-post-card">
-                <a href="#"><img src="assets/blog1.jpg" alt="Post 1"></a>
-                <h3><a href="#">Título del Post 1</a></h3>
-            </article>
-            <article class="blog-post-card">
-                <a href="#"><img src="assets/blog2.jpg" alt="Post 2"></a>
-                <h3><a href="#">Título del Post 2</a></h3>
-            </article>
-            <article class="blog-post-card">
-                <a href="#"><img src="assets/blog3.jpg" alt="Post 3"></a>
-                <h3><a href="#">Título del Post 3</a></h3>
-            </article>
+        <div class="blog-grid" id="blogGrid">
+            <div class="blog-loading" id="blogLoading">Cargando entradas... 🌸</div>
+            <div class="blog-empty" id="blogEmpty">Aún no hay entradas. ¡Pronto tendremos novedades! ✨</div>
+            <!-- Los posts se inyectan aquí dinámicamente -->
         </div>
     </section>
 
@@ -729,9 +790,13 @@
         <p>&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- JAVASCRIPT -->
+    <!-- =============================================
+         JAVASCRIPT
+         ============================================= -->
     <script>
-        // CARRUSEL
+        /* =============================================
+           CARRUSEL HERO
+           ============================================= */
         let currentSlide = 0;
         const slides = document.querySelectorAll('.hero-carousel .slide');
         
@@ -751,7 +816,9 @@
         setInterval(() => moveSlide(1), 5000);
         showSlide(0);
 
-        // TEMA DÍA/NOCHE
+        /* =============================================
+           TEMA DÍA/NOCHE
+           ============================================= */
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         
@@ -768,6 +835,104 @@
                 localStorage.setItem('theme', 'light');
             }
         });
+
+        /* =============================================
+           BLOG DINÁMICO - CARGA DESDE posts.json
+           ============================================= */
+        
+        /**
+         * Formatea una fecha ISO a formato legible en español
+         * @param {string} dateString - Fecha en formato ISO (YYYY-MM-DD)
+         * @returns {string} Fecha formateada (ej: "1 jun 2026")
+         */
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES', { 
+                day: 'numeric', 
+                month: 'short', 
+                year: 'numeric' 
+            });
+        }
+
+        /**
+         * Trunca un texto a una longitud máxima añadiendo "..."
+         * @param {string} text - Texto original
+         * @param {number} maxLength - Longitud máxima
+         * @returns {string} Texto truncado
+         */
+        function truncateText(text, maxLength) {
+            if (text.length <= maxLength) return text;
+            return text.substring(0, maxLength).trim() + '...';
+        }
+
+        /**
+         * Genera el HTML para una tarjeta de post
+         * @param {Object} post - Objeto con datos del post
+         * @returns {string} HTML de la tarjeta
+         */
+        function createPostCard(post) {
+            // Limitar a 3 tags máximo para que quepan
+            const tagsToShow = post.tags.slice(0, 3);
+            const tagsHTML = tagsToShow.map(tag => 
+                `<span class="blog-post-tag">${tag}</span>`
+            ).join('');
+            
+            return `
+                <article class="blog-post-card">
+                    <a href="${post.url}" class="blog-post-card-image">
+                        <img src="${post.image}" alt="${post.title}" loading="lazy">
+                    </a>
+                    <div class="blog-post-card-content">
+                        <time class="blog-post-card-date" datetime="${post.date}">📅 ${formatDate(post.date)}</time>
+                        <h3><a href="${post.url}">${post.title}</a></h3>
+                        <p class="blog-post-card-excerpt">${truncateText(post.excerpt, 100)}</p>
+                        <div class="blog-post-card-tags">${tagsHTML}</div>
+                        <a href="${post.url}" class="blog-post-card-read">Leer más →</a>
+                    </div>
+                </article>
+            `;
+        }
+
+        /**
+         * Carga los posts desde posts.json y muestra los 3 más recientes
+         */
+        async function loadLatestPosts() {
+            const blogGrid = document.getElementById('blogGrid');
+            const blogLoading = document.getElementById('blogLoading');
+            const blogEmpty = document.getElementById('blogEmpty');
+            
+            try {
+                // Fetch del archivo JSON
+                const response = await fetch('posts/posts.json');
+                if (!response.ok) throw new Error('No se pudo cargar posts.json');
+                
+                let posts = await response.json();
+                
+                // Ordenar por fecha (más recientes primero)
+                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                // Tomar solo los 3 más recientes
+                const latestPosts = posts.slice(0, 3);
+                
+                // Ocultar loading
+                blogLoading.style.display = 'none';
+                
+                if (latestPosts.length === 0) {
+                    blogEmpty.style.display = 'block';
+                    return;
+                }
+                
+                // Renderizar las 3 tarjetas
+                blogGrid.innerHTML = latestPosts.map(createPostCard).join('');
+                
+            } catch (error) {
+                console.error('Error cargando posts:', error);
+                blogLoading.textContent = 'Error cargando entradas. Intenta recargar la página. ❌';
+            }
+        }
+
+        // Cargar posts cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', loadLatestPosts);
     </script>
 </body>
 </html>
