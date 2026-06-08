@@ -1,0 +1,197 @@
+[
+  {
+    "id": "dest-001",
+    "slug": "cancun-paraiso-caribeno",
+    "title": "Paraíso Caribeño - Cancún",
+    "excerpt": "Disfruta de las playas de arena blanca y aguas turquesas del Caribe mexicano",
+    "description": "Cancún es el destino perfecto para quienes buscan sol, playa y diversión. Con sus aguas cristalinas del mar Caribe, arenas blancas y una infraestructura turística de primer nivel, ofrece una experiencia inolvidable.\n\nIncluye:\n• Vuelos redondos\n• Hotel 5 estrellas todo incluido\n• Tours a cenotes\n• Visita a ruinas mayas de Chichén Itzá\n• Traslados aeropuerto-hotel\n• Seguro de viaje",
+    "image": "Images/destinations/cancun.jpg",
+    "images": [
+      "Images/destinations/cancun-1.jpg",
+      "Images/destinations/cancun-2.jpg",
+      "Images/destinations/cancun-3.jpg"
+    ],
+    "category": "playa",
+    "location": "Cancún, México",
+    "duration": "7 días / 6 noches",
+    "groupSize": "2-8 personas",
+    "rating": 4.9,
+    "reviews": 127,
+    "price": 899,
+    "priceOriginal": 1299,
+    "badge": "Popular",
+    "features": [
+      "✓ Hotel todo incluido",
+      "✓ Vuelos incluidos",
+      "✓ Tours guiados",
+      "✓ Traslados privados",
+      "✓ WiFi gratuito"
+    ],
+    "itinerary": [
+      "Día 1: Llegada y check-in",
+      "Día 2: Tour a Isla Mujeres",
+      "Día 3: Visita a cenotes",
+      "Día 4: Chichén Itzá",
+      "Día 5: Día libre en playa",
+      "Día 6: Snorkel en arrecife",
+      "Día 7: Regreso"
+    ],
+    "included": [
+      "Alojamiento en hotel 5 estrellas",
+      "Alimentos y bebidas ilimitados",
+      "Tours mencionados",
+      "Guía certificado",
+      "Seguro de viajero"
+    ],
+    "notIncluded": [
+      "Propinas",
+      "Compras personales",
+      "Actividades opcionales"
+    ]
+  },
+  {
+    "id": "dest-002",
+    "slug": "machu-picchu-aventura",
+    "title": "Machu Picchu - Aventura Inca",
+    "excerpt": "Explora la ciudad perdida de los Incas y vive una experiencia mística",
+    "description": "Descubre uno de los destinos más emblemáticos del mundo. Machu Picchu te espera con su magia ancestral, paisajes impresionantes y una aventura que cambiará tu perspectiva.\n\nIncluye:\n• Trekking por Camino Inca\n• Guías expertos en historia inca\n• Equipo de camping\n• Alimentación durante el trek\n• Entradas a Machu Picchu\n• Tren de regreso",
+    "image": "Images/destinations/machu-picchu.jpg",
+    "images": [
+      "Images/destinations/machu-1.jpg",
+      "Images/destinations/machu-2.jpg",
+      "Images/destinations/machu-3.jpg"
+    ],
+    "category": "montana",
+    "location": "Cusco, Perú",
+    "duration": "5 días / 4 noches",
+    "groupSize": "4-12 personas",
+    "rating": 5.0,
+    "reviews": 203,
+    "price": 1299,
+    "priceOriginal": 1599,
+    "badge": "Aventura",
+    "features": [
+      "✓ Camino Inca clásico",
+      "✓ Guías bilingües",
+      "✓ Equipo completo",
+      "✓ Entradas incluidas",
+      "✓ Certificado de trekking"
+    ],
+    "itinerary": [
+      "Día 1: Cusco - Km 82",
+      "Día 2: Trekking Día 1",
+      "Día 3: Trekking Día 2",
+      "Día 4: Machu Picchu",
+      "Día 5: Regreso a Cusco"
+    ],
+    "included": [
+      "Permisos del Camino Inca",
+      "Guía profesional",
+      "Cocinero y porteadores",
+      "Carpa y colchoneta",
+      "Alimentación completa"
+    ],
+    "notIncluded": [
+      "Saco de dormir (renta disponible)",
+      "Bastones de trekking",
+      "Propinas al personal"
+    ]
+  },
+  {
+    "id": "dest-003",
+    "slug": "paris-ciudad-amor",
+    "title": "París - Ciudad del Amor",
+    "excerpt": "Visita la Torre Eiffel, el Louvre y los encantadores barrios de Montmartre",
+    "description": "Sumérgete en la ciudad más romántica del mundo. París te ofrece arte, cultura, gastronomía y momentos inolvidables en cada esquina.\n\nIncluye:\n• Vuelos internacionales\n• Hotel 4 estrellas céntrico\n• Tour panorámico de la ciudad\n• Entrada al Louvre\n• Cena en crucero por el Sena\n• Pase por Montmartre",
+    "image": "Images/destinations/paris.jpg",
+    "images": [
+      "Images/destinations/paris-1.jpg",
+      "Images/destinations/paris-2.jpg",
+      "Images/destinations/paris-3.jpg"
+    ],
+    "category": "ciudad",
+    "location": "París, Francia",
+    "duration": "6 días / 5 noches",
+    "groupSize": "2-6 personas",
+    "rating": 4.8,
+    "reviews": 156,
+    "price": 1599,
+    "priceOriginal": 1999,
+    "badge": "Romántico",
+    "features": [
+      "✓ Vuelos incluidos",
+      "✓ Hotel céntrico",
+      "✓ Tour guiado",
+      "✓ Cena romántica",
+      "✓ Transporte público"
+    ],
+    "itinerary": [
+      "Día 1: Llegada y Torre Eiffel",
+      "Día 2: Museo del Louvre",
+      "Día 3: Versalles",
+      "Día 4: Montmartre",
+      "Día 5: Crucero Sena",
+      "Día 6: Regreso"
+    ],
+    "included": [
+      "Vuelos redondos",
+      "Hotel 4 estrellas",
+      "Desayuno diario",
+      "Tours mencionados",
+      "Cena en crucero"
+    ],
+    "notIncluded": [
+      "Visa Schengen",
+      "Comidas no mencionadas",
+      "Gastos personales"
+    ]
+  },
+  {
+    "id": "dest-004",
+    "slug": "bali-retiro-espiritual",
+    "title": "Bali - Retiro Espiritual",
+    "excerpt": "Yoga, meditación, templos ancestrales y playas paradisíacas",
+    "description": "Renueva cuerpo y mente en la Isla de los Dioses. Bali combina espiritualidad, naturaleza exuberante y cultura milenaria en un entorno único.\n\nIncluye:\n• Alojamiento en villa privada\n• Clases diarias de yoga",
+    "image": "Images/destinations/bali.jpg",
+    "images": [
+      "Images/destinations/bali-1.jpg",
+      "Images/destinations/bali-2.jpg",
+      "Images/destinations/bali-3.jpg"
+    ],
+    "category": "relax",
+    "location": "Bali, Indonesia",
+    "duration": "10 días / 9 noches",
+    "groupSize": "2-8 personas",
+    "rating": 4.9,
+    "reviews": 89,
+    "price": 1399,
+    "priceOriginal": 1799,
+    "badge": "Wellness",
+    "features": [
+      "✓ Yoga diario",
+      "✓ Comida vegetariana",
+      "✓ Masajes incluidos",
+      "✓ Villa privada",
+      "✓ Clases de meditación"
+    ],
+    "itinerary": [
+      "Día 1-3: Ubud - Templos",
+      "Día 4-6: Yoga intensivo",
+      "Día 7-8: Playas del sur",
+      "Día 9: Spa y relax",
+      "Día 10: Regreso"
+    ],
+    "included": [
+      "Villa con piscina privada",
+      "Instructor de yoga",
+      "Comidas orgánicas",
+      "2 masajes tradicionales",
+      "Traslados"
+    ],
+    "notIncluded": [
+      "Vuelos internacionales",
+      "Visa indonesia",
+      "Actividades extras"
+    ]
+  }
+]
