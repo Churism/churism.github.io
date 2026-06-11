@@ -47,58 +47,20 @@
         .destinations-hero-content h1 { font-size: clamp(2rem, 5vw, 4rem); text-transform: uppercase; margin-bottom: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
         .destinations-hero-content p { font-size: clamp(1rem, 2vw, 1.2rem); max-width: 600px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
 
-        /* === FILTROS Y BUSCADOR === */
-        .destinations-filters { padding: 30px 20px; max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; align-items: center; }
+        /* === FILTROS POR CATEGORÍA === */
+        .destinations-filters { padding: 30px 20px; max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
         .filter-btn { padding: 10px 24px; background: var(--filter-bg); color: var(--text-color); border: 2px solid transparent; border-radius: 25px; font-family: inherit; font-size: 0.95rem; font-weight: bold; cursor: pointer; transition: all 0.3s; }
         .filter-btn:hover, .filter-btn.active { background: var(--btn-bg); color: var(--btn-text); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,114,39,0.3); }
-        
-        .search-container {
-            flex: 1;
-            min-width: 280px;
-            max-width: 450px;
-            position: relative;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 12px 20px 12px 50px;
-            border: 2px solid var(--filter-bg);
-            border-radius: 30px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            background: var(--card-bg);
-            color: var(--text-color);
-            transition: all 0.3s ease;
-            outline: none;
-        }
-        
-        .search-input:focus {
-            border-color: var(--btn-bg);
-            box-shadow: 0 0 0 4px rgba(255,114,39,0.2);
-        }
-        
-        .search-icon {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.1rem;
-            opacity: 0.6;
-        }
-        
-        .search-hint {
-            text-align: center;
-            font-size: 0.85rem;
-            opacity: 0.7;
-            margin-top: 8px;
-        }
 
         /* === GRID Y TARJETAS FLIP === */
         .destinations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 35px; max-width: 1200px; margin: 0 auto 60px; padding: 0 20px; perspective: 1000px; }
         .destination-card { height: 450px; position: relative; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
         .destination-card:hover { transform: rotateY(180deg); }
         .destination-card.hidden { display: none; }
+        
         .destination-card-front, .destination-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 25px; overflow: hidden; box-shadow: 0 8px 25px var(--card-shadow); }
+        
+        /* FRENTE */
         .destination-card-front { background: var(--card-bg); }
         .destination-image { width: 100%; height: 280px; overflow: hidden; position: relative; }
         .destination-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
@@ -112,6 +74,8 @@
         .destination-price-value { font-size: 1.8rem; font-weight: bold; color: var(--price-color); }
         .destination-price-original { font-size: 1rem; text-decoration: line-through; opacity: 0.6; }
         .destination-hint { text-align: center; padding: 12px; background: var(--filter-bg); font-size: 0.85rem; opacity: 0.8; }
+        
+        /* REVERSO */
         .destination-card-back { background: linear-gradient(135deg, var(--btn-bg) 0%, #ff8c42 100%); color: white; transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; text-align: center; }
         .destination-back-icon { font-size: 3rem; margin-bottom: 20px; }
         .destination-back-title { font-size: 1.5rem; margin-bottom: 15px; }
@@ -120,15 +84,15 @@
         .destination-back-features li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 10px; }
         .destination-btn-view { padding: 12px 35px; background: white; color: var(--btn-bg); border: none; border-radius: 30px; font-family: inherit; font-weight: bold; font-size: 1rem; cursor: pointer; transition: all 0.3s; margin-top: 10px; }
         .destination-btn-view:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+        
         .destinations-loading { text-align: center; padding: 60px 20px; grid-column: 1 / -1; font-size: 1.2rem; opacity: 0.8; }
         .no-results { text-align: center; padding: 60px 20px; grid-column: 1 / -1; font-size: 1.1rem; opacity: 0.8; display: none; }
 
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
             .navbar { top: 10px; width: calc(100% - 20px); flex-direction: column; height: auto; padding: 15px; border-radius: 30px; }
             .nav-links { margin: 15px 0; gap: 10px; } .nav-links a { padding: 6px 12px; font-size: 11px; } .theme-toggle { margin: 10px auto 0; }
             .destinations-hero { height: 40vh; min-height: 280px; } .destinations-hero-content h1 { font-size: 2rem; }
-            .destinations-filters { flex-direction: column; }
-            .search-container { max-width: 100%; width: 100%; }
             .destinations-grid { grid-template-columns: 1fr; }
             .destination-card { height: 400px; }
             footer { margin: 40px 10px 10px; border-radius: 20px; }
@@ -137,6 +101,7 @@
 </head>
 <body>
 
+    <!-- NAVBAR -->
     <nav class="navbar">
         <ul class="nav-links">
             <li><a href="/index">Inicio</a></li>
@@ -150,6 +115,7 @@
         </button>
     </nav>
 
+    <!-- HERO -->
     <section class="destinations-hero">
         <img src="Images/destinations/hero.jpg" alt="Destinos Turísticos">
         <div class="destinations-hero-content">
@@ -158,29 +124,27 @@
         </div>
     </section>
 
+    <!-- FILTROS POR CATEGORÍA -->
     <section class="destinations-filters">
-        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn active" data-filter="all">✨ Todos</button>
         <button class="filter-btn" data-filter="playa">🏖️ Playas</button>
         <button class="filter-btn" data-filter="montana">⛰️ Montañas</button>
         <button class="filter-btn" data-filter="ciudad">🏙️ Ciudades</button>
         <button class="filter-btn" data-filter="relax">🧘 Relax</button>
-        
-        <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" class="search-input" id="searchInput" placeholder="Buscar por destino, ubicación o palabra clave...">
-            <div class="search-hint">Ej: "Cancún", "playa", "Perú", "montaña"</div>
-        </div>
     </section>
 
+    <!-- GRID DE DESTINOS -->
     <main class="destinations-grid" id="destinationsGrid">
         <div class="destinations-loading" id="destinationsLoading">Cargando destinos... 🌍</div>
-        <div class="no-results" id="noResults">😕 No encontramos destinos que coincidan con tu búsqueda</div>
+        <div class="no-results" id="noResults">😕 No hay destinos en esta categoría por ahora</div>
     </main>
 
+    <!-- FOOTER -->
     <footer><p>&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p></footer>
 
+    <!-- JAVASCRIPT -->
     <script>
-        // TEMA DÍA/NOCHE
+        // === TEMA DÍA/NOCHE ===
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         if (localStorage.getItem('theme') === 'dark') body.classList.add('dark-mode');
@@ -189,12 +153,11 @@
             localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
         });
 
-        // VARIABLES GLOBALES
+        // === VARIABLES GLOBALES ===
         let allDestinations = [];
         let currentFilter = 'all';
-        let searchQuery = '';
 
-        // CARGAR DESTINOS DESDE JSON
+        // === CARGAR DESTINOS DESDE JSON ===
         async function loadDestinations() {
             const grid = document.getElementById('destinationsGrid');
             const loading = document.getElementById('destinationsLoading');
@@ -208,7 +171,6 @@
                 
                 renderDestinations(allDestinations);
                 setupFilters();
-                setupSearch();
                 
             } catch (error) {
                 console.error('Error:', error);
@@ -216,7 +178,7 @@
             }
         }
 
-        // RENDERIZAR DESTINOS
+        // === RENDERIZAR DESTINOS ===
         function renderDestinations(destinations) {
             const grid = document.getElementById('destinationsGrid');
             const noResults = document.getElementById('noResults');
@@ -231,6 +193,7 @@
             
             grid.innerHTML = destinations.map(dest => `
                 <article class="destination-card" data-category="${dest.category}">
+                    <!-- FRONTAL -->
                     <div class="destination-card-front">
                         <div class="destination-image">
                             <img src="${dest.image}" alt="${dest.title}" loading="lazy">
@@ -247,6 +210,8 @@
                         </div>
                         <div class="destination-hint">👆 Pasa el mouse para ver más</div>
                     </div>
+                    
+                    <!-- REVERSO -->
                     <div class="destination-card-back">
                         <div class="destination-back-icon">🌟</div>
                         <h3 class="destination-back-title">${dest.title}</h3>
@@ -264,69 +229,33 @@
             `).join('');
         }
 
-        // FILTRAR DESTINOS
+        // === FILTRAR POR CATEGORÍA ===
         function filterDestinations() {
             let filtered = allDestinations;
             
-            // Filtrar por categoría
             if (currentFilter !== 'all') {
-                filtered = filtered.filter(dest => dest.category === currentFilter);
-            }
-            
-            // Filtrar por búsqueda
-            if (searchQuery.trim() !== '') {
-                const query = searchQuery.toLowerCase().trim();
-                filtered = filtered.filter(dest => {
-                    const searchText = `
-                        ${dest.title}
-                        ${dest.location}
-                        ${dest.category}
-                        ${dest.excerpt}
-                        ${dest.description}
-                    `.toLowerCase();
-                    
-                    // Buscar palabras clave específicas
-                    return searchText.includes(query) ||
-                           dest.location.toLowerCase().includes(query) ||
-                           dest.category.toLowerCase().includes(query) ||
-                           dest.title.toLowerCase().includes(query);
-                });
+                filtered = allDestinations.filter(dest => dest.category === currentFilter);
             }
             
             renderDestinations(filtered);
         }
 
-        // CONFIGURAR FILTROS DE BOTONES
+        // === CONFIGURAR BOTONES DE FILTRO ===
         function setupFilters() {
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
+                    // Quitar clase active de todos
                     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    // Añadir al clickeado
                     btn.classList.add('active');
+                    // Actualizar filtro y renderizar
                     currentFilter = btn.dataset.filter;
                     filterDestinations();
                 });
             });
         }
 
-        // CONFIGURAR BUSCADOR
-        function setupSearch() {
-            const searchInput = document.getElementById('searchInput');
-            
-            searchInput.addEventListener('input', (e) => {
-                searchQuery = e.target.value;
-                filterDestinations();
-            });
-            
-            // Búsqueda al presionar Enter
-            searchInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    searchQuery = e.target.value;
-                    filterDestinations();
-                }
-            });
-        }
-
-        // INICIALIZAR
+        // === INICIALIZAR ===
         document.addEventListener('DOMContentLoaded', loadDestinations);
     </script>
 </body>
