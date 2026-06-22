@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería Moderna</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #1a1a2e;
+      color: #fff;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #e94560, #f5a623);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ===== GALERÍA ===== */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      aspect-ratio: 1 / 1;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .item:hover {
+      transform: translateY(-5px);
+    }
+
+    .item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .item:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Overlay con título */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0) 60%
+      );
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .item:hover .overlay {
+      opacity: 1;
+    }
+
+    .overlay h3 {
+      font-size: 1.2rem;
+      transform: translateY(10px);
+      transition: transform 0.3s ease;
+    }
+
+    .item:hover .overlay h3 {
+      transform: translateY(0);
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+
+    .lightbox:target {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 85vh;
+      border-radius: 12px;
+      box-shadow: 0 0 40px rgba(233, 69, 96, 0.4);
+    }
+
+    .cerrar {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: #fff;
+      font-size: 2.5rem;
+      text-decoration: none;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: background 0.3s ease;
+    }
+
+    .cerrar:hover {
+      background: #e94560;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📸 Mi Galería</h1>
+
+  <div class="galeria">
+    <a href="#img1" class="item">
+      <img src="https://picsum.photos/id/1015/600/600" alt="Montañas">
+      <div class="overlay"><h3>Montañas</h3></div>
+    </a>
+    <a href="#img2" class="item">
+      <img src="https://picsum.photos/id/1025/600/600" alt="Perro">
+      <div class="overlay"><h3>Compañero fiel</h3></div>
+    </a>
+    <a href="#img3" class="item">
+      <img src="https://picsum.photos/id/1043/600/600" alt="Naturaleza">
+      <div class="overlay"><h3>Naturaleza</h3></div>
+    </a>
+    <a href="#img4" class="item">
+      <img src="https://picsum.photos/id/1050/600/600" alt="Bosque">
+      <div class="overlay"><h3>Bosque</h3></div>
+    </a>
+    <a href="#img5" class="item">
+      <img src="https://picsum.photos/id/1062/600/600" alt="Mar">
+      <div class="overlay"><h3>Mar</h3></div>
+    </a>
+    <a href="#img6" class="item">
+      <img src="https://picsum.photos/id/1074/600/600" alt="Ciudad">
+      <div class="overlay"><h3>Ciudad</h3></div>
+    </a>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="img1" class="lightbox">
+    <a href="#" class="cerrar">&times;</a>
+    <img src="https://picsum.photos/id/1015/1200/800" alt="Montañas">
+  </div>
+  <div id="img2" class="lightbox">
+    <a href="#" class="cerrar">&times;</a>
+    <img src="https://picsum.photos/id/1025/1200/800" alt="Perro">
+  </div>
+  <div id="img3" class="lightbox">
+    <a href="#" class="cerrar">&times;</a>
+    <img src="https://picsum.photos/id/1043/1200/800" alt="Naturaleza">
+  </div>
+  <div id="img4" class="lightbox">
+    <a href="#" class="cerrar">&times;</a>
+    <img src="https://picsum.photos/id/1050/1200/800" alt="Bosque">
+  </div>
+  <div id="img5" class="lightbox">
+    <a href="#" class="cerrar">&times;</a>
+    <img src="https://picsum.photos/id/1062/1200/800" alt="Mar">
+  </div>
+  <div id="img6" class="lightbox">
+    <a href="#" class="cerrar">&times;</a>
+    <img src="https://picsum.photos/id/1074/1200/800" alt="Ciudad">
+  </div>
+
+</body>
+</html>
