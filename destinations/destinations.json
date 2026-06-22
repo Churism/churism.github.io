@@ -1,215 +1,161 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Sitio Web - Destinos</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
-
-    <style>
-        /* === VARIABLES (Mismas que el resto del sitio) === */
-        :root {
-            --bg-color: #fafafa; --text-color: #000000; --navbar-bg: #f5f5f5; --navbar-text: #000000;
-            --btn-bg: #ff7227; --btn-text: #ffffff; --card-bg: #ffffff; --card-shadow: rgba(0,0,0,0.08);
-            --footer-bg: #1a1a1a; --footer-text: #ffffff; --filter-bg: #e9ecef; --price-color: #28a745;
-        }
-        body.dark-mode {
-            --bg-color: #121212; --text-color: #ffffff; --navbar-bg: #1a1a1a; --navbar-text: #ffffff;
-            --card-bg: #1e1e1e; --card-shadow: rgba(0,0,0,0.3); --footer-bg: #0a0a0a; --filter-bg: #2a2a2a; --price-color: #4ade80;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Mochiy Pop One', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: background-color 0.3s, color 0.3s; min-height: 100vh; display: flex; flex-direction: column; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        img { max-width: 100%; display: block; }
-        ul { list-style: none; }
-
-        /* === NAVBAR & FOOTER (Estándar) === */
-        .navbar { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 1200px; background: var(--navbar-bg); z-index: 1000; height: 70px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; border-radius: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: all 0.3s; }
-        .navbar:hover { box-shadow: 0 6px 30px rgba(0,0,0,0.15); transform: translateX(-50%) translateY(-2px); }
-        .nav-links { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
-        .nav-links a { color: var(--navbar-text); font-weight: bold; text-transform: uppercase; font-size: 13px; padding: 8px 16px; border-radius: 25px; }
-        .nav-links a:hover { background: var(--btn-bg); color: var(--btn-text); transform: translateY(-2px); }
-        .theme-toggle { background: transparent; border: 2px solid var(--navbar-text); color: var(--navbar-text); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-left: 15px; transition: 0.3s; }
-        .theme-toggle:hover { background: var(--btn-bg); color: var(--btn-text); transform: rotate(15deg) scale(1.1); border-color: var(--btn-bg); }
-        .theme-toggle .icon-sun { display: none; } .theme-toggle .icon-moon { display: block; }
-        body.dark-mode .theme-toggle .icon-sun { display: block; } body.dark-mode .theme-toggle .icon-moon { display: none; }
-        footer { background: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 50px 20px; margin: auto 20px 20px; border-radius: 30px; font-size: 0.95rem; margin-top: auto; }
-
-        /* === HERO === */
-        .destinations-hero { position: relative; height: 50vh; min-height: 350px; width: 100%; overflow: hidden; margin-top: 0; }
-        .destinations-hero img { width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 1; }
-        .destinations-hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%); z-index: 2; }
-        .destinations-hero-content { position: relative; z-index: 3; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; padding: 20px; }
-        .destinations-hero-content h1 { font-size: clamp(2rem, 5vw, 4rem); text-transform: uppercase; margin-bottom: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-        .destinations-hero-content p { font-size: clamp(1rem, 2vw, 1.2rem); max-width: 600px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
-
-        /* === FILTROS === */
-        .destinations-filters { padding: 30px 20px; max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-        .filter-btn { padding: 10px 24px; background: var(--filter-bg); color: var(--text-color); border: 2px solid transparent; border-radius: 25px; font-family: inherit; font-size: 0.95rem; font-weight: bold; cursor: pointer; transition: all 0.3s; }
-        .filter-btn:hover, .filter-btn.active { background: var(--btn-bg); color: var(--btn-text); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,114,39,0.3); }
-
-        /* === GRID Y TARJETAS FLIP (La magia estética) === */
-        .destinations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 35px; max-width: 1200px; margin: 0 auto 60px; padding: 0 20px; perspective: 1000px; }
-
-        .destination-card { height: 450px; position: relative; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
-        .destination-card:hover { transform: rotateY(180deg); }
-
-        .destination-card-front, .destination-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 25px; overflow: hidden; box-shadow: 0 8px 25px var(--card-shadow); }
-
-        /* FRENTE */
-        .destination-card-front { background: var(--card-bg); }
-        .destination-image { width: 100%; height: 280px; overflow: hidden; position: relative; }
-        .destination-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .destination-card:hover .destination-image img { transform: scale(1.1); }
-        .destination-badge { position: absolute; top: 15px; left: 15px; background: var(--btn-bg); color: var(--btn-text); padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; z-index: 2; }
-        .destination-rating { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.95); padding: 6px 12px; border-radius: 20px; font-weight: bold; display: flex; align-items: center; gap: 5px; z-index: 2; color: #000; }
-        .destination-info { padding: 20px; }
-        .destination-location { display: flex; align-items: center; gap: 6px; color: #6c757d; font-size: 0.9rem; margin-bottom: 8px; }
-        .destination-title { font-size: 1.3rem; margin-bottom: 12px; line-height: 1.3; }
-        .destination-price-preview { display: flex; align-items: baseline; gap: 10px; margin-top: 15px; }
-        .destination-price-value { font-size: 1.8rem; font-weight: bold; color: var(--price-color); }
-        .destination-price-original { font-size: 1rem; text-decoration: line-through; opacity: 0.6; }
-        .destination-hint { text-align: center; padding: 12px; background: var(--filter-bg); font-size: 0.85rem; opacity: 0.8; }
-
-        /* REVERSO */
-        .destination-card-back { background: linear-gradient(135deg, var(--btn-bg) 0%, #ff8c42 100%); color: white; transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; text-align: center; }
-        .destination-back-icon { font-size: 3rem; margin-bottom: 20px; }
-        .destination-back-title { font-size: 1.5rem; margin-bottom: 15px; }
-        .destination-back-description { font-size: 1rem; line-height: 1.6; margin-bottom: 25px; opacity: 0.95; }
-        .destination-back-features { list-style: none; margin-bottom: 25px; text-align: left; width: 100%; }
-        .destination-back-features li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 10px; }
-        .destination-btn-view { padding: 12px 35px; background: white; color: var(--btn-bg); border: none; border-radius: 30px; font-family: inherit; font-weight: bold; font-size: 1rem; cursor: pointer; transition: all 0.3s; margin-top: 10px; }
-        .destination-btn-view:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
-
-        .destinations-loading { text-align: center; padding: 60px 20px; grid-column: 1 / -1; font-size: 1.2rem; opacity: 0.8; }
-
-        @media (max-width: 768px) {
-            .navbar { top: 10px; width: calc(100% - 20px); flex-direction: column; height: auto; padding: 15px; border-radius: 30px; }
-            .nav-links { margin: 15px 0; gap: 10px; } .nav-links a { padding: 6px 12px; font-size: 11px; } .theme-toggle { margin: 10px auto 0; }
-            .destinations-hero { height: 40vh; min-height: 280px; } .destinations-hero-content h1 { font-size: 2rem; }
-            .destinations-grid { grid-template-columns: 1fr; }
-            .destination-card { height: 400px; }
-            footer { margin: 40px 10px 10px; border-radius: 20px; }
-        }
-    </style>
-</head>
-<body>
-
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="/index">Inicio</a></li>
-            <li><a href="/about">Nosotros</a></li>
-            <li><a href="/destinations" style="background:var(--btn-bg);color:var(--btn-text);">Destinos</a></li>
-            <li><a href="/contact">Contacto</a></li>
-            <li><a href="/blog">Blog</a></li>
-        </ul>
-        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-            <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
-        </button>
-    </nav>
-
-    <section class="destinations-hero">
-        <img src="Images/destinations/hero.jpg" alt="Destinos Turísticos">
-        <div class="destinations-hero-content">
-            <h1>🌍 Explora el Mundo</h1>
-            <p>Descubre los destinos más increíbles y vive experiencias inolvidables</p>
-        </div>
-    </section>
-
-    <section class="destinations-filters">
-        <button class="filter-btn active" data-filter="all">Todos</button>
-        <button class="filter-btn" data-filter="playa">🏖️ Playas</button>
-        <button class="filter-btn" data-filter="montana">⛰️ Montañas</button>
-        <button class="filter-btn" data-filter="relax">🧘 Relax</button>
-    </section>
-
-    <main class="destinations-grid" id="destinationsGrid">
-        <div class="destinations-loading" id="destinationsLoading">Cargando destinos... 🌍</div>
-    </main>
-
-    <footer><p>&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p></footer>
-
-    <script>
-        // TEMA DÍA/NOCHE
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        if (localStorage.getItem('theme') === 'dark') body.classList.add('dark-mode');
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
-        });
-
-        // CARGAR DESTINOS DESDE JSON
-        async function loadDestinations() {
-            const grid = document.getElementById('destinationsGrid');
-            const loading = document.getElementById('destinationsLoading');
-            
-            try {
-                const response = await fetch('destinations/destinations.json');
-                if (!response.ok) throw new Error('No se pudo cargar destinations.json');
-                
-                const destinations = await response.json();
-                loading.style.display = 'none';
-                
-                grid.innerHTML = destinations.map(dest => `
-                    <article class="destination-card" data-category="${dest.category}">
-                        <!-- FRONTAL -->
-                        <div class="destination-card-front">
-                            <div class="destination-image">
-                                <img src="${dest.image}" alt="${dest.title}" loading="lazy">
-                                ${dest.badge ? `<span class="destination-badge">${dest.badge}</span>` : ''}
-                                <div class="destination-rating">⭐ ${dest.rating}</div>
-                            </div>
-                            <div class="destination-info">
-                                <div class="destination-location">📍 ${dest.location}</div>
-                                <h3 class="destination-title">${dest.title}</h3>
-                                <div class="destination-price-preview">
-                                    <span class="destination-price-value">$${dest.price}</span>
-                                    ${dest.priceOriginal ? `<span class="destination-price-original">$${dest.priceOriginal}</span>` : ''}
-                                </div>
-                            </div>
-                            <div class="destination-hint">👆 Pasa el mouse para ver más</div>
-                        </div>
-                        
-                        <!-- REVERSO -->
-                        <div class="destination-card-back">
-                            <div class="destination-back-icon">🌟</div>
-                            <h3 class="destination-back-title">${dest.title}</h3>
-                            <p class="destination-back-description">${dest.excerpt}</p>
-                            <ul class="destination-back-features">
-                                <li>📅 ${dest.duration}</li>
-                                <li>👥 ${dest.groupSize}</li>
-                                <li>⭐ ${dest.rating} (${dest.reviews} reseñas)</li>
-                            </ul>
-                            <button class="destination-btn-view" onclick="window.location.href='destinations/detalle.html?slug=${dest.slug}'">
-                                Ver Detalles y Reservar →
-                            </button>
-                        </div>
-                    </article>
-                `).join('');
-                
-                // Lógica de filtros
-                document.querySelectorAll('.filter-btn').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
-                        const filter = btn.dataset.filter;
-                        document.querySelectorAll('.destination-card').forEach(card => {
-                            card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'block' : 'none';
-                        });
-                    });
-                });
-                
-            } catch (error) {
-                console.error('Error:', error);
-                loading.textContent = 'Error cargando destinos. Intenta recargar. ❌';
-            }
-        }
-        document.addEventListener('DOMContentLoaded', loadDestinations);
-    </script>
-</body>
-</html>
+[
+  {
+    "id": "dest-001",
+    "slug": "san-pedro-atacama",
+    "title": "Desierto de Atacama - San Pedro",
+    "excerpt": "Explora el desierto más árido del mundo, géiseres, salares y cielos estrellados en el norte de Chile.",
+    "description": "Sumérgete en la magia del desierto de Atacama. Este tour te llevará desde los géiseres del Tatio al amanecer hasta las salinas de la laguna Miscanti, pasando por el Valle de la Luna al atardecer.\n\nUna experiencia única de naturaleza extrema y cultura atacameña.",
+    "image": "Images/destinations/atacama.jpg",
+    "category": "montana",
+    "location": "San Pedro de Atacama, Región de Antofagasta",
+    "duration": "4 días / 3 noches",
+    "groupSize": "2-8 personas",
+    "rating": 4.9,
+    "reviews": 340,
+    "price": 350,
+    "priceOriginal": 450,
+    "badge": "Aventura",
+    "features": [
+      "✓ Tour Géiser del Tatio",
+      "✓ Valle de la Luna",
+      "✓ Lagunas Altiplánicas",
+      "✓ Desayuno y Almuerzo incluidos"
+    ],
+    "itinerary": [
+      "Día 1: Llegada y recorrido por el pueblo",
+      "Día 2: Valle de la Luna y la Muerte (Atardecer)",
+      "Día 3: Excursión a Geiser del Tatio y Termas de Puritama",
+      "Día 4: Lagunas Miscanti y Miñiques - Regreso"
+    ],
+    "included": [
+      "Traslados desde y hacia Calama",
+      "Entradas a parques nacionales",
+      "Desayuno diario",
+      "Guía bilingüe"
+    ],
+    "notIncluded": [
+      "Vuelos nacionales",
+      "Cenas y cenas",
+      "Propinas"
+    ]
+  },
+  {
+    "id": "dest-002",
+    "slug": "torres-del-paine",
+    "title": "Torres del Paine - Patagonia Chilena",
+    "excerpt": "Trekking de clase mundial entre glaciares imponentes, lagos turquesa y la fauna de la Patagonia.",
+    "description": "La octava maravilla del mundo te espera. Recorre los senderos más famosos de Chile, navega frente al Glaciar Grey y duerme bajo las Torres de Paine.\n\nIdeal para amantes de la fotografía, el trekking y la naturaleza salvaje.",
+    "image": "Images/destinations/torres-del-paine.jpg",
+    "category": "montana",
+    "location": "Magallanes, Chile",
+    "duration": "5 días / 4 noches",
+    "groupSize": "4-10 personas",
+    "rating": 5.0,
+    "reviews": 215,
+    "price": 650,
+    "priceOriginal": 850,
+    "badge": "Trekking",
+    "features": [
+      "✓ Trekking Base Torres",
+      "✓ Navegación Glaciar Grey",
+      "✓ Refugios y Camping",
+      "✓ Guía certificado de montaña"
+    ],
+    "itinerary": [
+      "Día 1: Traslado Puerto Natales a Torres del Paine",
+      "Día 2: Trekking Mirador Base Torres (Día completo)",
+      "Día 3: Trekking Valle del Francés",
+      "Día 4: Navegación Lago Grey",
+      "Día 5: Regreso a Puerto Natales"
+    ],
+    "included": [
+      "Entradas al Parque Nacional",
+      "Navegación por Lago Grey",
+      "Alojamiento en campings/refugios",
+      "Alimentación completa durante el trek"
+    ],
+    "notIncluded": [
+      "Arriendo de equipamiento de trekking",
+      "Seguro de viaje",
+      "Traslados aéreos"
+    ]
+  },
+  {
+    "id": "dest-003",
+    "slug": "valparaiso-vina-del-mar",
+    "title": "Valparaíso & Viña del Mar - Joyas del Pacífico",
+    "excerpt": "Cultura bohemia, ascensores históricos, murales artísticos y las mejores playas del litoral central.",
+    "description": "Descubre la joya cultural de Chile. Recorre los cerros de Valparaíso en sus famosos ascensores, visita la casa de Pablo Neruda en Isla Negra y relájate en las arenas de Reñaca.\n\nUn viaje perfecto para conectar con la historia y el mar.",
+    "image": "Images/destinations/valparaiso.jpg",
+    "category": "ciudad",
+    "location": "Valparaíso, Región de Valparaíso",
+    "duration": "3 días / 2 noches",
+    "groupSize": "2-6 personas",
+    "rating": 4.7,
+    "reviews": 180,
+    "price": 180,
+    "priceOriginal": 220,
+    "badge": "Cultura",
+    "features": [
+      "✓ Tour de Cerros y Ascensores",
+      "✓ Visita Isla Negra",
+      "✓ Paseo por el puerto",
+      "✓ Hotel céntrico"
+    ],
+    "itinerary": [
+      "Día 1: Llegada y recorrido por Cerro Alegre y Concepción",
+      "Día 2: Excursión a Isla Negra y El Quisco",
+      "Día 3: Playa de Viña del Mar y Reloj de Flores - Regreso"
+    ],
+    "included": [
+      "Hotel 3 estrellas en Valparaíso",
+      "Desayuno",
+      "Transporte interurbano",
+      "Entrada a Isla Negra"
+    ],
+    "notIncluded": [
+      "Almuerzos y Cenas",
+      "Actividades acuáticas opcionales",
+      "Traslado desde Santiago (opcional)"
+    ]
+  },
+  {
+    "id": "dest-004",
+    "slug": "pucon-volcan",
+    "title": "Pucón y Volcán Villarrica",
+    "excerpt": "Aventura termal, ascenso al volcán activo más septentrional de la Patagonia y aguas cristalinas.",
+    "description": "Pucón es la capital de la aventura en el sur de Chile. Asciende al Volcán Villarrica viendo lava activa, relájate en las termas naturales y navega por el lago Villarrica.\n\nUn destino imperdible para el verano e invierno.",
+    "image": "Images/destinations/pucon.jpg",
+    "category": "relax",
+    "location": "Pucón, Región de la Araucanía",
+    "duration": "3 días / 2 noches",
+    "groupSize": "2-8 personas",
+    "rating": 4.8,
+    "reviews": 145,
+    "price": 250,
+    "priceOriginal": 300,
+    "badge": "Termas",
+    "features": [
+      "✓ Ascenso al Volcán Villarrica",
+      "✓ Visita a Termas Geométricas",
+      "✓ Cueva del León",
+      "✓ Cabaña con vista al lago"
+    ],
+    "itinerary": [
+      "Día 1: Llegada y tarde libre en el centro",
+      "Día 2: Ascenso al Volcán Villarrica (Día completo)",
+      "Día 3: Termas Geométricas - Regreso"
+    ],
+    "included": [
+      "Alojamiento en cabaña",
+      "Desayuno",
+      "Transporte a las termas",
+      "Equipo de seguridad para el volcán"
+    ],
+    "notIncluded": [
+      "Comidas fuera del desayuno",
+      "Actividades de río (Rafting)",
+      "Propinas"
+    ]
+  }
+]
