@@ -29,6 +29,7 @@
             --footer-bg: #1a1a1a;
             --footer-text: #ffffff;
             --accent-color: #ff7227;
+            --price-color: #28a745;
             --tag-bg: #ffe8d9;
             --tag-text: #cc5b00;
         }
@@ -51,6 +52,7 @@
             --footer-bg: #0a0a0a;
             --footer-text: #ffffff;
             --accent-color: #ff7227;
+            --price-color: #4ade80;
             --tag-bg: #3d2a1f;
             --tag-text: #ffb380;
         }
@@ -394,7 +396,7 @@
         .custom-btn:hover { opacity: 0.9; transform: translateY(-3px); }
 
         /* =============================================
-           DESTINATIONS
+           DESTINOS POPULARES
            ============================================= */
         .destinations-section { padding: 60px 20px; text-align: center; }
         .destinations-section h2 { font-size: 2rem; margin-bottom: 40px; }
@@ -438,6 +440,13 @@
         }
 
         .card-btn:hover { opacity: 0.9; }
+
+        .destinations-loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            opacity: 0.8;
+        }
 
         /* =============================================
            BLOG - SECCIÓN DINÁMICA
@@ -546,7 +555,6 @@
 
         .blog-post-card-read:hover { opacity: 0.8; }
 
-        /* Estado de carga y vacío */
         .blog-loading, .blog-empty {
             text-align: center;
             padding: 40px 20px;
@@ -678,19 +686,19 @@
     <section class="features-section" id="servicios">
         <div class="feature-block">
             <img src="Images/icons/icon-1.png" class="feature-icon" alt="Icono 1">
-            <p>Me importa un rábano!</p>
+            <p>Calidad Premiu</p>
         </div>
         <div class="feature-block">
             <img src="Images/icons/icon-2.png" class="feature-icon" alt="Icono 2">
-            <p>Tómatelo con calma</p>
+            <p>Soporte 24/7</p>
         </div>
         <div class="feature-block">
             <img src="Images/icons/icon-3.png" class="feature-icon" alt="Icono 3">
-            <p>Me pica la coliflor</p>
+            <p>Envío Rápido</p>
         </div>
         <div class="feature-block">
             <img src="Images/icons/icon-4.png" class="feature-icon" alt="Icono 4">
-            <p>Te juro que esto es una hoja de lechuga bro</p>
+            <p>Garantía Total</p>
         </div>
     </section>
 
@@ -718,46 +726,13 @@
         </div>
     </section>
 
-    <!-- DESTINATIONS -->
+    <!-- =============================================
+         DESTINOS POPULARES (DINÁMICO DESDE JSON)
+         ============================================= -->
     <section class="destinations-section">
         <h2>Destinos Populares</h2>
-        <div class="destinations-grid">
-            <div class="destination-card">
-                <img src="Images/destinations/dest-1.jpg" alt="Destino 1">
-                <div class="card-content">
-                    <a href="#" class="card-btn">Ver Más</a>
-                </div>
-            </div>
-            <div class="destination-card">
-                <img src="Images/destinations/dest-2.jpg" alt="Destino 2">
-                <div class="card-content">
-                    <a href="#" class="card-btn">Ver Más</a>
-                </div>
-            </div>
-            <div class="destination-card">
-                <img src="Images/destinations/dest-3.jpg" alt="Destino 3">
-                <div class="card-content">
-                    <a href="#" class="card-btn">Ver Más</a>
-                </div>
-            </div>
-            <div class="destination-card">
-                <img src="Images/destinations/dest-4.jpg" alt="Destino 4">
-                <div class="card-content">
-                    <a href="#" class="card-btn">Ver Más</a>
-                </div>
-            </div>
-            <div class="destination-card">
-                <img src="Images/destinations/dest-5.jpg" alt="Destino 5">
-                <div class="card-content">
-                    <a href="#" class="card-btn">Ver Más</a>
-                </div>
-            </div>
-            <div class="destination-card">
-                <img src="Images/destinations/dest-6.jpg" alt="Destino 6">
-                <div class="card-content">
-                    <a href="#" class="card-btn">Ver Más</a>
-                </div>
-            </div>
+        <div class="destinations-grid" id="featuredDestinationsGrid">
+            <div class="destinations-loading" id="destinationsLoading">Cargando destinos... 🌍</div>
         </div>
     </section>
 
@@ -774,14 +749,13 @@
     </section>
 
     <!-- =============================================
-         BLOG - SECCIÓN DINÁMICA (CARGA DESDE JSON)
+         BLOG (DINÁMICO DESDE JSON)
          ============================================= -->
     <section class="blog-section" id="blog">
         <h2>Últimas Entradas</h2>
         <div class="blog-grid" id="blogGrid">
             <div class="blog-loading" id="blogLoading">Cargando entradas... 🌸</div>
             <div class="blog-empty" id="blogEmpty">Aún no hay entradas. ¡Pronto tendremos novedades! ✨</div>
-            <!-- Los posts se inyectan aquí dinámicamente -->
         </div>
     </section>
 
@@ -801,7 +775,7 @@
         const slides = document.querySelectorAll('.hero-carousel .slide');
         
         function showSlide(index) {
-            if (slides.length === 0) return
+            if (slides.length === 0) return;
             if (index >= slides.length) currentSlide = 0;
             else if (index < 0) currentSlide = slides.length - 1;
             else currentSlide = index;
@@ -837,14 +811,52 @@
         });
 
         /* =============================================
+           DESTINOS POPULARES - CARGA DESDE JSON
+           ============================================= */
+        async function loadFeaturedDestinations() {
+            const grid = document.getElementById('featuredDestinationsGrid');
+            const loading = document.getElementById('destinationsLoading');
+            
+            try {
+                const response = await fetch('destinations/destinations.json');
+                if (!response.ok) throw new Error('No se pudo cargar destinations.json');
+                
+                const destinations = await response.json();
+                
+                // Filtrar solo los destinos marcados como "featured"
+                const featured = destinations.filter(dest => dest.featured === true);
+                
+                loading.style.display = 'none';
+                
+                if (featured.length === 0) {
+                    grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding:40px;">No hay destinos destacados por ahora ✨</p>';
+                    return;
+                }
+                
+                grid.innerHTML = featured.map(dest => `
+                    <div class="destination-card">
+                        <img src="${dest.image}" alt="${dest.title}">
+                        <div class="card-content">
+                            <h3 style="margin-bottom: 10px; font-size: 1.2rem;">${dest.title}</h3>
+                            <p style="font-size: 0.9rem; opacity: 0.85; margin-bottom: 10px;">📍 ${dest.location}</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <span style="font-size: 1.3rem; font-weight: bold; color: var(--price-color);">$${dest.price}</span>
+                                <span style="font-size: 0.9rem; opacity: 0.7;">⭐ ${dest.rating}</span>
+                            </div>
+                            <a href="destinations/detalle.html?slug=${dest.slug}" class="card-btn">Ver Más</a>
+                        </div>
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                console.error('Error cargando destinos populares:', error);
+                loading.textContent = 'Error cargando destinos ❌';
+            }
+        }
+
+        /* =============================================
            BLOG DINÁMICO - CARGA DESDE posts.json
            ============================================= */
-        
-        /**
-         * Formatea una fecha ISO a formato legible en español
-         * @param {string} dateString - Fecha en formato ISO (YYYY-MM-DD)
-         * @returns {string} Fecha formateada (ej: "1 jun 2026")
-         */
         function formatDate(dateString) {
             const date = new Date(dateString);
             return date.toLocaleDateString('es-ES', { 
@@ -854,24 +866,12 @@
             });
         }
 
-        /**
-         * Trunca un texto a una longitud máxima añadiendo "..."
-         * @param {string} text - Texto original
-         * @param {number} maxLength - Longitud máxima
-         * @returns {string} Texto truncado
-         */
         function truncateText(text, maxLength) {
             if (text.length <= maxLength) return text;
             return text.substring(0, maxLength).trim() + '...';
         }
 
-        /**
-         * Genera el HTML para una tarjeta de post
-         * @param {Object} post - Objeto con datos del post
-         * @returns {string} HTML de la tarjeta
-         */
         function createPostCard(post) {
-            // Limitar a 3 tags máximo para que quepan
             const tagsToShow = post.tags.slice(0, 3);
             const tagsHTML = tagsToShow.map(tag => 
                 `<span class="blog-post-tag">${tag}</span>`
@@ -893,28 +893,19 @@
             `;
         }
 
-        /**
-         * Carga los posts desde posts.json y muestra los 3 más recientes
-         */
         async function loadLatestPosts() {
             const blogGrid = document.getElementById('blogGrid');
             const blogLoading = document.getElementById('blogLoading');
             const blogEmpty = document.getElementById('blogEmpty');
             
             try {
-                // Fetch del archivo JSON
                 const response = await fetch('posts/posts.json');
                 if (!response.ok) throw new Error('No se pudo cargar posts.json');
                 
                 let posts = await response.json();
-                
-                // Ordenar por fecha (más recientes primero)
                 posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-                
-                // Tomar solo los 3 más recientes
                 const latestPosts = posts.slice(0, 3);
                 
-                // Ocultar loading
                 blogLoading.style.display = 'none';
                 
                 if (latestPosts.length === 0) {
@@ -922,7 +913,6 @@
                     return;
                 }
                 
-                // Renderizar las 3 tarjetas
                 blogGrid.innerHTML = latestPosts.map(createPostCard).join('');
                 
             } catch (error) {
@@ -931,8 +921,13 @@
             }
         }
 
-        // Cargar posts cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', loadLatestPosts);
+        /* =============================================
+           INICIALIZACIÓN
+           ============================================= */
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFeaturedDestinations();
+            loadLatestPosts();
+        });
     </script>
 </body>
 </html>
