@@ -1,3 +1,60 @@
+{
+  "page": {
+    "title": "Meu Site"
+  },
+  "nav": {
+    "home": "Início",
+    "about": "Sobre Nós",
+    "services": "Serviços",
+    "destinations": "Destinos",
+    "gallery": "Galeria",
+    "contact": "Contato",
+    "blog": "Blog"
+  },
+  "hero": {
+    "slide1": "Churism",
+    "slide2": "Cavalo Homossexual",
+    "slide3": "Das montanhas",
+    "slide4": "Nenhum animal se salva",
+    "slide5": "abababa",
+    "slide6": "Reserve"
+  },
+  "features": {
+    "feature1": "Qualidade Premium",
+    "feature2": "Suporte 24/7",
+    "feature3": "Envio Rápido",
+    "feature4": "Garantia Total"
+  },
+  "gallery": {
+    "title": "Galeria Selecionada"
+  },
+  "mission": {
+    "title": "Nossa Missão",
+    "text": "Criamos experiências inesquecíveis com foco na qualidade e satisfação do cliente.",
+    "button": "Leia Mais"
+  },
+  "destinations": {
+    "title": "Destinos Populares",
+    "viewMore": "Ver Mais",
+    "loading": "Carregando destinos... 🌍",
+    "empty": "Ainda não há destinos em destaque ✨",
+    "error": "Erro ao carregar destinos ❌"
+  },
+  "team": {
+    "title": "Junte-se à Equipe",
+    "text": "Procuramos pessoas apaixonadas para se juntar à nossa equipe global.",
+    "button": "Candidate-se Agora"
+  },
+  "blog": {
+    "title": "Últimas Publicações",
+    "readMore": "Leia mais →",
+    "loading": "Carregando publicações... 🌸",
+    "empty": "Ainda não há publicações. Fique ligado nas novidades! ✨",
+    "error": "Erro ao carregar publicações. Tente recarregar a página. ❌"
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados."
+  },
   "about": {
     "hero": {
       "title": "Sobre Nós",
@@ -48,3 +105,4 @@
       }
     }
   }
+}
