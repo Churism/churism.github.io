@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "services": "Services",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "blog": "Blog"
+  },
+  "hero": {
+    "slide1": "Churism",
+    "slide2": "Gay Horse",
+    "slide3": "From the mountains",
+    "slide4": "No animal is saved",
+    "slide5": "abababa",
+    "slide6": "Book Now"
+  },
+  "features": {
+    "title": "Our Services",
+    "feature1": "Premium Quality",
+    "feature2": "24/7 Support",
+    "feature3": "Fast Shipping",
+    "feature4": "Total Guarantee"
+  },
+  "gallery": {
+    "title": "Selected Gallery"
+  },
+  "mission": {
+    "title": "Our Mission",
+    "text": "We create unforgettable experiences focused on quality and customer satisfaction.",
+    "button": "Read More"
+  },
+  "destinations": {
+    "title": "Popular Destinations",
+    "viewMore": "View More",
+    "loading": "Loading destinations... 🌍",
+    "empty": "No featured destinations yet ✨",
+    "error": "Error loading destinations ❌"
+  },
+  "team": {
+    "title": "Join the Team",
+    "text": "We're looking for passionate people to join our global team.",
+    "button": "Apply Now"
+  },
+  "blog": {
+    "title": "Latest Posts",
+    "readMore": "Read more →",
+    "loading": "Loading posts... 🌸",
+    "empty": "No posts yet. Stay tuned for updates! ✨",
+    "error": "Error loading posts. Try reloading the page. ❌"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}
