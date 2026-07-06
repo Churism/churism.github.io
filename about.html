@@ -1,569 +1,189 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- =============================================
-         META TAGS Y CONFIGURACIÓN BÁSICA
-         ============================================= -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Conoce más sobre nuestra empresa y equipo">
-    <title>Mi Sitio Web - About Us</title>
-    
-    <!-- Favicon -->
+    <title data-i18n="about.hero.title">Mi Sitio Web - About Us</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-
-    <!-- =============================================
-         FUENTES DE GOOGLE FONTS
-         ============================================= -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
 
-    <!-- =============================================
-         ESTILOS CSS
-         ============================================= -->
     <style>
-        /* =============================================
-           VARIABLES CSS - TEMA DÍA (NO BLANCO PURO)
-           ============================================= */
+        /* === VARIABLES (mismas que el resto del sitio) === */
         :root {
-            --bg-color: #fafafa;                    /* Fondo principal - gris muy claro */
-            --text-color: #000000;                  /* Texto negro puro (legibilidad) */
-            --navbar-bg: #f5f5f5;                   /* Navbar - gris claro */
-            --navbar-text: #000000;                 /* Texto navbar negro puro */
-            --btn-bg: #ff7227;                      /* BOTONES - NARANJA */
-            --btn-text: #ffffff;                    /* Texto botones blanco puro */
-            --card-bg: #ffffff;                     /* Tarjetas - blanco */
-            --card-shadow: rgba(0,0,0,0.08);        /* Sombra suave */
-            --footer-bg: #1a1a1a;                   /* Footer - gris muy oscuro */
-            --footer-text: #ffffff;                 /* Footer texto blanco puro */
-            --accent-color: #ff7227;                /* Color de acento - NARANJA */
+            --bg-color: #fafafa; --text-color: #000000; --navbar-bg: #f5f5f5; --navbar-text: #000000;
+            --btn-bg: #ff7227; --btn-text: #ffffff; --card-bg: #ffffff; --card-shadow: rgba(0,0,0,0.08);
+            --footer-bg: #1a1a1a; --footer-text: #ffffff; --accent-color: #ff7227;
         }
-
-        /* =============================================
-           VARIABLES CSS - TEMA NOCHE (NO NEGRO PURO)
-           ============================================= */
         body.dark-mode {
-            --bg-color: #121212;                    /* Fondo - gris muy oscuro (no negro) */
-            --text-color: #ffffff;                  /* Texto blanco puro (legibilidad) */
-            --navbar-bg: #1a1a1a;                   /* Navbar - gris oscuro */
-            --navbar-text: #ffffff;                 /* Texto navbar blanco puro */
-            --btn-bg: #ff7227;                      /* BOTONES - NARANJA (mismo color) */
-            --btn-text: #ffffff;                    /* Texto botones blanco puro */
-            --card-bg: #1e1e1e;                     /* Tarjetas - gris oscuro */
-            --card-shadow: rgba(0,0,0,0.3);         /* Sombra más fuerte */
-            --footer-bg: #0a0a0a;                   /* Footer - casi negro */
-            --footer-text: #ffffff;                 /* Footer texto blanco puro */
-            --accent-color: #ff7227;                /* Color de acento - NARANJA */
+            --bg-color: #121212; --text-color: #ffffff; --navbar-bg: #1a1a1a; --navbar-text: #ffffff;
+            --card-bg: #1e1e1e; --card-shadow: rgba(0,0,0,0.3); --footer-bg: #0a0a0a;
         }
 
-        /* =============================================
-           RESET Y ESTILOS BASE
-           ============================================= */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Mochiy Pop One', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-            line-height: 1.6;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Mochiy Pop One', sans-serif; background-color: var(--bg-color); color: var(--text-color); overflow-x: hidden; line-height: 1.6; transition: background-color 0.3s, color 0.3s; min-height: 100vh; display: flex; flex-direction: column; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        img { max-width: 100%; display: block; }
+        ul { list-style: none; }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: 0.3s;
-        }
+        /* === NAVBAR === */
+        .navbar { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 1200px; background: var(--navbar-bg); z-index: 1000; height: 70px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; border-radius: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: all 0.3s; }
+        .navbar:hover { box-shadow: 0 6px 30px rgba(0,0,0,0.15); transform: translateX(-50%) translateY(-2px); }
+        .nav-links { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .nav-links a { color: var(--navbar-text); font-weight: bold; text-transform: uppercase; font-size: 13px; padding: 8px 16px; border-radius: 25px; transition: all 0.3s; }
+        .nav-links a:hover { background: var(--btn-bg); color: var(--btn-text); transform: translateY(-2px); }
 
-        img {
-            max-width: 100%;
-            display: block;
-        }
+        /* === BOTÓN TEMA === */
+        .theme-toggle { background: transparent; border: 2px solid var(--navbar-text); color: var(--navbar-text); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-left: 15px; transition: 0.3s; }
+        .theme-toggle:hover { background: var(--btn-bg); color: var(--btn-text); transform: rotate(15deg) scale(1.1); border-color: var(--btn-bg); }
+        .theme-toggle .icon-sun { display: none; } .theme-toggle .icon-moon { display: block; }
+        body.dark-mode .theme-toggle .icon-sun { display: block; } body.dark-mode .theme-toggle .icon-moon { display: none; }
 
-        ul {
-            list-style: none;
-        }
+        /* === SELECTOR DE IDIOMA === */
+        .lang-selector { display: flex; gap: 5px; margin-left: 15px; }
+        .lang-btn { background: transparent; border: 2px solid var(--navbar-text); color: var(--navbar-text); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; padding: 0; }
+        .lang-btn:hover { transform: scale(1.1); }
+        .lang-btn.active { background: var(--btn-bg); color: var(--btn-text); border-color: var(--btn-bg); }
 
-        /* =============================================
-           BARRA DE NAVEGACIÓN
-           ============================================= */
-        .navbar {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 40px);
-            max-width: 1200px;
-            background: var(--navbar-bg);
-            z-index: 1000;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-            border-radius: 50px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
+        /* === HERO ESTÁTICO === */
+        .hero-static { position: relative; height: 60vh; min-height: 400px; width: 100%; overflow: hidden; margin-top: 0; }
+        .hero-static img { width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 1; }
+        .hero-static::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%); z-index: 2; }
+        .hero-static-content { position: relative; z-index: 3; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; padding: 20px; }
+        .hero-static-content h1 { font-size: clamp(2.5rem, 6vw, 5rem); text-transform: uppercase; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        .hero-static-content p { font-size: clamp(1rem, 2vw, 1.3rem); max-width: 600px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
 
-        .navbar:hover {
-            box-shadow: 0 6px 30px rgba(0,0,0,0.15);
-            transform: translateX(-50%) translateY(-2px);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .nav-links a {
-            color: var(--navbar-text);
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 13px;
-            padding: 8px 16px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            background: var(--btn-bg);  /* Naranja al hover */
-            color: var(--btn-text);
-            transform: translateY(-2px);
-        }
-
-        /* =============================================
-           BOTÓN DE CAMBIO DE TEMA
-           ============================================= */
-        .theme-toggle {
-            background: transparent;
-            border: 2px solid var(--navbar-text);
-            color: var(--navbar-text);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            transition: all 0.3s ease;
-            margin-left: 15px;
-        }
-
-        .theme-toggle:hover {
-            background: var(--btn-bg);  /* Naranja al hover */
-            color: var(--btn-text);
-            transform: rotate(15deg) scale(1.1);
-            border-color: var(--btn-bg);
-        }
-
-        .theme-toggle .icon-sun { display: none; }
-        .theme-toggle .icon-moon { display: block; }
-        body.dark-mode .theme-toggle .icon-sun { display: block; }
-        body.dark-mode .theme-toggle .icon-moon { display: none; }
-
-        /* =============================================
-           HERO SECTION ESTÁTICA
-           ============================================= */
-        .hero-static {
-            position: relative;
-            height: 60vh;
-            min-height: 400px;
-            width: 100%;
-            overflow: hidden;
-            margin-top: 0;
-        }
-
-        .hero-static img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            z-index: 1;
-        }
-
-        .hero-static::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
-            z-index: 2;
-        }
-
-        .hero-static-content {
-            position: relative;
-            z-index: 3;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #fff;
-            padding: 20px;
-        }
-
-        .hero-static-content h1 {
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-        }
-
-        .hero-static-content p {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            max-width: 600px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
-        }
-
-        /* =============================================
-           SECCIONES DE MISIÓN Y VISIÓN
-           ============================================= */
-        .mission-section,
-        .vision-section {
-            padding: 80px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            border-radius: 30px;
-            box-shadow: 0 4px 20px var(--card-shadow);
-            transition: background-color 0.3s ease;
-        }
-
+        /* === MISIÓN Y VISIÓN === */
+        .mission-section, .vision-section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; background: var(--card-bg); border-radius: 30px; box-shadow: 0 4px 20px var(--card-shadow); transition: background-color 0.3s; }
         .mission-section { margin-top: 60px; }
         .vision-section { margin-top: 40px; }
-        
-        .mv-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
+        .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .mv-content h2 { font-size: 2.5rem; margin-bottom: 20px; color: var(--accent-color); }
+        .mv-content p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; }
+        .mv-icon { font-size: 80px; text-align: center; margin-bottom: 20px; }
+        .mv-image img { width: 100%; border-radius: 20px; box-shadow: 0 4px 15px var(--card-shadow); }
 
-        .mv-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--accent-color);  /* NARANJA */
-        }
+        /* === EQUIPO === */
+        .team-section { padding: 80px 5%; max-width: 1200px; margin: 60px auto; text-align: center; }
+        .team-section h2 { font-size: 2.5rem; margin-bottom: 15px; }
+        .team-section .subtitle { font-size: 1.2rem; color: #888; margin-bottom: 50px; opacity: 0.8; }
+        body.dark-mode .team-section .subtitle { color: #aaa; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .team-card { background: var(--card-bg); border-radius: 25px; overflow: hidden; box-shadow: 0 4px 15px var(--card-shadow); transition: transform 0.3s, box-shadow 0.3s; text-align: center; }
+        .team-card:hover { transform: translateY(-10px); box-shadow: 0 10px 35px var(--card-shadow); }
+        .team-card-img { width: 100%; height: 300px; overflow: hidden; }
+        .team-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .team-card:hover .team-card-img img { transform: scale(1.05); }
+        .team-card-info { padding: 25px; }
+        .team-card-info h3 { font-size: 1.4rem; margin-bottom: 8px; }
+        .team-card-info .role { font-size: 1rem; color: var(--accent-color); margin-bottom: 15px; display: block; }
+        .team-card-info p { font-size: 0.95rem; line-height: 1.6; opacity: 0.9; }
+        .team-social { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
+        .team-social a { width: 35px; height: 35px; border-radius: 50%; background: var(--btn-bg); color: var(--btn-text); display: flex; align-items: center; justify-content: center; font-size: 16px; transition: transform 0.3s, opacity 0.3s; }
+        .team-social a:hover { transform: scale(1.15); opacity: 0.8; }
 
-        .mv-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
+        /* === FOOTER === */
+        footer { background: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 50px 20px; margin: auto 20px 20px; border-radius: 30px; font-size: 0.95rem; margin-top: auto; }
 
-        .mv-icon {
-            font-size: 80px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .mv-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px var(--card-shadow);
-        }
-
-        /* =============================================
-           SECCIÓN DEL EQUIPO
-           ============================================= */
-        .team-section {
-            padding: 80px 5%;
-            max-width: 1200px;
-            margin: 60px auto;
-            text-align: center;
-        }
-
-        .team-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .team-section .subtitle {
-            font-size: 1.2rem;
-            color: #888;
-            margin-bottom: 50px;
-            opacity: 0.8;
-        }
-
-        body.dark-mode .team-section .subtitle {
-            color: #aaa;
-        }
-        
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-        
-        .team-card {
-            background: var(--card-bg);
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px var(--card-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-        }
-
-        .team-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 35px var(--card-shadow);
-        }
-
-        .team-card-img {
-            width: 100%;
-            height: 300px;
-            overflow: hidden;
-        }
-
-        .team-card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .team-card:hover .team-card-img img {
-            transform: scale(1.05);
-        }
-
-        .team-card-info {
-            padding: 25px;
-        }
-
-        .team-card-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-        }
-
-        .team-card-info .role {
-            font-size: 1rem;
-            color: var(--accent-color);  /* NARANJA */
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .team-card-info p {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
-
-        .team-social {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .team-social a {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: var(--btn-bg);  /* NARANJA */
-            color: var(--btn-text);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .team-social a:hover {
-            transform: scale(1.15);
-            opacity: 0.8;
-        }
-
-        /* =============================================
-           FOOTER
-           ============================================= */
-        footer {
-            background: var(--footer-bg);
-            color: var(--footer-text);
-            text-align: center;
-            padding: 50px 20px;
-            margin: 80px 20px 20px;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        footer:hover {
-            box-shadow: 0 6px 30px rgba(0,0,0,0.2);
-            transform: translateY(-3px);
-        }
-
-        footer a { color: var(--footer-text); text-decoration: underline; }
-        footer a:hover { opacity: 0.8; }
-
-        /* =============================================
-           RESPONSIVE (MÓVIL)
-           ============================================= */
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
-            .navbar {
-                top: 10px;
-                width: calc(100% - 20px);
-                flex-direction: column;
-                height: auto;
-                padding: 15px;
-                border-radius: 30px;
-            }
-
-            .nav-links {
-                margin: 15px 0;
-                gap: 10px;
-            }
-
-            .nav-links a {
-                padding: 6px 12px;
-                font-size: 11px;
-            }
-
-            .theme-toggle {
-                margin: 10px auto 0;
-            }
-
-            .hero-static {
-                height: 50vh;
-                min-height: 300px;
-            }
-
-            .hero-static-content h1 {
-                font-size: 2rem;
-            }
-
-            .mv-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .mission-section,
-            .vision-section {
-                margin-top: 30px;
-                padding: 40px 20px;
-            }
-
-            .team-section {
-                padding: 40px 20px;
-            }
-
-            footer {
-                margin: 40px 10px 10px;
-                border-radius: 20px;
-            }
+            .navbar { top: 10px; width: calc(100% - 20px); flex-direction: column; height: auto; padding: 15px; border-radius: 30px; }
+            .nav-links { margin: 15px 0; gap: 10px; } .nav-links a { padding: 6px 12px; font-size: 11px; }
+            .theme-toggle, .lang-selector { margin: 10px auto 0; }
+            .lang-selector { margin-top: 10px; }
+            .hero-static { height: 50vh; min-height: 300px; } .hero-static-content h1 { font-size: 2rem; }
+            .mv-grid { grid-template-columns: 1fr; }
+            .mission-section, .vision-section { margin-top: 30px; padding: 40px 20px; }
+            .team-section { padding: 40px 20px; }
+            footer { margin: 40px 10px 10px; border-radius: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- =============================================
-         BARRA DE NAVEGACIÓN
-         ============================================= -->
+    <!-- NAVBAR -->
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="index.html#about">Nosotros</a></li>
-            <li><a href="index.html#servicios">Servicios</a></li>
-            <li><a href="index.html#galeria">Galería</a></li>
-            <li><a href="index.html#contacto">Contacto</a></li>
-            <li><a href="index.html#blog">Blog</a></li>
+            <li><a href="/index" data-i18n="nav.home">Inicio</a></li>
+            <li><a href="/about" data-i18n="nav.about">Nosotros</a></li>
+            <li><a href="/destinations" data-i18n="nav.destinations">Destinos</a></li>
+            <li><a href="/gallery" data-i18n="nav.gallery">Galería</a></li>
+            <li><a href="/contact" data-i18n="nav.contact">Contacto</a></li>
+            <li><a href="/blog" data-i18n="nav.blog">Blog</a></li>
         </ul>
         
-        <!-- Botón para cambiar tema día/noche -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-            <span class="icon-sun">☀️</span>
-            <span class="icon-moon">🌙</span>
-        </button>
+        <div style="display: flex; align-items: center;">
+            <!-- SELECTOR DE IDIOMA -->
+            <div class="lang-selector">
+                <button class="lang-btn active" data-lang="es" aria-label="Español">🇪🇸</button>
+                <button class="lang-btn" data-lang="en" aria-label="English">🇬🇧</button>
+                <button class="lang-btn" data-lang="pt" aria-label="Português">🇧🇷</button>
+            </div>
+            
+            <!-- BOTÓN TEMA -->
+            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                <span class="icon-sun">☀️</span>
+                <span class="icon-moon">🌙</span>
+            </button>
+        </div>
     </nav>
 
-    <!-- =============================================
-         HERO SECTION ESTÁTICA
-         ============================================= -->
+    <!-- HERO -->
     <section class="hero-static">
-        <img src="assets/about-hero.jpg" alt="Sobre Nosotros">
+        <img src="Images/about-hero.jpg" alt="Sobre Nosotros">
         <div class="hero-static-content">
-            <h1>Sobre Nosotros</h1>
-            <p>Conoce la historia, misión y visión detrás de nuestra empresa</p>
+            <h1 data-i18n="about.hero.title">Sobre Nosotros</h1>
+            <p data-i18n="about.hero.subtitle">Conoce la historia, misión y visión detrás de nuestra empresa</p>
         </div>
     </section>
 
-    <!-- =============================================
-         SECCIÓN DE MISIÓN
-         ============================================= -->
+    <!-- MISIÓN -->
     <section class="mission-section">
         <div class="mv-grid">
             <div class="mv-content">
                 <div class="mv-icon">🎯</div>
-                <h2>Nuestra Misión</h2>
-                <p>
-                    Crear experiencias únicas que inspiren y conecten a las personas con el mundo 
-                    que las rodea. Nos dedicamos a ofrecer servicios de la más alta calidad, 
-                    superando las expectativas de nuestros clientes en cada proyecto.
-                </p>
-                <p>
-                    Nuestro compromiso es la excelencia, la innovación y el desarrollo sostenible 
-                    en todo lo que hacemos.
-                </p>
+                <h2 data-i18n="about.mission.title">Nuestra Misión</h2>
+                <p data-i18n="about.mission.text1">Crear experiencias únicas que inspiren y conecten a las personas con el mundo que las rodea. Nos dedicamos a ofrecer servicios de la más alta calidad, superando las expectativas de nuestros clientes en cada proyecto.</p>
+                <p data-i18n="about.mission.text2">Nuestro compromiso es la excelencia, la innovación y el desarrollo sostenible en todo lo que hacemos.</p>
             </div>
             <div class="mv-image">
-                <img src="assets/mission.jpg" alt="Nuestra Misión">
+                <img src="Images/mission.jpg" alt="Nuestra Misión">
             </div>
         </div>
     </section>
 
-    <!-- =============================================
-         SECCIÓN DE VISIÓN
-         ============================================= -->
+    <!-- VISIÓN -->
     <section class="vision-section">
         <div class="mv-grid">
             <div class="mv-image">
-                <img src="assets/vision.jpg" alt="Nuestra Visión">
+                <img src="Images/vision.jpg" alt="Nuestra Visión">
             </div>
             <div class="mv-content">
                 <div class="mv-icon">👁️</div>
-                <h2>Nuestra Visión</h2>
-                <p>
-                    Ser líderes en innovación y calidad, reconocidos mundialmente por nuestro 
-                    compromiso con la excelencia y el desarrollo de soluciones que marquen 
-                    la diferencia en la industria.
-                </p>
-                <p>
-                    Aspiramos a construir un futuro donde la tecnología y el talento humano 
-                    se unan para crear un impacto positivo en la sociedad.
-                </p>
+                <h2 data-i18n="about.vision.title">Nuestra Visión</h2>
+                <p data-i18n="about.vision.text1">Ser líderes en innovación y calidad, reconocidos mundialmente por nuestro compromiso con la excelencia y el desarrollo de soluciones que marquen la diferencia en la industria.</p>
+                <p data-i18n="about.vision.text2">Aspiramos a construir un futuro donde la tecnología y el talento humano se unan para crear un impacto positivo en la sociedad.</p>
             </div>
         </div>
     </section>
 
-    <!-- =============================================
-         SECCIÓN DEL EQUIPO
-         ============================================= -->
+    <!-- EQUIPO -->
     <section class="team-section">
-        <h2>Nuestro Equipo</h2>
-        <p class="subtitle">Las personas increíbles detrás de nuestro éxito</p>
+        <h2 data-i18n="about.team.title">Nuestro Equipo</h2>
+        <p class="subtitle" data-i18n="about.team.subtitle">Las personas increíbles detrás de nuestro éxito</p>
         
         <div class="team-grid">
             <!-- Miembro 1 -->
             <div class="team-card">
                 <div class="team-card-img">
-                    <img src="assets/team1.jpg" alt="María González">
+                    <img src="Images/team/team1.jpg" alt="María González">
                 </div>
                 <div class="team-card-info">
-                    <h3>María González</h3>
-                    <span class="role">CEO & Fundadora</span>
-                    <p>Líder visionaria con más de 15 años de experiencia en la industria.</p>
+                    <h3 data-i18n="about.team.member1.name">María González</h3>
+                    <span class="role" data-i18n="about.team.member1.role">CEO & Fundadora</span>
+                    <p data-i18n="about.team.member1.bio">Líder visionaria con más de 15 años de experiencia en la industria. Apasionada por la innovación.</p>
                     <div class="team-social">
                         <a href="#" aria-label="LinkedIn">💼</a>
                         <a href="#" aria-label="Twitter">🐦</a>
@@ -575,12 +195,12 @@
             <!-- Miembro 2 -->
             <div class="team-card">
                 <div class="team-card-img">
-                    <img src="assets/team2.jpg" alt="Carlos Rodríguez">
+                    <img src="Images/team/team2.jpg" alt="Carlos Rodríguez">
                 </div>
                 <div class="team-card-info">
-                    <h3>Carlos Rodríguez</h3>
-                    <span class="role">Director de Tecnología</span>
-                    <p>Ingeniero de software con experiencia en soluciones escalables.</p>
+                    <h3 data-i18n="about.team.member2.name">Carlos Rodríguez</h3>
+                    <span class="role" data-i18n="about.team.member2.role">Director de Tecnología</span>
+                    <p data-i18n="about.team.member2.bio">Ingeniero de software con experiencia en desarrollo de soluciones escalables y arquitectura cloud.</p>
                     <div class="team-social">
                         <a href="#" aria-label="LinkedIn">💼</a>
                         <a href="#" aria-label="GitHub">🐙</a>
@@ -592,12 +212,12 @@
             <!-- Miembro 3 -->
             <div class="team-card">
                 <div class="team-card-img">
-                    <img src="assets/team3.jpg" alt="Ana Martínez">
+                    <img src="Images/team/team3.jpg" alt="Ana Martínez">
                 </div>
                 <div class="team-card-info">
-                    <h3>Ana Martínez</h3>
-                    <span class="role">Directora de Marketing</span>
-                    <p>Experta en estrategias digitales, branding y crecimiento de marcas.</p>
+                    <h3 data-i18n="about.team.member3.name">Ana Martínez</h3>
+                    <span class="role" data-i18n="about.team.member3.role">Directora de Marketing</span>
+                    <p data-i18n="about.team.member3.bio">Experta en estrategias digitales, branding y crecimiento de marcas en el entorno digital.</p>
                     <div class="team-social">
                         <a href="#" aria-label="LinkedIn">💼</a>
                         <a href="#" aria-label="Instagram">📷</a>
@@ -609,12 +229,12 @@
             <!-- Miembro 4 -->
             <div class="team-card">
                 <div class="team-card-img">
-                    <img src="assets/team4.jpg" alt="Luis Fernández">
+                    <img src="Images/team/team4.jpg" alt="Luis Fernández">
                 </div>
                 <div class="team-card-info">
-                    <h3>Luis Fernández</h3>
-                    <span class="role">Diseñador Principal</span>
-                    <p>Creativo con ojo para el detalle, especializado en UX/UI.</p>
+                    <h3 data-i18n="about.team.member4.name">Luis Fernández</h3>
+                    <span class="role" data-i18n="about.team.member4.role">Diseñador Principal</span>
+                    <p data-i18n="about.team.member4.bio">Creativo con ojo para el detalle, especializado en UX/UI y diseño de experiencias digitales.</p>
                     <div class="team-social">
                         <a href="#" aria-label="LinkedIn">💼</a>
                         <a href="#" aria-label="Behance">🎨</a>
@@ -626,12 +246,12 @@
             <!-- Miembro 5 -->
             <div class="team-card">
                 <div class="team-card-img">
-                    <img src="assets/team5.jpg" alt="Sofía López">
+                    <img src="Images/team/team5.jpg" alt="Sofía López">
                 </div>
                 <div class="team-card-info">
-                    <h3>Sofía López</h3>
-                    <span class="role">Gerente de Ventas</span>
-                    <p>Especialista en relaciones con clientes y desarrollo de negocios.</p>
+                    <h3 data-i18n="about.team.member5.name">Sofía López</h3>
+                    <span class="role" data-i18n="about.team.member5.role">Gerente de Ventas</span>
+                    <p data-i18n="about.team.member5.bio">Especialista en relaciones con clientes y desarrollo de negocios estratégicos.</p>
                     <div class="team-social">
                         <a href="#" aria-label="LinkedIn">💼</a>
                         <a href="#" aria-label="Twitter">🐦</a>
@@ -643,12 +263,12 @@
             <!-- Miembro 6 -->
             <div class="team-card">
                 <div class="team-card-img">
-                    <img src="assets/team6.jpg" alt="David Ruiz">
+                    <img src="Images/team/team6.jpg" alt="David Ruiz">
                 </div>
                 <div class="team-card-info">
-                    <h3>David Ruiz</h3>
-                    <span class="role">Coordinador de Proyectos</span>
-                    <p>Organizador nato, experto en metodologías ágiles y gestión de equipos.</p>
+                    <h3 data-i18n="about.team.member6.name">David Ruiz</h3>
+                    <span class="role" data-i18n="about.team.member6.role">Coordinador de Proyectos</span>
+                    <p data-i18n="about.team.member6.bio">Organizador nato con gran liderazgo, experto en metodologías ágiles y gestión de equipos.</p>
                     <div class="team-social">
                         <a href="#" aria-label="LinkedIn">💼</a>
                         <a href="#" aria-label="Twitter">🐦</a>
@@ -659,39 +279,132 @@
         </div>
     </section>
 
-    <!-- =============================================
-         FOOTER
-         ============================================= -->
+    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Mi Sitio Web. <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>
     </footer>
 
-    <!-- =============================================
-         JAVASCRIPT
-         ============================================= -->
+    <!-- JAVASCRIPT -->
     <script>
         /* =============================================
-           CAMBIO DE TEMA DÍA/NOCHE
+           SISTEMA DE TRADUCCIÓN MULTI-IDIOMA
+           ============================================= */
+        
+        let currentLang = 'es';
+        let translations = {};
+
+        async function loadTranslations(lang) {
+            try {
+                const response = await fetch(`translations/${lang}.json`);
+                if (!response.ok) throw new Error(`No se pudo cargar ${lang}.json`);
+                return await response.json();
+            } catch (error) {
+                console.error('Error cargando traducciones:', error);
+                return null;
+            }
+        }
+
+        function getTranslation(key) {
+            const keys = key.split('.');
+            let value = translations;
+            
+            for (const k of keys) {
+                if (value && typeof value === 'object' && k in value) {
+                    value = value[k];
+                } else {
+                    return key;
+                }
+            }
+            
+            return value;
+        }
+
+        function applyTranslations() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const translation = getTranslation(key);
+                
+                if (translation && translation !== key) {
+                    element.textContent = translation;
+                }
+            });
+            
+            document.documentElement.lang = currentLang;
+            document.title = getTranslation('about.hero.title') + ' - Mi Sitio Web';
+        }
+
+        async function changeLanguage(lang) {
+            if (lang === currentLang) return;
+            
+            const newTranslations = await loadTranslations(lang);
+            
+            if (newTranslations) {
+                translations = newTranslations;
+                currentLang = lang;
+                applyTranslations();
+                
+                localStorage.setItem('lang', lang);
+                
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.lang === lang);
+                });
+                
+                console.log(`Idioma cambiado a: ${lang}`);
+            }
+        }
+
+        function detectPreferredLanguage() {
+            const savedLang = localStorage.getItem('lang');
+            if (savedLang && ['es', 'en', 'pt'].includes(savedLang)) {
+                return savedLang;
+            }
+            
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang) {
+                if (browserLang.startsWith('en')) return 'en';
+                if (browserLang.startsWith('pt')) return 'pt';
+            }
+            
+            return 'es';
+        }
+
+        /* =============================================
+           TEMA DÍA/NOCHE
            ============================================= */
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         
-        // Verificar preferencia guardada en localStorage
         const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            body.classList.add('dark-mode');
-        }
+        if (savedTheme === 'dark') body.classList.add('dark-mode');
         
-        // Event listener para el botón
         themeToggle.addEventListener('click', function() {
             body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+
+        /* =============================================
+           SELECTOR DE IDIOMA
+           ============================================= */
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                changeLanguage(btn.dataset.lang);
+            });
+        });
+
+        /* =============================================
+           INICIALIZACIÓN
+           ============================================= */
+        document.addEventListener('DOMContentLoaded', async () => {
+            const preferredLang = detectPreferredLanguage();
             
-            // Guardar preferencia
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
-            }
+            translations = await loadTranslations(preferredLang) || await loadTranslations('es');
+            currentLang = preferredLang;
+            
+            applyTranslations();
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === currentLang);
+            });
         });
     </script>
 </body>
