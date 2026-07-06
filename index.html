@@ -299,312 +299,135 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        /* =============================================
-           SISTEMA DE TRADUCCIÓN MULTI-IDIOMA
-           ============================================= */
-        
-        let currentLang = 'es';
-        let translations = {};
+    console.log('🚀 Script iniciado');
+    
+    let currentLang = 'es';
+    let translations = {};
 
-        async function loadTranslations(lang) {
-            try {
-                const response = await fetch(`translations/${lang}.json`);
-                if (!response.ok) throw new Error(`No se pudo cargar ${lang}.json`);
-                return await response.json();
-            } catch (error) {
-                console.error('Error cargando traducciones:', error);
+    async function loadTranslations(lang) {
+        console.log(`📥 Cargando traducciones: ${lang}`);
+        try {
+            const response = await fetch(`translations/${lang}.json`);
+            console.log(`📡 Respuesta:`, response.status, response.statusText);
+            
+            if (!response.ok) {
+                console.error(`❌ Error HTTP: ${response.status}`);
                 return null;
             }
+            
+            const data = await response.json();
+            console.log(`✅ Traducciones cargadas:`, data);
+            return data;
+        } catch (error) {
+            console.error(`❌ Error cargando ${lang}.json:`, error);
+            return null;
         }
+    }
 
-        function getTranslation(key) {
-            const keys = key.split('.');
-            let value = translations;
-            
-            for (const k of keys) {
-                if (value && typeof value === 'object' && k in value) {
-                    value = value[k];
-                } else {
-                    return key;
-                }
-            }
-            
-            return value;
-        }
-
-        function applyTranslations() {
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                const translation = getTranslation(key);
-                
-                if (translation && translation !== key) {
-                    element.textContent = translation;
-                }
-            });
-            
-            document.documentElement.lang = currentLang;
-            document.title = getTranslation('page.title') + ' - Landing Page';
-        }
-
-        async function changeLanguage(lang) {
-            if (lang === currentLang) return;
-            
-            const newTranslations = await loadTranslations(lang);
-            
-            if (newTranslations) {
-                translations = newTranslations;
-                currentLang = lang;
-                applyTranslations();
-                
-                localStorage.setItem('lang', lang);
-                
-                document.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.lang === lang);
-                });
-                
-                renderDynamicContent();
-                
-                console.log(`Idioma cambiado a: ${lang}`);
-            }
-        }
-
-        function detectPreferredLanguage() {
-            const savedLang = localStorage.getItem('lang');
-            if (savedLang && ['es', 'en', 'pt'].includes(savedLang)) {
-                return savedLang;
-            }
-            
-            const browserLang = navigator.language || navigator.userLanguage;
-            if (browserLang) {
-                if (browserLang.startsWith('en')) return 'en';
-                if (browserLang.startsWith('pt')) return 'pt';
-            }
-            
-            return 'es';
-        }
-
-        /* =============================================
-           CARRUSEL HERO
-           ============================================= */
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-carousel .slide');
+    function getTranslation(key) {
+        const keys = key.split('.');
+        let value = translations;
         
-        function showSlide(index) {
-            if (slides.length === 0) return;
-            if (index >= slides.length) currentSlide = 0;
-            else if (index < 0) currentSlide = slides.length - 1;
-            else currentSlide = index;
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[currentSlide].classList.add('active');
+        for (const k of keys) {
+            if (value && typeof value === 'object' && k in value) {
+                value = value[k];
+            } else {
+                console.warn(`⚠️ Traducción no encontrada: ${key}`);
+                return key;
+            }
         }
-
-        function moveSlide(direction) {
-            showSlide(currentSlide + direction);
-        }
-
-        setInterval(() => moveSlide(1), 5000);
-        showSlide(0);
-
-        /* =============================================
-           TEMA DÍA/NOCHE
-           ============================================= */
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
         
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') body.classList.add('dark-mode');
-        
-        themeToggle.addEventListener('click', function() {
-            body.classList.toggle('dark-mode');
-            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+        return value;
+    }
+
+    function applyTranslations() {
+        console.log('🔄 Aplicando traducciones al HTML');
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            const translation = getTranslation(key);
+            
+            if (translation && translation !== key) {
+                element.textContent = translation;
+            }
         });
-
-        /* =============================================
-           SELECTOR DE IDIOMA
-           ============================================= */
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                changeLanguage(btn.dataset.lang);
-            });
-        });
-
-        /* =============================================
-           FORMATEAR FECHA (con soporte multi-idioma)
-           ============================================= */
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            const locales = { es: 'es-ES', en: 'en-US', pt: 'pt-BR' };
-            return date.toLocaleDateString(locales[currentLang] || 'es-ES', { 
-                day: 'numeric', month: 'short', year: 'numeric' 
-            });
-        }
-
-        function truncateText(text, maxLength) {
-            if (!text) return '';
-            if (text.length <= maxLength) return text;
-            return text.substring(0, maxLength).trim() + '...';
-        }
-
-        /* =============================================
-           DESTINOS POPULARES - CON TRADUCCIÓN
-           ============================================= */
-        let featuredDestinations = [];
         
-        async function loadFeaturedDestinations() {
-            const grid = document.getElementById('featuredDestinationsGrid');
-            const loading = document.getElementById('destinationsLoading');
-            
-            try {
-                const response = await fetch('destinations/destinations.json');
-                if (!response.ok) throw new Error('No se pudo cargar destinations.json');
-                
-                const destinations = await response.json();
-                featuredDestinations = destinations.filter(dest => dest.featured === true);
-                
-                loading.style.display = 'none';
-                renderFeaturedDestinations();
-                
-            } catch (error) {
-                console.error('Error:', error);
-                loading.textContent = getTranslation('destinations.error');
-            }
-        }
+        document.documentElement.lang = currentLang;
+        document.title = getTranslation('page.title') + ' - Landing Page';
+    }
 
-        function renderFeaturedDestinations() {
-            const grid = document.getElementById('featuredDestinationsGrid');
-            
-            if (featuredDestinations.length === 0) {
-                grid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding:40px;">${getTranslation('destinations.empty')}</p>`;
-                return;
-            }
-            
-            grid.innerHTML = featuredDestinations.map(dest => `
-                <div class="destination-card">
-                    <img src="${dest.image}" alt="${dest.title}">
-                    <div class="card-content">
-                        <h3 style="margin-bottom: 10px; font-size: 1.2rem;">${dest.title}</h3>
-                        <p style="font-size: 0.9rem; opacity: 0.85; margin-bottom: 10px;">📍 ${dest.location}</p>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                            <span style="font-size: 1.3rem; font-weight: bold; color: var(--price-color);">$${dest.price}</span>
-                            <span style="font-size: 0.9rem; opacity: 0.7;">⭐ ${dest.rating}</span>
-                        </div>
-                        <a href="destinations/detalle.html?slug=${dest.slug}" class="card-btn">${getTranslation('destinations.viewMore')}</a>
-                    </div>
-                </div>
-            `).join('');
+    async function changeLanguage(lang) {
+        console.log(`🌍 Cambiando idioma a: ${lang}`);
+        if (lang === currentLang) {
+            console.log('ℹ️ Idioma ya está activo');
+            return;
         }
-
-        /* =============================================
-           BLOG - CON TRADUCCIÓN
-           ============================================= */
-        let latestPosts = [];
         
-        async function loadLatestPosts() {
-            const blogGrid = document.getElementById('blogGrid');
-            const blogLoading = document.getElementById('blogLoading');
-            const blogEmpty = document.getElementById('blogEmpty');
-            
-            try {
-                const response = await fetch('posts/posts.json');
-                if (!response.ok) throw new Error('No se pudo cargar posts.json');
-                
-                let posts = await response.json();
-                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-                latestPosts = posts.slice(0, 3);
-                
-                blogLoading.style.display = 'none';
-                renderLatestPosts();
-                
-            } catch (error) {
-                console.error('Error:', error);
-                blogLoading.textContent = getTranslation('blog.error');
-            }
-        }
-
-        function renderLatestPosts() {
-            const blogGrid = document.getElementById('blogGrid');
-            const blogEmpty = document.getElementById('blogEmpty');
-            
-            if (latestPosts.length === 0) {
-                blogEmpty.style.display = 'block';
-                return;
-            }
-            
-            blogGrid.innerHTML = latestPosts.map(post => {
-                const tagsHTML = post.tags.slice(0, 3).map(tag => 
-                    `<span class="blog-post-tag">${tag}</span>`
-                ).join('');
-                
-                return `
-                    <article class="blog-post-card">
-                        <a href="${post.url}" class="blog-post-card-image">
-                            <img src="${post.image}" alt="${post.title}" loading="lazy">
-                        </a>
-                        <div class="blog-post-card-content">
-                            <time class="blog-post-card-date" datetime="${post.date}">📅 ${formatDate(post.date)}</time>
-                            <h3><a href="${post.url}">${post.title}</a></h3>
-                            <p class="blog-post-card-excerpt">${truncateText(post.excerpt, 100)}</p>
-                            <div class="blog-post-card-tags">${tagsHTML}</div>
-                            <a href="${post.url}" class="blog-post-card-read">${getTranslation('blog.readMore')}</a>
-                        </div>
-                    </article>
-                `;
-            }).join('');
-        }
-
-        /* =============================================
-           GALERÍA - 6 MÁS RECIENTES
-           ============================================= */
-        async function loadRecentGallery() {
-            const container = document.getElementById('galleryContainer');
-            
-            try {
-                const response = await fetch('gallery/gallery.json');
-                if (!response.ok) throw new Error('No se pudo cargar gallery.json');
-                
-                let images = await response.json();
-                images.sort((a, b) => new Date(b.date) - new Date(a.date));
-                const recentImages = images.slice(0, 6);
-                
-                container.innerHTML = recentImages.map(img => `
-                    <div class="gallery-item">
-                        <img src="${img.image}" alt="${img.title}" loading="lazy">
-                    </div>
-                `).join('');
-                
-            } catch (error) {
-                console.error('Error:', error);
-                container.innerHTML = '<p style="width: 100%; text-align: center;">Error ❌</p>';
-            }
-        }
-
-        /* =============================================
-           RE-RENDERIZAR CONTENIDO DINÁMICO
-           ============================================= */
-        function renderDynamicContent() {
-            renderFeaturedDestinations();
-            renderLatestPosts();
-        }
-
-        /* =============================================
-           INICIALIZACIÓN
-           ============================================= */
-        document.addEventListener('DOMContentLoaded', async () => {
-            const preferredLang = detectPreferredLanguage();
-            
-            translations = await loadTranslations(preferredLang) || await loadTranslations('es');
-            currentLang = preferredLang;
-            
+        const newTranslations = await loadTranslations(lang);
+        
+        if (newTranslations) {
+            translations = newTranslations;
+            currentLang = lang;
             applyTranslations();
             
+            localStorage.setItem('lang', lang);
+            
             document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === currentLang);
+                btn.classList.toggle('active', btn.dataset.lang === lang);
             });
             
-            loadFeaturedDestinations();
-            loadLatestPosts();
-            loadRecentGallery();
+            console.log(`✅ Idioma cambiado exitosamente a: ${lang}`);
+        } else {
+            console.error(`❌ No se pudo cambiar el idioma a: ${lang}`);
+        }
+    }
+
+    function detectPreferredLanguage() {
+        const savedLang = localStorage.getItem('lang');
+        console.log(`💾 Idioma guardado: ${savedLang}`);
+        
+        if (savedLang && ['es', 'en', 'pt'].includes(savedLang)) {
+            return savedLang;
+        }
+        
+        const browserLang = navigator.language || navigator.userLanguage;
+        console.log(`🌐 Idioma del navegador: ${browserLang}`);
+        
+        if (browserLang) {
+            if (browserLang.startsWith('en')) return 'en';
+            if (browserLang.startsWith('pt')) return 'pt';
+        }
+        
+        return 'es';
+    }
+
+    // Event listeners para botones de idioma
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            console.log(`👆 Click en botón: ${btn.dataset.lang}`);
+            changeLanguage(btn.dataset.lang);
         });
-    </script>
+    });
+
+    // Inicialización
+    document.addEventListener('DOMContentLoaded', async () => {
+        console.log('📄 DOM cargado');
+        
+        const preferredLang = detectPreferredLanguage();
+        console.log(`🎯 Idioma preferido detectado: ${preferredLang}`);
+        
+        translations = await loadTranslations(preferredLang) || await loadTranslations('es');
+        currentLang = preferredLang;
+        
+        if (translations) {
+            applyTranslations();
+        } else {
+            console.error('❌ No se pudieron cargar traducciones');
+        }
+        
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === currentLang);
+        });
+    });
+</script>
 </body>
 </html>
