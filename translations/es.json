@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "gallery": "Galería",
+    "contact": "Contacto",
+    "blog": "Blog"
+  },
+  "hero": {
+    "slide1": "Churism",
+    "slide2": "Caballo Homosexual",
+    "slide3": "De las montañas",
+    "slide4": "Ningún animal se salva",
+    "slide5": "abababa",
+    "slide6": "Reserva"
+  },
+  "features": {
+    "title": "Nuestros Servicios",
+    "feature1": "Calidad Premium",
+    "feature2": "Soporte 24/7",
+    "feature3": "Envío Rápido",
+    "feature4": "Garantía Total"
+  },
+  "gallery": {
+    "title": "Galería Seleccionada"
+  },
+  "mission": {
+    "title": "Nuestra Misión",
+    "text": "Creamos experiencias inolvidables con enfoque en calidad y satisfacción del cliente.",
+    "button": "Leer Más"
+  },
+  "destinations": {
+    "title": "Destinos Populares",
+    "viewMore": "Ver Más",
+    "loading": "Cargando destinos... 🌍",
+    "empty": "No hay destinos destacados por ahora ✨",
+    "error": "Error cargando destinos ❌"
+  },
+  "team": {
+    "title": "Únete al Equipo",
+    "text": "Buscamos personas apasionadas para unirse a nuestro equipo global.",
+    "button": "Aplicar Ahora"
+  },
+  "blog": {
+    "title": "Últimas Entradas",
+    "readMore": "Leer más →",
+    "loading": "Cargando entradas... 🌸",
+    "empty": "Aún no hay entradas. ¡Pronto tendremos novedades! ✨",
+    "error": "Error cargando entradas. Intenta recargar la página. ❌"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  }
+}
