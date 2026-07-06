@@ -1,55 +1,50 @@
-{
-  "nav": {
-    "home": "Início",
-    "about": "Sobre Nós",
-    "services": "Serviços",
-    "gallery": "Galeria",
-    "contact": "Contato",
-    "blog": "Blog"
-  },
-  "hero": {
-    "slide1": "Churism",
-    "slide2": "Cavalo Homossexual",
-    "slide3": "Das montanhas",
-    "slide4": "Nenhum animal se salva",
-    "slide5": "abababa",
-    "slide6": "Reserve"
-  },
-  "features": {
-    "title": "Nossos Serviços",
-    "feature1": "Qualidade Premium",
-    "feature2": "Suporte 24/7",
-    "feature3": "Envio Rápido",
-    "feature4": "Garantia Total"
-  },
-  "gallery": {
-    "title": "Galeria Selecionada"
-  },
-  "mission": {
-    "title": "Nossa Missão",
-    "text": "Criamos experiências inesquecíveis com foco na qualidade e satisfação do cliente.",
-    "button": "Leia Mais"
-  },
-  "destinations": {
-    "title": "Destinos Populares",
-    "viewMore": "Ver Mais",
-    "loading": "Carregando destinos... 🌍",
-    "empty": "Ainda não há destinos em destaque ✨",
-    "error": "Erro ao carregar destinos ❌"
-  },
-  "team": {
-    "title": "Junte-se à Equipe",
-    "text": "Procuramos pessoas apaixonadas para se juntar à nossa equipe global.",
-    "button": "Candidate-se Agora"
-  },
-  "blog": {
-    "title": "Últimas Publicações",
-    "readMore": "Leia mais →",
-    "loading": "Carregando publicações... 🌸",
-    "empty": "Ainda não há publicações. Fique ligado nas novidades! ✨",
-    "error": "Erro ao carregar publicações. Tente recarregar a página. ❌"
-  },
-  "footer": {
-    "rights": "Todos os direitos reservados."
+  "about": {
+    "hero": {
+      "title": "Sobre Nós",
+      "subtitle": "Conheça a história, missão e visão por trás da nossa empresa"
+    },
+    "mission": {
+      "title": "Nossa Missão",
+      "text1": "Criar experiências únicas que inspirem e conectem as pessoas com o mundo ao seu redor. Dedicamo-nos a oferecer serviços da mais alta qualidade, superando as expectativas dos nossos clientes em cada projeto.",
+      "text2": "O nosso compromisso é com a excelência, a inovação e o desenvolvimento sustentável em tudo o que fazemos."
+    },
+    "vision": {
+      "title": "Nossa Visão",
+      "text1": "Ser líderes em inovação e qualidade, reconhecidos mundialmente pelo nosso compromisso com a excelência e o desenvolvimento de soluções que façam a diferença na indústria.",
+      "text2": "Aspiramos construir um futuro onde a tecnologia e o talento humano se unam para criar um impacto positivo na sociedade."
+    },
+    "team": {
+      "title": "Nossa Equipe",
+      "subtitle": "As pessoas incríveis por trás do nosso sucesso",
+      "member1": {
+        "name": "María González",
+        "role": "CEO e Fundadora",
+        "bio": "Líder visionária com mais de 15 anos de experiência na indústria. Apaixonada pela inovação."
+      },
+      "member2": {
+        "name": "Carlos Rodríguez",
+        "role": "Diretor de Tecnologia",
+        "bio": "Engenheiro de software com experiência no desenvolvimento de soluções escaláveis e arquitetura cloud."
+      },
+      "member3": {
+        "name": "Ana Martínez",
+        "role": "Diretora de Marketing",
+        "bio": "Especialista em estratégias digitais, branding e crescimento de marcas no ambiente digital."
+      },
+      "member4": {
+        "name": "Luis Fernández",
+        "role": "Designer Principal",
+        "bio": "Criativo com olho para o detalhe, especializado em UX/UI e design de experiências digitais."
+      },
+      "member5": {
+        "name": "Sofía López",
+        "role": "Gerente de Vendas",
+        "bio": "Especialista em relações com clientes e desenvolvimento de negócios estratégicos."
+      },
+      "member6": {
+        "name": "David Ruiz",
+        "role": "Coordenador de Projetos",
+        "bio": "Organizador nato com grande liderança, especialista em metodologias ágeis e gestão de equipes."
+      }
+    }
   }
-}
