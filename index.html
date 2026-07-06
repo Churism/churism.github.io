@@ -4,620 +4,150 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sitio web profesional con modo día/noche">
-    <title>Mi Sitio Web - Landing Page</title>
+    <title data-i18n="page.title">Mi Sitio Web - Landing Page</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
 
     <style>
-        /* =============================================
-           VARIABLES CSS - TEMA DÍA (NO BLANCO PURO)
-           ============================================= */
+        /* === VARIABLES CSS (sin cambios) === */
         :root {
-            --bg-color: #fafafa;
-            --text-color: #000000;
-            --navbar-bg: #f5f5f5;
-            --navbar-text: #000000;
-            --gallery-bg: #f0f0f0;
-            --btn-bg: #ff7227;
-            --btn-text: #ffffff;
-            --card-bg: #ffffff;
-            --card-shadow: rgba(0,0,0,0.08);
-            --feature-bg: #e9ecef;
-            --split-bg: #f8f9fa;
-            --footer-bg: #1a1a1a;
-            --footer-text: #ffffff;
-            --accent-color: #ff7227;
-            --price-color: #28a745;
-            --tag-bg: #ffe8d9;
-            --tag-text: #cc5b00;
+            --bg-color: #fafafa; --text-color: #000000; --navbar-bg: #f5f5f5; --navbar-text: #000000;
+            --gallery-bg: #f0f0f0; --btn-bg: #ff7227; --btn-text: #ffffff; --card-bg: #ffffff;
+            --card-shadow: rgba(0,0,0,0.08); --feature-bg: #e9ecef; --split-bg: #f8f9fa;
+            --footer-bg: #1a1a1a; --footer-text: #ffffff; --accent-color: #ff7227;
+            --price-color: #28a745; --tag-bg: #ffe8d9; --tag-text: #cc5b00;
         }
-
-        /* =============================================
-           VARIABLES CSS - TEMA NOCHE (NO NEGRO PURO)
-           ============================================= */
         body.dark-mode {
-            --bg-color: #121212;
-            --text-color: #ffffff;
-            --navbar-bg: #1a1a1a;
-            --navbar-text: #ffffff;
-            --gallery-bg: #252525;
-            --btn-bg: #ff7227;
-            --btn-text: #ffffff;
-            --card-bg: #1e1e1e;
-            --card-shadow: rgba(0,0,0,0.3);
-            --feature-bg: #202020;
-            --split-bg: #1a1a1a;
-            --footer-bg: #0a0a0a;
-            --footer-text: #ffffff;
-            --accent-color: #ff7227;
-            --price-color: #4ade80;
-            --tag-bg: #3d2a1f;
-            --tag-text: #ffb380;
+            --bg-color: #121212; --text-color: #ffffff; --navbar-bg: #1a1a1a; --navbar-text: #ffffff;
+            --gallery-bg: #252525; --card-bg: #1e1e1e; --card-shadow: rgba(0,0,0,0.3);
+            --feature-bg: #202020; --split-bg: #1a1a1a; --footer-bg: #0a0a0a;
+            --price-color: #4ade80; --tag-bg: #3d2a1f; --tag-text: #ffb380;
         }
 
-        /* =============================================
-           RESET Y ESTILOS BASE
-           ============================================= */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body {
-            font-family: 'Mochiy Pop One', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-            line-height: 1.6;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
+        body { font-family: 'Mochiy Pop One', sans-serif; background-color: var(--bg-color); color: var(--text-color); overflow-x: hidden; line-height: 1.6; transition: background-color 0.3s, color 0.3s; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         img { max-width: 100%; display: block; }
         ul { list-style: none; }
 
-        /* =============================================
-           NAVBAR
-           ============================================= */
-        .navbar {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 40px);
-            max-width: 1200px;
-            background: var(--navbar-bg);
-            z-index: 1000;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-            border-radius: 50px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
+        /* === NAVBAR === */
+        .navbar { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 1200px; background: var(--navbar-bg); z-index: 1000; height: 70px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; border-radius: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: all 0.3s; }
+        .navbar:hover { box-shadow: 0 6px 30px rgba(0,0,0,0.15); transform: translateX(-50%) translateY(-2px); }
+        .nav-links { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .nav-links a { color: var(--navbar-text); font-weight: bold; text-transform: uppercase; font-size: 13px; padding: 8px 16px; border-radius: 25px; transition: all 0.3s; }
+        .nav-links a:hover { background: var(--btn-bg); color: var(--btn-text); transform: translateY(-2px); }
 
-        .navbar:hover {
-            box-shadow: 0 6px 30px rgba(0,0,0,0.15);
-            transform: translateX(-50%) translateY(-2px);
-        }
+        /* === BOTÓN TEMA === */
+        .theme-toggle { background: transparent; border: 2px solid var(--navbar-text); color: var(--navbar-text); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-left: 15px; transition: 0.3s; }
+        .theme-toggle:hover { background: var(--btn-bg); color: var(--btn-text); transform: rotate(15deg) scale(1.1); border-color: var(--btn-bg); }
+        .theme-toggle .icon-sun { display: none; } .theme-toggle .icon-moon { display: block; }
+        body.dark-mode .theme-toggle .icon-sun { display: block; } body.dark-mode .theme-toggle .icon-moon { display: none; }
 
-        .nav-links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+        /* === SELECTOR DE IDIOMA === */
+        .lang-selector { display: flex; gap: 5px; margin-left: 15px; }
+        .lang-btn { background: transparent; border: 2px solid var(--navbar-text); color: var(--navbar-text); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; padding: 0; }
+        .lang-btn:hover { transform: scale(1.1); }
+        .lang-btn.active { background: var(--btn-bg); color: var(--btn-text); border-color: var(--btn-bg); }
 
-        .nav-links a {
-            color: var(--navbar-text);
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 13px;
-            padding: 8px 16px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            background: var(--btn-bg);
-            color: var(--btn-text);
-            transform: translateY(-2px);
-        }
-
-        /* =============================================
-           BOTÓN TEMA DÍA/NOCHE
-           ============================================= */
-        .theme-toggle {
-            background: transparent;
-            border: 2px solid var(--navbar-text);
-            color: var(--navbar-text);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            transition: all 0.3s ease;
-            margin-left: 15px;
-        }
-
-        .theme-toggle:hover {
-            background: var(--btn-bg);
-            color: var(--btn-text);
-            transform: rotate(15deg) scale(1.1);
-            border-color: var(--btn-bg);
-        }
-
-        .theme-toggle .icon-sun { display: none; }
-        .theme-toggle .icon-moon { display: block; }
-        body.dark-mode .theme-toggle .icon-sun { display: block; }
-        body.dark-mode .theme-toggle .icon-moon { display: none; }
-
-        /* =============================================
-           HERO CARRUSEL
-           ============================================= */
-        .hero-carousel {
-            position: relative;
-            height: 100vh;
-            width: 100%;
-            overflow: hidden;
-            margin-top: 0;
-        }
-
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            display: flex;
-        }
-
+        /* === HERO === */
+        .hero-carousel { position: relative; height: 100vh; width: 100%; overflow: hidden; margin-top: 0; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; display: flex; }
         .slide.active { opacity: 1; }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            z-index: 1;
-        }
-
-        .slide-content {
-            position: relative;
-            z-index: 2;
-            color: #fff;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-            padding: 20px;
-            max-width: 90%;
-        }
-
-        .slide-content.center {
-            align-self: center;
-            justify-self: center;
-            text-align: center;
-            margin: auto;
-            width: 100%;
-        }
-
-        .slide-content.top-left {
-            align-self: flex-start;
-            justify-self: flex-start;
-            text-align: left;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-
-        .slide-content.top-right {
-            align-self: flex-start;
-            justify-self: flex-end;
-            text-align: right;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
-        .slide-content.bottom-left {
-            align-self: flex-end;
-            justify-self: flex-start;
-            text-align: left;
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-        }
-
-        .slide-content.bottom-right {
-            align-self: flex-end;
-            justify-self: flex-end;
-            text-align: right;
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-        }
-
-        .slide-content h1 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            text-transform: uppercase;
-            line-height: 1.2;
-            word-wrap: break-word;
-        }
-
-        .slide-content h1 a {
-            color: #fff;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
+        .slide img { width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 1; }
+        .slide-content { position: relative; z-index: 2; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.8); padding: 20px; max-width: 90%; }
+        .slide-content.center { align-self: center; justify-self: center; text-align: center; margin: auto; width: 100%; }
+        .slide-content.top-left { align-self: flex-start; justify-self: flex-start; text-align: left; position: absolute; top: 20px; left: 20px; }
+        .slide-content.top-right { align-self: flex-start; justify-self: flex-end; text-align: right; position: absolute; top: 20px; right: 20px; }
+        .slide-content.bottom-left { align-self: flex-end; justify-self: flex-start; text-align: left; position: absolute; bottom: 20px; left: 20px; }
+        .slide-content.bottom-right { align-self: flex-end; justify-self: flex-end; text-align: right; position: absolute; bottom: 20px; right: 20px; }
+        .slide-content h1 { font-size: clamp(2rem, 5vw, 4rem); text-transform: uppercase; line-height: 1.2; word-wrap: break-word; }
+        .slide-content h1 a { color: #fff; text-decoration: none; transition: opacity 0.3s; }
         .slide-content h1 a:hover { opacity: 0.8; }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            background: rgba(255,255,255,0.3);
-            border: none;
-            color: white;
-            font-size: 30px;
-            padding: 15px 20px;
-            cursor: pointer;
-            border-radius: 50%;
-            font-family: 'Mochiy Pop One', sans-serif;
-        }
-
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(255,255,255,0.3); border: none; color: white; font-size: 30px; padding: 15px 20px; cursor: pointer; border-radius: 50%; font-family: 'Mochiy Pop One', sans-serif; }
         .carousel-btn:hover { background: rgba(255,255,255,0.6); }
-        .prev { left: 20px; }
-        .next { right: 20px; }
+        .prev { left: 20px; } .next { right: 20px; }
 
-        /* =============================================
-           FEATURES
-           ============================================= */
-        .features-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-block {
-            padding: 40px 20px;
-            text-align: center;
-            border-radius: 20px;
-            background-color: var(--feature-bg);
-            transition: transform 0.3s, background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature-block:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 20px;
-            object-fit: contain;
-        }
-
+        /* === FEATURES === */
+        .features-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+        .feature-block { padding: 40px 20px; text-align: center; border-radius: 20px; background-color: var(--feature-bg); transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s; }
+        .feature-block:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .feature-icon { width: 60px; height: 60px; margin: 0 auto 20px; object-fit: contain; }
         .feature-block p { font-size: 1.1rem; }
 
-        /* =============================================
-           GALERÍA
-           ============================================= */
-        .gallery-section {
-            padding: 60px 0;
-            background: var(--gallery-bg);
-            text-align: center;
-            transition: background-color 0.3s ease;
-        }
-
+        /* === GALERÍA === */
+        .gallery-section { padding: 60px 0; background: var(--gallery-bg); text-align: center; transition: background-color 0.3s; }
         .gallery-section h2 { margin-bottom: 30px; font-size: 2rem; }
-
-        .gallery-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding: 20px;
-            gap: 15px;
-            scrollbar-width: thin;
-        }
-
+        .gallery-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px; gap: 15px; scrollbar-width: thin; }
         .gallery-container::-webkit-scrollbar { height: 8px; }
         .gallery-container::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
-
-        .gallery-item {
-            flex: 0 0 300px;
-            scroll-snap-align: center;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
+        .gallery-item { flex: 0 0 300px; scroll-snap-align: center; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+        .gallery-item img { width: 100%; height: 300px; object-fit: cover; transition: transform 0.3s; }
         .gallery-item:hover img { transform: scale(1.05); }
 
-        /* =============================================
-           SPLIT SECTIONS
-           ============================================= */
-        .split-section {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 80px 5%;
-            gap: 40px;
-        }
-
-        .split-section.bg-alt {
-            background-color: var(--split-bg);
-            transition: background-color 0.3s ease;
-            border-radius: 30px;
-            margin: 20px 5%;
-        }
-
+        /* === SPLIT SECTIONS === */
+        .split-section { display: flex; flex-wrap: wrap; align-items: center; padding: 80px 5%; gap: 40px; }
+        .split-section.bg-alt { background-color: var(--split-bg); transition: background-color 0.3s; border-radius: 30px; margin: 20px 5%; }
         .split-text { flex: 1; min-width: 300px; }
         .split-image { flex: 1; min-width: 300px; }
-
-        .split-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
+        .split-image img { width: 100%; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .split-text h2 { font-size: 2.5rem; margin-bottom: 20px; line-height: 1.3; }
         .split-text p { margin-bottom: 30px; font-size: 1.1rem; }
-        
-        .custom-btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: var(--btn-bg);
-            color: var(--btn-text);
-            border-radius: 30px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            font-family: 'Mochiy Pop One', sans-serif;
-            transition: opacity 0.3s, transform 0.3s, background-color 0.3s;
-        }
-
+        .custom-btn { display: inline-block; padding: 12px 30px; background-color: var(--btn-bg); color: var(--btn-text); border-radius: 30px; font-weight: bold; border: none; cursor: pointer; font-family: 'Mochiy Pop One', sans-serif; transition: opacity 0.3s, transform 0.3s; }
         .custom-btn:hover { opacity: 0.9; transform: translateY(-3px); }
 
-        /* =============================================
-           DESTINOS POPULARES
-           ============================================= */
+        /* === DESTINOS === */
         .destinations-section { padding: 60px 20px; text-align: center; }
         .destinations-section h2 { font-size: 2rem; margin-bottom: 40px; }
-
-        .destinations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .destination-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px var(--card-shadow);
-            transition: transform 0.3s, background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .destination-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
+        .destinations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .destination-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 10px var(--card-shadow); transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s; }
+        .destination-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         .destination-card img { width: 100%; height: 250px; object-fit: cover; }
         .card-content { padding: 20px; }
-
-        .card-btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            margin-top: 15px;
-            background: var(--btn-bg);
-            color: var(--btn-text);
-            text-align: center;
-            border-radius: 25px;
-            font-weight: bold;
-            font-family: 'Mochiy Pop One', sans-serif;
-            transition: opacity 0.3s, background-color 0.3s;
-        }
-
+        .card-btn { display: block; width: 100%; padding: 12px; margin-top: 15px; background: var(--btn-bg); color: var(--btn-text); text-align: center; border-radius: 25px; font-weight: bold; font-family: 'Mochiy Pop One', sans-serif; transition: opacity 0.3s; }
         .card-btn:hover { opacity: 0.9; }
+        .destinations-loading { grid-column: 1 / -1; text-align: center; padding: 40px; opacity: 0.8; }
 
-        .destinations-loading {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 40px;
-            opacity: 0.8;
-        }
-
-        /* =============================================
-           BLOG - SECCIÓN DINÁMICA
-           ============================================= */
-        .blog-section {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-
-        .blog-section h2 { 
-            font-size: 2rem; 
-            margin-bottom: 30px; 
-            text-align: center; 
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .blog-post-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px var(--card-shadow);
-            transition: transform 0.3s, background-color 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .blog-post-card:hover { 
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .blog-post-card-image {
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .blog-post-card-image img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .blog-post-card:hover .blog-post-card-image img {
-            transform: scale(1.05);
-        }
-
-        .blog-post-card-content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .blog-post-card-date {
-            font-size: 0.85rem;
-            opacity: 0.7;
-            margin-bottom: 10px;
-        }
-
-        .blog-post-card h3 { 
-            margin: 0 0 12px 0;
-            font-size: 1.3rem;
-            line-height: 1.4;
-        }
-
+        /* === BLOG === */
+        .blog-section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
+        .blog-section h2 { font-size: 2rem; margin-bottom: 30px; text-align: center; }
+        .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .blog-post-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 10px var(--card-shadow); transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
+        .blog-post-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .blog-post-card-image { width: 100%; height: 250px; overflow: hidden; }
+        .blog-post-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .blog-post-card:hover .blog-post-card-image img { transform: scale(1.05); }
+        .blog-post-card-content { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+        .blog-post-card-date { font-size: 0.85rem; opacity: 0.7; margin-bottom: 10px; }
+        .blog-post-card h3 { margin: 0 0 12px 0; font-size: 1.3rem; line-height: 1.4; }
         .blog-post-card h3 a:hover { opacity: 0.8; }
-
-        .blog-post-card-excerpt {
-            font-size: 0.95rem;
-            opacity: 0.85;
-            margin-bottom: 15px;
-            flex-grow: 1;
-        }
-
-        .blog-post-card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-
-        .blog-post-tag {
-            padding: 4px 12px;
-            background: var(--tag-bg);
-            color: var(--tag-text);
-            border-radius: 15px;
-            font-size: 0.8rem;
-        }
-
-        .blog-post-card-read {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            color: var(--accent-color);
-            font-weight: bold;
-            margin-top: auto;
-        }
-
+        .blog-post-card-excerpt { font-size: 0.95rem; opacity: 0.85; margin-bottom: 15px; flex-grow: 1; }
+        .blog-post-card-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+        .blog-post-tag { padding: 4px 12px; background: var(--tag-bg); color: var(--tag-text); border-radius: 15px; font-size: 0.8rem; }
+        .blog-post-card-read { display: inline-flex; align-items: center; gap: 5px; color: var(--accent-color); font-weight: bold; margin-top: auto; }
         .blog-post-card-read:hover { opacity: 0.8; }
-
-        .blog-loading, .blog-empty {
-            text-align: center;
-            padding: 40px 20px;
-            grid-column: 1 / -1;
-            opacity: 0.8;
-        }
-
+        .blog-loading, .blog-empty { text-align: center; padding: 40px 20px; grid-column: 1 / -1; opacity: 0.8; }
         .blog-empty { display: none; }
 
-        /* =============================================
-           FOOTER
-           ============================================= */
-        footer {
-            background: var(--footer-bg);
-            color: var(--footer-text);
-            text-align: center;
-            padding: 50px 20px;
-            margin: 80px 20px 20px;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        footer:hover {
-            box-shadow: 0 6px 30px rgba(0,0,0,0.2);
-            transform: translateY(-3px);
-        }
-
+        /* === FOOTER === */
+        footer { background: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 50px 20px; margin: 80px 20px 20px; border-radius: 30px; font-size: 0.95rem; transition: all 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        footer:hover { box-shadow: 0 6px 30px rgba(0,0,0,0.2); transform: translateY(-3px); }
         footer a { color: var(--footer-text); text-decoration: underline; }
         footer a:hover { opacity: 0.8; }
 
-        /* =============================================
-           RESPONSIVE
-           ============================================= */
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
             .slide-content h1 { font-size: 2rem; }
-            
-            .slide-content.top-left, .slide-content.top-right,
-            .slide-content.bottom-left, .slide-content.bottom-right {
-                position: static;
-                text-align: center !important;
-                margin: auto;
-                width: 100%;
-            }
-
+            .slide-content.top-left, .slide-content.top-right, .slide-content.bottom-left, .slide-content.bottom-right { position: static; text-align: center !important; margin: auto; width: 100%; }
             .split-section { flex-direction: column; text-align: center; }
             .carousel-btn { padding: 10px 15px; font-size: 24px; }
             .blog-grid { grid-template-columns: 1fr; }
-
-            .navbar {
-                top: 10px;
-                width: calc(100% - 20px);
-                flex-direction: column;
-                height: auto;
-                padding: 15px;
-                border-radius: 30px;
-            }
-
+            .navbar { top: 10px; width: calc(100% - 20px); flex-direction: column; height: auto; padding: 15px; border-radius: 30px; }
             .nav-links { margin: 15px 0; gap: 10px; }
             .nav-links a { padding: 6px 12px; font-size: 11px; }
-            .theme-toggle { margin: 10px auto 0; }
-
+            .theme-toggle, .lang-selector { margin: 10px auto 0; }
+            .lang-selector { margin-top: 10px; }
             footer { margin: 40px 10px 10px; border-radius: 20px; }
         }
     </style>
@@ -627,17 +157,28 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="/index">Inicio</a></li>
-            <li><a href="/about">Nosotros</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#galeria">Galería</a></li>
-            <li><a href="/contact">Contacto</a></li>
-            <li><a href="/blog">Blog</a></li>
+            <li><a href="/index" data-i18n="nav.home">Inicio</a></li>
+            <li><a href="/about" data-i18n="nav.about">Nosotros</a></li>
+            <li><a href="#servicios" data-i18n="nav.services">Servicios</a></li>
+            <li><a href="#galeria" data-i18n="nav.gallery">Galería</a></li>
+            <li><a href="/contact" data-i18n="nav.contact">Contacto</a></li>
+            <li><a href="/blog" data-i18n="nav.blog">Blog</a></li>
         </ul>
-        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-            <span class="icon-sun">☀️</span>
-            <span class="icon-moon">🌙</span>
-        </button>
+        
+        <div style="display: flex; align-items: center;">
+            <!-- SELECTOR DE IDIOMA -->
+            <div class="lang-selector">
+                <button class="lang-btn active" data-lang="es" aria-label="Español">🇪🇸</button>
+                <button class="lang-btn" data-lang="en" aria-label="English">🇬🇧</button>
+                <button class="lang-btn" data-lang="pt" aria-label="Português">🇧🇷</button>
+            </div>
+            
+            <!-- BOTÓN TEMA -->
+            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                <span class="icon-sun">☀️</span>
+                <span class="icon-moon">🌙</span>
+            </button>
+        </div>
     </nav>
 
     <!-- HERO CARRUSEL -->
@@ -645,37 +186,37 @@
         <div class="slide active">
             <img src="Images/hero/slide-1.jpg" alt="Slide 1">
             <div class="slide-content center">
-                <h1><a href="#">Churism</a></h1>
+                <h1><a href="#" data-i18n="hero.slide1">Churism</a></h1>
             </div>
         </div>
         <div class="slide">
             <img src="Images/hero/slide-2.jpg" alt="Slide 2">
             <div class="slide-content top-left">
-                <h1><a href="#">Caballo Homosexual</a></h1>
+                <h1><a href="#" data-i18n="hero.slide2">Caballo Homosexual</a></h1>
             </div>
         </div>
         <div class="slide">
             <img src="Images/hero/slide-3.jpg" alt="Slide 3">
             <div class="slide-content bottom-right">
-                <h1><a href="#">De las montañas</a></h1>
+                <h1><a href="#" data-i18n="hero.slide3">De las montañas</a></h1>
             </div>
         </div>
         <div class="slide">
             <img src="Images/hero/slide-4.jpg" alt="Slide 4">
             <div class="slide-content center">
-                <h1><a href="#">Ningún animal se salva</a></h1>
+                <h1><a href="#" data-i18n="hero.slide4">Ningún animal se salva</a></h1>
             </div>
         </div>
         <div class="slide">
             <img src="Images/hero/slide-5.jpg" alt="Slide 5">
             <div class="slide-content top-right">
-                <h1><a href="#">abababa</a></h1>
+                <h1><a href="#" data-i18n="hero.slide5">abababa</a></h1>
             </div>
         </div>
         <div class="slide">
             <img src="Images/hero/slide-6.jpg" alt="Slide 6">
             <div class="slide-content bottom-left">
-                <h1><a href="#">Reserva</a></h1>
+                <h1><a href="#" data-i18n="hero.slide6">Reserva</a></h1>
             </div>
         </div>
         <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
@@ -686,90 +227,195 @@
     <section class="features-section" id="servicios">
         <div class="feature-block">
             <img src="Images/icons/icon-1.png" class="feature-icon" alt="Icono 1">
-            <p>Calidad Premiu</p>
+            <p data-i18n="features.feature1">Calidad Premium</p>
         </div>
         <div class="feature-block">
             <img src="Images/icons/icon-2.png" class="feature-icon" alt="Icono 2">
-            <p>Soporte 24/7</p>
+            <p data-i18n="features.feature2">Soporte 24/7</p>
         </div>
         <div class="feature-block">
             <img src="Images/icons/icon-3.png" class="feature-icon" alt="Icono 3">
-            <p>Envío Rápido</p>
+            <p data-i18n="features.feature3">Envío Rápido</p>
         </div>
         <div class="feature-block">
             <img src="Images/icons/icon-4.png" class="feature-icon" alt="Icono 4">
-            <p>Garantía Total</p>
+            <p data-i18n="features.feature4">Garantía Total</p>
         </div>
     </section>
 
     <!-- GALERÍA -->
     <section class="gallery-section" id="galeria">
-        <h2>Galería Seleccionada</h2>
-        <div class="gallery-container">
-            <div class="gallery-item"><img src="Images/gallery/gallery-1.jpg" alt="Galería 1"></div>
-            <div class="gallery-item"><img src="Images/gallery/gallery-2.jpg" alt="Galería 2"></div>
-            <div class="gallery-item"><img src="Images/gallery/gallery-3.jpg" alt="Galería 3"></div>
-            <div class="gallery-item"><img src="Images/gallery/gallery-4.jpg" alt="Galería 4"></div>
-            <div class="gallery-item"><img src="Images/gallery/gallery-5.jpg" alt="Galería 5"></div>
+        <h2 data-i18n="gallery.title">Galería Seleccionada</h2>
+        <div class="gallery-container" id="galleryContainer">
+            <div class="destinations-loading">Cargando galería... 📸</div>
         </div>
     </section>
 
-    <!-- SPLIT 1 -->
+    <!-- SPLIT 1 - MISIÓN -->
     <section class="split-section">
         <div class="split-text">
-            <h2>Nuestra Misión</h2>
-            <p>Creamos experiencias inolvidables con enfoque en calidad y satisfacción del cliente.</p>
-            <a href="#" class="custom-btn">Leer Más</a>
+            <h2 data-i18n="mission.title">Nuestra Misión</h2>
+            <p data-i18n="mission.text">Creamos experiencias inolvidables con enfoque en calidad y satisfacción del cliente.</p>
+            <a href="#" class="custom-btn" data-i18n="mission.button">Leer Más</a>
         </div>
         <div class="split-image">
             <img src="Images/sections/split-1.jpg" alt="Misión">
         </div>
     </section>
 
-    <!-- =============================================
-         DESTINOS POPULARES (DINÁMICO DESDE JSON)
-         ============================================= -->
+    <!-- DESTINOS POPULARES -->
     <section class="destinations-section">
-        <h2>Destinos Populares</h2>
+        <h2 data-i18n="destinations.title">Destinos Populares</h2>
         <div class="destinations-grid" id="featuredDestinationsGrid">
-            <div class="destinations-loading" id="destinationsLoading">Cargando destinos... 🌍</div>
+            <div class="destinations-loading" id="destinationsLoading" data-i18n="destinations.loading">Cargando destinos... 🌍</div>
         </div>
     </section>
 
-    <!-- SPLIT 2 -->
+    <!-- SPLIT 2 - EQUIPO -->
     <section class="split-section bg-alt">
         <div class="split-image">
             <img src="Images/sections/split-2.jpg" alt="Equipo">
         </div>
         <div class="split-text">
-            <h2>Únete al Equipo</h2>
-            <p>Buscamos personas apasionadas para unirse a nuestro equipo global.</p>
-            <a href="#" class="custom-btn">Aplicar Ahora</a>
+            <h2 data-i18n="team.title">Únete al Equipo</h2>
+            <p data-i18n="team.text">Buscamos personas apasionadas para unirse a nuestro equipo global.</p>
+            <a href="#" class="custom-btn" data-i18n="team.button">Aplicar Ahora</a>
         </div>
     </section>
 
-    <!-- =============================================
-         BLOG (DINÁMICO DESDE JSON)
-         ============================================= -->
+    <!-- BLOG -->
     <section class="blog-section" id="blog">
-        <h2>Últimas Entradas</h2>
+        <h2 data-i18n="blog.title">Últimas Entradas</h2>
         <div class="blog-grid" id="blogGrid">
-            <div class="blog-loading" id="blogLoading">Cargando entradas... 🌸</div>
-            <div class="blog-empty" id="blogEmpty">Aún no hay entradas. ¡Pronto tendremos novedades! ✨</div>
+            <div class="blog-loading" id="blogLoading" data-i18n="blog.loading">Cargando entradas... 🌸</div>
+            <div class="blog-empty" id="blogEmpty" data-i18n="blog.empty">Aún no hay entradas. ¡Pronto tendremos novedades! ✨</div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer id="contacto">
-        <p>&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
+        <p>&copy; 2026 <span data-i18n="page.title">Mi Sitio Web</span>. <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>
     </footer>
 
-    <!-- =============================================
-         JAVASCRIPT
-         ============================================= -->
+    <!-- JAVASCRIPT -->
     <script>
         /* =============================================
-           CARRUSEL HERO
+           SISTEMA DE TRADUCCIÓN MULTI-IDIOMA
+           ============================================= */
+        
+        let currentLang = 'es';
+        let translations = {};
+
+        /**
+         * Carga el archivo JSON de traducciones para el idioma especificado
+         * @param {string} lang - Código del idioma (es, en, pt)
+         * @returns {Promise<Object>} Objeto con las traducciones
+         */
+        async function loadTranslations(lang) {
+            try {
+                const response = await fetch(`translations/${lang}.json`);
+                if (!response.ok) throw new Error(`No se pudo cargar ${lang}.json`);
+                return await response.json();
+            } catch (error) {
+                console.error('Error cargando traducciones:', error);
+                return null;
+            }
+        }
+
+        /**
+         * Obtiene una traducción usando una clave con notación de puntos
+         * Ejemplo: getTranslation('nav.home') → "Inicio" / "Home" / "Início"
+         * @param {string} key - Clave de traducción (ej: 'nav.home')
+         * @returns {string} Texto traducido o la clave si no existe
+         */
+        function getTranslation(key) {
+            const keys = key.split('.');
+            let value = translations;
+            
+            for (const k of keys) {
+                if (value && typeof value === 'object' && k in value) {
+                    value = value[k];
+                } else {
+                    return key; // Si no existe, devuelve la clave
+                }
+            }
+            
+            return value;
+        }
+
+        /**
+         * Aplica las traducciones a todos los elementos con atributo data-i18n
+         */
+        function applyTranslations() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const translation = getTranslation(key);
+                
+                if (translation && translation !== key) {
+                    element.textContent = translation;
+                }
+            });
+            
+            // Actualizar atributo lang del HTML
+            document.documentElement.lang = currentLang;
+            
+            // Actualizar título de la página
+            document.title = getTranslation('page.title') + ' - Landing Page';
+        }
+
+        /**
+         * Cambia el idioma del sitio
+         * @param {string} lang - Código del idioma (es, en, pt)
+         */
+        async function changeLanguage(lang) {
+            if (lang === currentLang) return;
+            
+            const newTranslations = await loadTranslations(lang);
+            
+            if (newTranslations) {
+                translations = newTranslations;
+                currentLang = lang;
+                applyTranslations();
+                
+                // Guardar preferencia en localStorage
+                localStorage.setItem('lang', lang);
+                
+                // Actualizar botones activos
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.lang === lang);
+                });
+                
+                // Re-renderizar contenido dinámico con el nuevo idioma
+                renderDynamicContent();
+                
+                console.log(`Idioma cambiado a: ${lang}`);
+            }
+        }
+
+        /**
+         * Detecta el idioma preferido del usuario
+         * Prioridad: localStorage > idioma del navegador > español por defecto
+         */
+        function detectPreferredLanguage() {
+            // 1. Preferencia guardada
+            const savedLang = localStorage.getItem('lang');
+            if (savedLang && ['es', 'en', 'pt'].includes(savedLang)) {
+                return savedLang;
+            }
+            
+            // 2. Idioma del navegador
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang) {
+                if (browserLang.startsWith('en')) return 'en';
+                if (browserLang.startsWith('pt')) return 'pt';
+            }
+            
+            // 3. Español por defecto
+            return 'es';
+        }
+
+        /* =============================================
+           CARRUSEL HERO (sin cambios)
            ============================================= */
         let currentSlide = 0;
         const slides = document.querySelectorAll('.hero-carousel .slide');
@@ -791,28 +437,50 @@
         showSlide(0);
 
         /* =============================================
-           TEMA DÍA/NOCHE
+           TEMA DÍA/NOCHE (sin cambios)
            ============================================= */
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         
         const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            body.classList.add('dark-mode');
-        }
+        if (savedTheme === 'dark') body.classList.add('dark-mode');
         
         themeToggle.addEventListener('click', function() {
             body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
-            }
+            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
         });
 
         /* =============================================
-           DESTINOS POPULARES - CARGA DESDE JSON
+           SELECTOR DE IDIOMA - EVENT LISTENERS
            ============================================= */
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                changeLanguage(btn.dataset.lang);
+            });
+        });
+
+        /* =============================================
+           FORMATEAR FECHA (con soporte multi-idioma)
+           ============================================= */
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const locales = { es: 'es-ES', en: 'en-US', pt: 'pt-BR' };
+            return date.toLocaleDateString(locales[currentLang] || 'es-ES', { 
+                day: 'numeric', month: 'short', year: 'numeric' 
+            });
+        }
+
+        function truncateText(text, maxLength) {
+            if (!text) return '';
+            if (text.length <= maxLength) return text;
+            return text.substring(0, maxLength).trim() + '...';
+        }
+
+        /* =============================================
+           DESTINOS POPULARES - CON TRADUCCIÓN
+           ============================================= */
+        let featuredDestinations = [];
+        
         async function loadFeaturedDestinations() {
             const grid = document.getElementById('featuredDestinationsGrid');
             const loading = document.getElementById('destinationsLoading');
@@ -822,77 +490,46 @@
                 if (!response.ok) throw new Error('No se pudo cargar destinations.json');
                 
                 const destinations = await response.json();
-                
-                // Filtrar solo los destinos marcados como "featured"
-                const featured = destinations.filter(dest => dest.featured === true);
+                featuredDestinations = destinations.filter(dest => dest.featured === true);
                 
                 loading.style.display = 'none';
-                
-                if (featured.length === 0) {
-                    grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding:40px;">No hay destinos destacados por ahora ✨</p>';
-                    return;
-                }
-                
-                grid.innerHTML = featured.map(dest => `
-                    <div class="destination-card">
-                        <img src="${dest.image}" alt="${dest.title}">
-                        <div class="card-content">
-                            <h3 style="margin-bottom: 10px; font-size: 1.2rem;">${dest.title}</h3>
-                            <p style="font-size: 0.9rem; opacity: 0.85; margin-bottom: 10px;">📍 ${dest.location}</p>
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                                <span style="font-size: 1.3rem; font-weight: bold; color: var(--price-color);">$${dest.price}</span>
-                                <span style="font-size: 0.9rem; opacity: 0.7;">⭐ ${dest.rating}</span>
-                            </div>
-                            <a href="destinations/detalle.html?slug=${dest.slug}" class="card-btn">Ver Más</a>
-                        </div>
-                    </div>
-                `).join('');
+                renderFeaturedDestinations();
                 
             } catch (error) {
-                console.error('Error cargando destinos populares:', error);
-                loading.textContent = 'Error cargando destinos ❌';
+                console.error('Error:', error);
+                loading.textContent = getTranslation('destinations.error');
             }
         }
 
-        /* =============================================
-           BLOG DINÁMICO - CARGA DESDE posts.json
-           ============================================= */
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('es-ES', { 
-                day: 'numeric', 
-                month: 'short', 
-                year: 'numeric' 
-            });
-        }
-
-        function truncateText(text, maxLength) {
-            if (text.length <= maxLength) return text;
-            return text.substring(0, maxLength).trim() + '...';
-        }
-
-        function createPostCard(post) {
-            const tagsToShow = post.tags.slice(0, 3);
-            const tagsHTML = tagsToShow.map(tag => 
-                `<span class="blog-post-tag">${tag}</span>`
-            ).join('');
+        function renderFeaturedDestinations() {
+            const grid = document.getElementById('featuredDestinationsGrid');
             
-            return `
-                <article class="blog-post-card">
-                    <a href="${post.url}" class="blog-post-card-image">
-                        <img src="${post.image}" alt="${post.title}" loading="lazy">
-                    </a>
-                    <div class="blog-post-card-content">
-                        <time class="blog-post-card-date" datetime="${post.date}">📅 ${formatDate(post.date)}</time>
-                        <h3><a href="${post.url}">${post.title}</a></h3>
-                        <p class="blog-post-card-excerpt">${truncateText(post.excerpt, 100)}</p>
-                        <div class="blog-post-card-tags">${tagsHTML}</div>
-                        <a href="${post.url}" class="blog-post-card-read">Leer más →</a>
+            if (featuredDestinations.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding:40px;">${getTranslation('destinations.empty')}</p>`;
+                return;
+            }
+            
+            grid.innerHTML = featuredDestinations.map(dest => `
+                <div class="destination-card">
+                    <img src="${dest.image}" alt="${dest.title}">
+                    <div class="card-content">
+                        <h3 style="margin-bottom: 10px; font-size: 1.2rem;">${dest.title}</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.85; margin-bottom: 10px;">📍 ${dest.location}</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span style="font-size: 1.3rem; font-weight: bold; color: var(--price-color);">$${dest.price}</span>
+                            <span style="font-size: 0.9rem; opacity: 0.7;">⭐ ${dest.rating}</span>
+                        </div>
+                        <a href="destinations/detalle.html?slug=${dest.slug}" class="card-btn">${getTranslation('destinations.viewMore')}</a>
                     </div>
-                </article>
-            `;
+                </div>
+            `).join('');
         }
 
+        /* =============================================
+           BLOG - CON TRADUCCIÓN
+           ============================================= */
+        let latestPosts = [];
+        
         async function loadLatestPosts() {
             const blogGrid = document.getElementById('blogGrid');
             const blogLoading = document.getElementById('blogLoading');
@@ -904,29 +541,105 @@
                 
                 let posts = await response.json();
                 posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-                const latestPosts = posts.slice(0, 3);
+                latestPosts = posts.slice(0, 3);
                 
                 blogLoading.style.display = 'none';
-                
-                if (latestPosts.length === 0) {
-                    blogEmpty.style.display = 'block';
-                    return;
-                }
-                
-                blogGrid.innerHTML = latestPosts.map(createPostCard).join('');
+                renderLatestPosts();
                 
             } catch (error) {
-                console.error('Error cargando posts:', error);
-                blogLoading.textContent = 'Error cargando entradas. Intenta recargar la página. ❌';
+                console.error('Error:', error);
+                blogLoading.textContent = getTranslation('blog.error');
             }
+        }
+
+        function renderLatestPosts() {
+            const blogGrid = document.getElementById('blogGrid');
+            const blogEmpty = document.getElementById('blogEmpty');
+            
+            if (latestPosts.length === 0) {
+                blogEmpty.style.display = 'block';
+                return;
+            }
+            
+            blogGrid.innerHTML = latestPosts.map(post => {
+                const tagsHTML = post.tags.slice(0, 3).map(tag => 
+                    `<span class="blog-post-tag">${tag}</span>`
+                ).join('');
+                
+                return `
+                    <article class="blog-post-card">
+                        <a href="${post.url}" class="blog-post-card-image">
+                            <img src="${post.image}" alt="${post.title}" loading="lazy">
+                        </a>
+                        <div class="blog-post-card-content">
+                            <time class="blog-post-card-date" datetime="${post.date}">📅 ${formatDate(post.date)}</time>
+                            <h3><a href="${post.url}">${post.title}</a></h3>
+                            <p class="blog-post-card-excerpt">${truncateText(post.excerpt, 100)}</p>
+                            <div class="blog-post-card-tags">${tagsHTML}</div>
+                            <a href="${post.url}" class="blog-post-card-read">${getTranslation('blog.readMore')}</a>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        /* =============================================
+           GALERÍA - 6 MÁS RECIENTES
+           ============================================= */
+        async function loadRecentGallery() {
+            const container = document.getElementById('galleryContainer');
+            
+            try {
+                const response = await fetch('gallery/gallery.json');
+                if (!response.ok) throw new Error('No se pudo cargar gallery.json');
+                
+                let images = await response.json();
+                images.sort((a, b) => new Date(b.date) - new Date(a.date));
+                const recentImages = images.slice(0, 6);
+                
+                container.innerHTML = recentImages.map(img => `
+                    <div class="gallery-item">
+                        <img src="${img.image}" alt="${img.title}" loading="lazy">
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                console.error('Error:', error);
+                container.innerHTML = '<p style="width: 100%; text-align: center;">Error ❌</p>';
+            }
+        }
+
+        /* =============================================
+           RE-RENDERIZAR CONTENIDO DINÁMICO
+           ============================================= */
+        function renderDynamicContent() {
+            renderFeaturedDestinations();
+            renderLatestPosts();
         }
 
         /* =============================================
            INICIALIZACIÓN
            ============================================= */
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            // 1. Detectar idioma preferido
+            const preferredLang = detectPreferredLanguage();
+            
+            // 2. Cargar traducciones del idioma detectado
+            translations = await loadTranslations(preferredLang) || await loadTranslations('es');
+            currentLang = preferredLang;
+            
+            // 3. Aplicar traducciones al HTML estático
+            applyTranslations();
+            
+            // 4. Marcar botón de idioma activo
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === currentLang);
+            });
+            
+            // 5. Cargar contenido dinámico
             loadFeaturedDestinations();
             loadLatestPosts();
+            loadRecentGallery();
         });
     </script>
 </body>
