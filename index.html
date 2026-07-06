@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
 
     <style>
-        /* === VARIABLES CSS (sin cambios) === */
+        /* === VARIABLES CSS === */
         :root {
             --bg-color: #fafafa; --text-color: #000000; --navbar-bg: #f5f5f5; --navbar-text: #000000;
             --gallery-bg: #f0f0f0; --btn-bg: #ff7227; --btn-text: #ffffff; --card-bg: #ffffff;
@@ -166,10 +166,10 @@
         </ul>
         
         <div style="display: flex; align-items: center;">
-            <!-- SELECTOR DE IDIOMA -->
+            <!-- SELECTOR DE IDIOMA CON BANDERAS -->
             <div class="lang-selector">
-                <button class="lang-btn active" data-lang="es" aria-label="Español">🇪🇸</button>
-                <button class="lang-btn" data-lang="en" aria-label="English">🇬🇧</button>
+                <button class="lang-btn active" data-lang="es" aria-label="Español">🇨🇱</button>
+                <button class="lang-btn" data-lang="en" aria-label="English">🇺🇸</button>
                 <button class="lang-btn" data-lang="pt" aria-label="Português">🇧🇷</button>
             </div>
             
@@ -306,11 +306,6 @@
         let currentLang = 'es';
         let translations = {};
 
-        /**
-         * Carga el archivo JSON de traducciones para el idioma especificado
-         * @param {string} lang - Código del idioma (es, en, pt)
-         * @returns {Promise<Object>} Objeto con las traducciones
-         */
         async function loadTranslations(lang) {
             try {
                 const response = await fetch(`translations/${lang}.json`);
@@ -322,12 +317,6 @@
             }
         }
 
-        /**
-         * Obtiene una traducción usando una clave con notación de puntos
-         * Ejemplo: getTranslation('nav.home') → "Inicio" / "Home" / "Início"
-         * @param {string} key - Clave de traducción (ej: 'nav.home')
-         * @returns {string} Texto traducido o la clave si no existe
-         */
         function getTranslation(key) {
             const keys = key.split('.');
             let value = translations;
@@ -336,16 +325,13 @@
                 if (value && typeof value === 'object' && k in value) {
                     value = value[k];
                 } else {
-                    return key; // Si no existe, devuelve la clave
+                    return key;
                 }
             }
             
             return value;
         }
 
-        /**
-         * Aplica las traducciones a todos los elementos con atributo data-i18n
-         */
         function applyTranslations() {
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
@@ -356,17 +342,10 @@
                 }
             });
             
-            // Actualizar atributo lang del HTML
             document.documentElement.lang = currentLang;
-            
-            // Actualizar título de la página
             document.title = getTranslation('page.title') + ' - Landing Page';
         }
 
-        /**
-         * Cambia el idioma del sitio
-         * @param {string} lang - Código del idioma (es, en, pt)
-         */
         async function changeLanguage(lang) {
             if (lang === currentLang) return;
             
@@ -377,45 +356,35 @@
                 currentLang = lang;
                 applyTranslations();
                 
-                // Guardar preferencia en localStorage
                 localStorage.setItem('lang', lang);
                 
-                // Actualizar botones activos
                 document.querySelectorAll('.lang-btn').forEach(btn => {
                     btn.classList.toggle('active', btn.dataset.lang === lang);
                 });
                 
-                // Re-renderizar contenido dinámico con el nuevo idioma
                 renderDynamicContent();
                 
                 console.log(`Idioma cambiado a: ${lang}`);
             }
         }
 
-        /**
-         * Detecta el idioma preferido del usuario
-         * Prioridad: localStorage > idioma del navegador > español por defecto
-         */
         function detectPreferredLanguage() {
-            // 1. Preferencia guardada
             const savedLang = localStorage.getItem('lang');
             if (savedLang && ['es', 'en', 'pt'].includes(savedLang)) {
                 return savedLang;
             }
             
-            // 2. Idioma del navegador
             const browserLang = navigator.language || navigator.userLanguage;
             if (browserLang) {
                 if (browserLang.startsWith('en')) return 'en';
                 if (browserLang.startsWith('pt')) return 'pt';
             }
             
-            // 3. Español por defecto
             return 'es';
         }
 
         /* =============================================
-           CARRUSEL HERO (sin cambios)
+           CARRUSEL HERO
            ============================================= */
         let currentSlide = 0;
         const slides = document.querySelectorAll('.hero-carousel .slide');
@@ -437,7 +406,7 @@
         showSlide(0);
 
         /* =============================================
-           TEMA DÍA/NOCHE (sin cambios)
+           TEMA DÍA/NOCHE
            ============================================= */
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
@@ -451,7 +420,7 @@
         });
 
         /* =============================================
-           SELECTOR DE IDIOMA - EVENT LISTENERS
+           SELECTOR DE IDIOMA
            ============================================= */
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -621,22 +590,17 @@
            INICIALIZACIÓN
            ============================================= */
         document.addEventListener('DOMContentLoaded', async () => {
-            // 1. Detectar idioma preferido
             const preferredLang = detectPreferredLanguage();
             
-            // 2. Cargar traducciones del idioma detectado
             translations = await loadTranslations(preferredLang) || await loadTranslations('es');
             currentLang = preferredLang;
             
-            // 3. Aplicar traducciones al HTML estático
             applyTranslations();
             
-            // 4. Marcar botón de idioma activo
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.lang === currentLang);
             });
             
-            // 5. Cargar contenido dinámico
             loadFeaturedDestinations();
             loadLatestPosts();
             loadRecentGallery();
