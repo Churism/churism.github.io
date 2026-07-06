@@ -105,4 +105,30 @@
       }
     }
   }
+  "contact": {
+    "hero": {
+      "title": "Contact Us",
+      "subtitle": "Have a question or want to work with us? We're here to help!"
+    },
+    "quick": {
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Chat with us in real-time for quick responses.",
+        "button": "Send message"
+      },
+      "instagram": {
+        "title": "Instagram",
+        "description": "Follow us to see our work and daily updates.",
+        "button": "Visit profile"
+      }
+    },
+    "form": {
+      "title": "Send us a message",
+      "name": "Your name",
+      "email": "your@email.com",
+      "message": "Write your message here...",
+      "submit": "Send message",
+      "footer": "Your data is safe • No spam, we promise"
+    }
+  }        
 }
