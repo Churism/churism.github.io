@@ -105,4 +105,35 @@
       }
     }
   }
+  "contact": {
+    "hero": {
+      "title": "Contáctanos",
+      "subtitle": "¿Tienes una pregunta o quieres trabajar con nosotros? ¡Estamos aquí para ayudarte!"
+    },
+    "quick": {
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Chatea con nosotros en tiempo real para respuestas rápidas.",
+        "button": "Enviar mensaje"
+      },
+      "instagram": {
+        "title": "Instagram",
+        "description": "Síguenos para ver nuestro trabajo y novedades diarias.",
+        "button": "Visitar perfil"
+      }
+    },
+    "form": {
+      "title": "Envíanos un mensaje",
+      "name": "Tu nombre",
+      "email": "tu@email.com",
+      "message": "Escribe tu mensaje aquí...",
+      "submit": "Enviar mensaje",
+      "footer": "Tus datos están seguros • Sin spam, lo prometemos"
+    }
+  }
 }
+
+
+
+
+
