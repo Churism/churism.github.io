@@ -104,7 +104,7 @@
         "bio": "Natural organizer with great leadership, expert in agile methodologies and team management."
       }
     }
-  }
+  },
   "contact": {
     "hero": {
       "title": "Contact Us",
@@ -130,5 +130,5 @@
       "submit": "Send message",
       "footer": "Your data is safe • No spam, we promise"
     }
-  }        
+  }
 }
