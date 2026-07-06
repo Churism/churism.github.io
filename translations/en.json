@@ -1,55 +1,50 @@
-{
-  "nav": {
-    "home": "Home",
-    "about": "About Us",
-    "services": "Services",
-    "gallery": "Gallery",
-    "contact": "Contact",
-    "blog": "Blog"
-  },
-  "hero": {
-    "slide1": "Churism",
-    "slide2": "Gay Horse",
-    "slide3": "From the mountains",
-    "slide4": "No animal is saved",
-    "slide5": "abababa",
-    "slide6": "Book Now"
-  },
-  "features": {
-    "title": "Our Services",
-    "feature1": "Premium Quality",
-    "feature2": "24/7 Support",
-    "feature3": "Fast Shipping",
-    "feature4": "Total Guarantee"
-  },
-  "gallery": {
-    "title": "Selected Gallery"
-  },
-  "mission": {
-    "title": "Our Mission",
-    "text": "We create unforgettable experiences focused on quality and customer satisfaction.",
-    "button": "Read More"
-  },
-  "destinations": {
-    "title": "Popular Destinations",
-    "viewMore": "View More",
-    "loading": "Loading destinations... 🌍",
-    "empty": "No featured destinations yet ✨",
-    "error": "Error loading destinations ❌"
-  },
-  "team": {
-    "title": "Join the Team",
-    "text": "We're looking for passionate people to join our global team.",
-    "button": "Apply Now"
-  },
-  "blog": {
-    "title": "Latest Posts",
-    "readMore": "Read more →",
-    "loading": "Loading posts... 🌸",
-    "empty": "No posts yet. Stay tuned for updates! ✨",
-    "error": "Error loading posts. Try reloading the page. ❌"
-  },
-  "footer": {
-    "rights": "All rights reserved."
+  "about": {
+    "hero": {
+      "title": "About Us",
+      "subtitle": "Discover the story, mission and vision behind our company"
+    },
+    "mission": {
+      "title": "Our Mission",
+      "text1": "To create unique experiences that inspire and connect people with the world around them. We are dedicated to providing the highest quality services, exceeding our clients' expectations in every project.",
+      "text2": "Our commitment is to excellence, innovation and sustainable development in everything we do."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "text1": "To be leaders in innovation and quality, recognized worldwide for our commitment to excellence and the development of solutions that make a difference in the industry.",
+      "text2": "We aspire to build a future where technology and human talent come together to create a positive impact on society."
+    },
+    "team": {
+      "title": "Our Team",
+      "subtitle": "The incredible people behind our success",
+      "member1": {
+        "name": "María González",
+        "role": "CEO & Founder",
+        "bio": "Visionary leader with over 15 years of experience in the industry. Passionate about innovation."
+      },
+      "member2": {
+        "name": "Carlos Rodríguez",
+        "role": "Chief Technology Officer",
+        "bio": "Software engineer with experience in developing scalable solutions and cloud architecture."
+      },
+      "member3": {
+        "name": "Ana Martínez",
+        "role": "Marketing Director",
+        "bio": "Expert in digital strategies, branding and brand growth in the digital environment."
+      },
+      "member4": {
+        "name": "Luis Fernández",
+        "role": "Lead Designer",
+        "bio": "Creative with an eye for detail, specialized in UX/UI and digital experience design."
+      },
+      "member5": {
+        "name": "Sofía López",
+        "role": "Sales Manager",
+        "bio": "Specialist in client relations and strategic business development."
+      },
+      "member6": {
+        "name": "David Ruiz",
+        "role": "Project Coordinator",
+        "bio": "Natural organizer with great leadership, expert in agile methodologies and team management."
+      }
+    }
   }
-}
