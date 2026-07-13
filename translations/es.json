@@ -131,4 +131,30 @@
       "footer": "Tus datos están seguros • Sin spam, lo prometemos"
     }
   }
+
+    "destinationsPage": {
+    "title": "Destinos",
+    "hero": {
+      "title": "Explora el Mundo",
+      "subtitle": "Descubre los destinos más increíbles y vive experiencias inolvidables"
+    },
+    "filters": {
+      "all": "Todos",
+      "playa": "Playas",
+      "montana": "Montañas",
+      "ciudad": "Ciudades",
+      "aventura": "Aventura",
+      "relax": "Relax"
+    },
+    "card": {
+      "viewDetails": "Ver Detalles →",
+      "hint": "Haz click para ver más"
+    },
+    "states": {
+      "loading": "Cargando destinos... 🌍",
+      "empty": "No hay destinos en esta categoría 📷",
+      "error": "Error cargando destinos. Intenta recargar. ❌"
+    }
+  }
+  
 }
