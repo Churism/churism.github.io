@@ -131,4 +131,28 @@
       "footer": "Your data is safe • No spam, we promise"
     }
   }
+  "destinationsPage": {
+    "title": "Destinations",
+    "hero": {
+      "title": "Explore the World",
+      "subtitle": "Discover the most incredible destinations and live unforgettable experiences"
+    },
+    "filters": {
+      "all": "All",
+      "playa": "Beaches",
+      "montana": "Mountains",
+      "ciudad": "Cities",
+      "aventura": "Adventure",
+      "relax": "Relax"
+    },
+    "card": {
+      "viewDetails": "View Details →",
+      "hint": "Click to see more"
+    },
+    "states": {
+      "loading": "Loading destinations... 🌍",
+      "empty": "No destinations in this category 📷",
+      "error": "Error loading destinations. Try reloading. ❌"
+    }
+  }
 }
