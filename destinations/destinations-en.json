@@ -1,0 +1,165 @@
+[
+  {
+    "id": "dest-001",
+    "slug": "san-pedro-atacama",
+    "title": "Atacama Desert - San Pedro",
+    "excerpt": "Explore the driest desert in the world, geysers, salt flats and starry skies in northern Chile.",
+    "description": "Immerse yourself in the magic of the Atacama Desert. This tour will take you from the Tatio geysers at sunrise to the salt flats of Miscanti lagoon, passing through the Valley of the Moon at sunset.\n\nA unique experience of extreme nature and Atacameño culture.",
+    "image": "Images/destinations/atacama.jpg",
+    "category": "montana",
+    "location": "San Pedro de Atacama, Antofagasta Region",
+    "duration": "4 days / 3 nights",
+    "groupSize": "2-8 people",
+    "rating": 4.9,
+    "reviews": 340,
+    "price": 350,
+    "priceOriginal": 450,
+    "badge": "Adventure",
+    "features": [
+      "✓ Tatio Geyser Tour",
+      "✓ Valley of the Moon",
+      "✓ Altiplano Lagoons",
+      "✓ Breakfast and Lunch included"
+    ],
+    "itinerary": [
+      "Day 1: Arrival and town tour",
+      "Day 2: Valley of the Moon and Death (Sunset)",
+      "Day 3: Tatio Geyser excursion and Puritama Hot Springs",
+      "Day 4: Miscanti and Miñiques Lagoons - Return"
+    ],
+    "included": [
+      "Transfers to and from Calama",
+      "National park entrance fees",
+      "Daily breakfast",
+      "Bilingual guide"
+    ],
+    "notIncluded": [
+      "Domestic flights",
+      "Dinners",
+      "Tips"
+    ],
+    "featured": true
+  },
+  {
+    "id": "dest-002",
+    "slug": "torres-del-paine",
+    "title": "Torres del Paine - Chilean Patagonia",
+    "excerpt": "World-class trekking among imposing glaciers, turquoise lakes and Patagonian wildlife.",
+    "description": "The eighth wonder of the world awaits you. Hike the most famous trails in Chile, sail in front of Grey Glacier and sleep under the Torres del Paine.\n\nIdeal for photography lovers, trekking and wild nature enthusiasts.",
+    "image": "Images/destinations/torres-del-paine.jpg",
+    "category": "montana",
+    "location": "Magallanes, Chile",
+    "duration": "5 days / 4 nights",
+    "groupSize": "4-10 people",
+    "rating": 5.0,
+    "reviews": 215,
+    "price": 650,
+    "priceOriginal": 850,
+    "badge": "Trekking",
+    "features": [
+      "✓ Base Torres Trekking",
+      "✓ Grey Glacier Navigation",
+      "✓ Shelters and Camping",
+      "✓ Certified mountain guide"
+    ],
+    "itinerary": [
+      "Day 1: Transfer Puerto Natales to Torres del Paine",
+      "Day 2: Base Torres viewpoint trek (Full day)",
+      "Day 3: French Valley trek",
+      "Day 4: Grey Lake navigation",
+      "Day 5: Return to Puerto Natales"
+    ],
+    "included": [
+      "National Park entrance fees",
+      "Grey Lake navigation",
+      "Accommodation in campsites/shelters",
+      "Full meals during trek"
+    ],
+    "notIncluded": [
+      "Trekking equipment rental",
+      "Travel insurance",
+      "Air transfers"
+    ],
+    "featured": true
+  },
+  {
+    "id": "dest-003",
+    "slug": "valparaiso-vina-del-mar",
+    "title": "Valparaíso & Viña del Mar - Pacific Gems",
+    "excerpt": "Bohemian culture, historic elevators, artistic murals and the best beaches of the central coast.",
+    "description": "Discover Chile's cultural jewel. Explore the hills of Valparaíso on its famous elevators, visit Pablo Neruda's house in Isla Negra and relax on the sands of Reñaca.\n\nA perfect trip to connect with history and the sea.",
+    "image": "Images/destinations/valparaiso.jpg",
+    "category": "ciudad",
+    "location": "Valparaíso, Valparaíso Region",
+    "duration": "3 days / 2 nights",
+    "groupSize": "2-6 people",
+    "rating": 4.7,
+    "reviews": 180,
+    "price": 180,
+    "priceOriginal": 220,
+    "badge": "Culture",
+    "features": [
+      "✓ Hills and Elevators Tour",
+      "✓ Isla Negra Visit",
+      "✓ Port walk",
+      "✓ Downtown hotel"
+    ],
+    "itinerary": [
+      "Day 1: Arrival and tour of Alegre and Concepción Hills",
+      "Day 2: Excursion to Isla Negra and El Quisco",
+      "Day 3: Viña del Mar Beach and Flower Clock - Return"
+    ],
+    "included": [
+      "3-star hotel in Valparaíso",
+      "Breakfast",
+      "Intercity transport",
+      "Isla Negra entrance"
+    ],
+    "notIncluded": [
+      "Lunches and Dinners",
+      "Optional water activities",
+      "Transfer from Santiago (optional)"
+    ],
+    "featured": true
+  },
+  {
+    "id": "dest-004",
+    "slug": "pucon-volcan",
+    "title": "Pucón and Villarrica Volcano",
+    "excerpt": "Thermal adventure, climbing the northernmost active volcano in Patagonia and crystal clear waters.",
+    "description": "Pucón is the adventure capital of southern Chile. Climb Villarrica Volcano seeing active lava, relax in natural hot springs and sail on Villarrica Lake.\n\nA must-see destination for summer and winter.",
+    "image": "Images/destinations/pucon.jpg",
+    "category": "relax",
+    "location": "Pucón, Araucanía Region",
+    "duration": "3 days / 2 nights",
+    "groupSize": "2-8 people",
+    "rating": 4.8,
+    "reviews": 145,
+    "price": 250,
+    "priceOriginal": 300,
+    "badge": "Hot Springs",
+    "features": [
+      "✓ Villarrica Volcano climb",
+      "✓ Geometric Hot Springs visit",
+      "✓ León Cave",
+      "✓ Cabin with lake view"
+    ],
+    "itinerary": [
+      "Day 1: Arrival and free afternoon downtown",
+      "Day 2: Villarrica Volcano climb (Full day)",
+      "Day 3: Geometric Hot Springs - Return"
+    ],
+    "included": [
+      "Cabin accommodation",
+      "Breakfast",
+      "Transport to hot springs",
+      "Safety equipment for volcano"
+    ],
+    "notIncluded": [
+      "Meals outside breakfast",
+      "River activities (Rafting)",
+      "Tips"
+    ],
+    "featured": false
+  }
+]
