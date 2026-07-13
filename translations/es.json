@@ -130,9 +130,8 @@
       "submit": "Enviar mensaje",
       "footer": "Tus datos están seguros • Sin spam, lo prometemos"
     }
-  }
-
-    "destinationsPage": {
+  },
+  "destinationsPage": {
     "title": "Destinos",
     "hero": {
       "title": "Explora el Mundo",
@@ -155,6 +154,25 @@
       "empty": "No hay destinos en esta categoría 📷",
       "error": "Error cargando destinos. Intenta recargar. ❌"
     }
+  },
+  "galleryPage": {
+    "title": "Galería",
+    "hero": {
+      "title": "Nuestra Galería",
+      "subtitle": "Momentos capturados en nuestros viajes por Chile y el mundo"
+    },
+    "filters": {
+      "all": "Todas",
+      "paisaje": "Paisajes",
+      "montana": "Montañas",
+      "ciudad": "Ciudades",
+      "aventura": "Aventura",
+      "relax": "Relax"
+    },
+    "states": {
+      "loading": "Cargando galería... 📸",
+      "empty": "No hay imágenes en esta categoría 📷",
+      "error": "Error cargando galería. Intenta recargar. ❌"
+    }
   }
-  
 }
