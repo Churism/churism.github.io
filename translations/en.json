@@ -130,7 +130,7 @@
       "submit": "Send message",
       "footer": "Your data is safe • No spam, we promise"
     }
-  }
+  },
   "destinationsPage": {
     "title": "Destinations",
     "hero": {
@@ -153,6 +153,26 @@
       "loading": "Loading destinations... 🌍",
       "empty": "No destinations in this category 📷",
       "error": "Error loading destinations. Try reloading. ❌"
+    }
+  },
+  "galleryPage": {
+    "title": "Gallery",
+    "hero": {
+      "title": "Our Gallery",
+      "subtitle": "Moments captured on our trips across Chile and the world"
+    },
+    "filters": {
+      "all": "All",
+      "paisaje": "Landscapes",
+      "montana": "Mountains",
+      "ciudad": "Cities",
+      "aventura": "Adventure",
+      "relax": "Relax"
+    },
+    "states": {
+      "loading": "Loading gallery... 📸",
+      "empty": "No images in this category 📷",
+      "error": "Error loading gallery. Try reloading. ❌"
     }
   }
 }
