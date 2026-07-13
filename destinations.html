@@ -11,65 +11,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
 
     <style>
-        /* === VARIABLES === */
-        :root {
-            --bg-color: #fafafa; --text-color: #000000; --navbar-bg: #f5f5f5; --navbar-text: #000000;
-            --btn-bg: #ff7227; --btn-text: #ffffff; --card-bg: #ffffff; --card-shadow: rgba(0,0,0,0.08);
-            --footer-bg: #1a1a1a; --footer-text: #ffffff; --filter-bg: #e9ecef; --price-color: #28a745;
-        }
-        body.dark-mode {
-            --bg-color: #121212; --text-color: #ffffff; --navbar-bg: #1a1a1a; --navbar-text: #ffffff;
-            --card-bg: #1e1e1e; --card-shadow: rgba(0,0,0,0.3); --footer-bg: #0a0a0a; --filter-bg: #2a2a2a; --price-color: #4ade80;
-        }
-
+        :root { --bg-color: #fafafa; --text-color: #000000; --navbar-bg: #f5f5f5; --navbar-text: #000000; --btn-bg: #ff7227; --btn-text: #ffffff; --card-bg: #ffffff; --card-shadow: rgba(0,0,0,0.08); --footer-bg: #1a1a1a; --footer-text: #ffffff; --filter-bg: #e9ecef; --price-color: #28a745; }
+        body.dark-mode { --bg-color: #121212; --text-color: #ffffff; --navbar-bg: #1a1a1a; --navbar-text: #ffffff; --card-bg: #1e1e1e; --card-shadow: rgba(0,0,0,0.3); --footer-bg: #0a0a0a; --filter-bg: #2a2a2a; --price-color: #4ade80; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Mochiy Pop One', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; transition: background-color 0.3s, color 0.3s; min-height: 100vh; display: flex; flex-direction: column; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         img { max-width: 100%; display: block; }
         ul { list-style: none; }
-
-        /* === NAVBAR === */
         .navbar { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 1200px; background: var(--navbar-bg); z-index: 1000; height: 70px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; border-radius: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: all 0.3s; }
         .navbar:hover { box-shadow: 0 6px 30px rgba(0,0,0,0.15); transform: translateX(-50%) translateY(-2px); }
         .nav-links { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
         .nav-links a { color: var(--navbar-text); font-weight: bold; text-transform: uppercase; font-size: 13px; padding: 8px 16px; border-radius: 25px; }
         .nav-links a:hover { background: var(--btn-bg); color: var(--btn-text); transform: translateY(-2px); }
-
-        /* === BOTÓN TEMA === */
         .theme-toggle { background: transparent; border: 2px solid var(--navbar-text); color: var(--navbar-text); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-left: 15px; transition: 0.3s; }
         .theme-toggle:hover { background: var(--btn-bg); color: var(--btn-text); transform: rotate(15deg) scale(1.1); border-color: var(--btn-bg); }
         .theme-toggle .icon-sun { display: none; } .theme-toggle .icon-moon { display: block; }
         body.dark-mode .theme-toggle .icon-sun { display: block; } body.dark-mode .theme-toggle .icon-moon { display: none; }
-
-        /* === SELECTOR DE IDIOMA === */
         .lang-selector { display: flex; gap: 5px; margin-left: 15px; }
         .lang-btn { background: transparent; border: 2px solid var(--navbar-text); color: var(--navbar-text); min-width: 45px; height: 45px; border-radius: 50%; cursor: pointer; font-size: 14px; font-weight: bold; display: flex; align-items: center; justify-content: center; transition: all 0.3s; padding: 0 10px; }
         .lang-btn:hover { transform: scale(1.1); }
         .lang-btn.active { background: var(--btn-bg); color: var(--btn-text); border-color: var(--btn-bg); }
-
-        /* === HERO === */
         .destinations-hero { position: relative; height: 50vh; min-height: 350px; width: 100%; overflow: hidden; margin-top: 0; }
         .destinations-hero img { width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 1; }
         .destinations-hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%); z-index: 2; }
         .destinations-hero-content { position: relative; z-index: 3; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; padding: 20px; }
         .destinations-hero-content h1 { font-size: clamp(2rem, 5vw, 4rem); text-transform: uppercase; margin-bottom: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
         .destinations-hero-content p { font-size: clamp(1rem, 2vw, 1.2rem); max-width: 600px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
-
-        /* === FILTROS === */
         .destinations-filters { padding: 30px 20px; max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
         .filter-btn { padding: 10px 24px; background: var(--filter-bg); color: var(--text-color); border: 2px solid transparent; border-radius: 25px; font-family: inherit; font-size: 0.95rem; font-weight: bold; cursor: pointer; transition: all 0.3s; }
         .filter-btn:hover, .filter-btn.active { background: var(--btn-bg); color: var(--btn-text); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,114,39,0.3); }
-
-        /* === GRID Y TARJETAS FLIP === */
         .destinations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 35px; max-width: 1200px; margin: 0 auto 60px; padding: 0 20px; perspective: 1000px; }
-        
         .destination-card { height: 480px; position: relative; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
         .destination-card.flipped { transform: rotateY(180deg); }
         .destination-card.hidden { display: none; }
-        
         .destination-card-front, .destination-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 25px; overflow: hidden; box-shadow: 0 8px 25px var(--card-shadow); }
-        
-        /* FRENTE */
         .destination-card-front { background: var(--card-bg); }
         .destination-image { width: 100%; height: 280px; overflow: hidden; position: relative; }
         .destination-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
@@ -83,8 +58,6 @@
         .destination-price-value { font-size: 1.8rem; font-weight: bold; color: var(--price-color); }
         .destination-price-original { font-size: 1rem; text-decoration: line-through; opacity: 0.6; }
         .destination-hint { text-align: center; padding: 12px; background: var(--filter-bg); font-size: 0.85rem; opacity: 0.8; }
-        
-        /* REVERSO */
         .destination-card-back { background: linear-gradient(135deg, var(--btn-bg) 0%, #ff8c42 100%); color: white; transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 25px 20px; text-align: center; }
         .destination-back-icon { font-size: 2rem; margin-bottom: 10px; }
         .destination-back-title { font-size: 1.25rem; margin-bottom: 10px; line-height: 1.3; }
@@ -94,29 +67,13 @@
         .destination-back-features li:last-child { border-bottom: none; }
         .destination-btn-view { padding: 10px 30px; background: white; color: var(--btn-bg); border: none; border-radius: 30px; font-family: inherit; font-weight: bold; font-size: 0.95rem; cursor: pointer; transition: all 0.3s; margin-top: 8px; }
         .destination-btn-view:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
-        
         .destinations-loading { text-align: center; padding: 60px 20px; grid-column: 1 / -1; font-size: 1.2rem; opacity: 0.8; }
         .no-results { text-align: center; padding: 60px 20px; grid-column: 1 / -1; font-size: 1.1rem; opacity: 0.8; display: none; }
-
-        /* === FOOTER === */
         footer { background: var(--footer-bg); color: var(--footer-text); text-align: center; padding: 50px 20px; margin: auto 20px 20px; border-radius: 30px; font-size: 0.95rem; margin-top: auto; }
-
-        /* === RESPONSIVE === */
-        @media (max-width: 768px) {
-            .navbar { top: 10px; width: calc(100% - 20px); flex-direction: column; height: auto; padding: 15px; border-radius: 30px; }
-            .nav-links { margin: 15px 0; gap: 10px; } .nav-links a { padding: 6px 12px; font-size: 11px; }
-            .theme-toggle, .lang-selector { margin: 10px auto 0; }
-            .lang-selector { margin-top: 10px; }
-            .destinations-hero { height: 40vh; min-height: 280px; } .destinations-hero-content h1 { font-size: 2rem; }
-            .destinations-grid { grid-template-columns: 1fr; }
-            .destination-card { height: 450px; }
-            footer { margin: 40px 10px 10px; border-radius: 20px; }
-        }
+        @media (max-width: 768px) { .navbar { top: 10px; width: calc(100% - 20px); flex-direction: column; height: auto; padding: 15px; border-radius: 30px; } .nav-links { margin: 15px 0; gap: 10px; } .nav-links a { padding: 6px 12px; font-size: 11px; } .theme-toggle, .lang-selector { margin: 10px auto 0; } .lang-selector { margin-top: 10px; } .destinations-hero { height: 40vh; min-height: 280px; } .destinations-hero-content h1 { font-size: 2rem; } .destinations-grid { grid-template-columns: 1fr; } .destination-card { height: 450px; } footer { margin: 40px 10px 10px; border-radius: 20px; } }
     </style>
 </head>
 <body>
-
-    <!-- NAVBAR -->
     <nav class="navbar">
         <ul class="nav-links">
             <li><a href="/index" data-i18n="nav.home">Inicio</a></li>
@@ -126,24 +83,18 @@
             <li><a href="/contact" data-i18n="nav.contact">Contacto</a></li>
             <li><a href="/blog" data-i18n="nav.blog">Blog</a></li>
         </ul>
-        
         <div style="display: flex; align-items: center;">
-            <!-- SELECTOR DE IDIOMA -->
             <div class="lang-selector">
                 <button class="lang-btn active" data-lang="es" aria-label="Español">ES</button>
                 <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
                 <button class="lang-btn" data-lang="pt" aria-label="Português">PT</button>
             </div>
-            
-            <!-- BOTÓN TEMA -->
             <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-                <span class="icon-sun">☀️</span>
-                <span class="icon-moon">🌙</span>
+                <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
             </button>
         </div>
     </nav>
 
-    <!-- HERO -->
     <section class="destinations-hero">
         <img src="Images/destinations/hero.jpg" alt="Destinos Turísticos">
         <div class="destinations-hero-content">
@@ -152,7 +103,6 @@
         </div>
     </section>
 
-    <!-- FILTROS POR CATEGORÍA -->
     <section class="destinations-filters">
         <button class="filter-btn active" data-filter="all" data-i18n="destinationsPage.filters.all">✨ Todos</button>
         <button class="filter-btn" data-filter="playa" data-i18n="destinationsPage.filters.playa">🏖️ Playas</button>
@@ -161,263 +111,142 @@
         <button class="filter-btn" data-filter="relax" data-i18n="destinationsPage.filters.relax">🧘 Relax</button>
     </section>
 
-    <!-- GRID DE DESTINOS -->
     <main class="destinations-grid" id="destinationsGrid">
         <div class="destinations-loading" id="destinationsLoading" data-i18n="destinationsPage.states.loading">Cargando destinos... 🌍</div>
         <div class="no-results" id="noResults" data-i18n="destinationsPage.states.empty">😕 No hay destinos en esta categoría por ahora</div>
     </main>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 Mi Sitio Web. <span data-i18n="footer.rights">Todos los derechos reservados.</span></p>
-    </footer>
+    <footer><p>&copy; 2026 Mi Sitio Web. <span data-i18n="footer.rights">Todos los derechos reservados.</span></p></footer>
 
-    <!-- JAVASCRIPT -->
     <script>
-        /* =============================================
-           SISTEMA DE TRADUCCIÓN MULTI-IDIOMA
-           ============================================= */
-        
         let currentLang = 'es';
         let translations = {};
+        let allDestinations = [];
+        let currentFilter = 'all';
+        let currentFilteredDestinations = [];
 
         async function loadTranslations(lang) {
             try {
                 const response = await fetch(`translations/${lang}.json`);
                 if (!response.ok) throw new Error(`No se pudo cargar ${lang}.json`);
                 return await response.json();
-            } catch (error) {
-                console.error('Error cargando traducciones:', error);
-                return null;
-            }
+            } catch (error) { console.error('Error cargando traducciones:', error); return null; }
         }
 
         function getTranslation(key) {
             const keys = key.split('.');
             let value = translations;
-            
-            for (const k of keys) {
-                if (value && typeof value === 'object' && k in value) {
-                    value = value[k];
-                } else {
-                    return key;
-                }
-            }
-            
+            for (const k of keys) { if (value && typeof value === 'object' && k in value) value = value[k]; else return key; }
             return value;
         }
 
         function applyTranslations() {
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                const translation = getTranslation(key);
-                
-                if (translation && translation !== key) {
-                    element.textContent = translation;
-                }
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const t = getTranslation(key);
+                if (t && t !== key) el.textContent = t;
             });
-            
             document.documentElement.lang = currentLang;
             document.title = getTranslation('destinationsPage.title') + ' - Mi Sitio Web';
         }
 
         async function changeLanguage(lang) {
             if (lang === currentLang) return;
-            
-            const newTranslations = await loadTranslations(lang);
-            
-            if (newTranslations) {
-                translations = newTranslations;
-                currentLang = lang;
+            const newT = await loadTranslations(lang);
+            if (newT) {
+                translations = newT; currentLang = lang;
                 applyTranslations();
-                
                 localStorage.setItem('lang', lang);
-                
-                document.querySelectorAll('.lang-btn').forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.lang === lang);
-                });
-                
-                // Re-renderizar tarjetas con el nuevo idioma
-                renderDestinations(currentFilteredDestinations);
-                
-                console.log(`Idioma cambiado a: ${lang}`);
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+                await reloadDestinationsForLanguage();
             }
         }
 
         function detectPreferredLanguage() {
-            const savedLang = localStorage.getItem('lang');
-            if (savedLang && ['es', 'en', 'pt'].includes(savedLang)) {
-                return savedLang;
-            }
-            
-            const browserLang = navigator.language || navigator.userLanguage;
-            if (browserLang) {
-                if (browserLang.startsWith('en')) return 'en';
-                if (browserLang.startsWith('pt')) return 'pt';
-            }
-            
+            const saved = localStorage.getItem('lang');
+            if (saved && ['es','en','pt'].includes(saved)) return saved;
+            const bl = navigator.language || navigator.userLanguage;
+            if (bl) { if (bl.startsWith('en')) return 'en'; if (bl.startsWith('pt')) return 'pt'; }
             return 'es';
         }
 
-        /* =============================================
-           TEMA DÍA/NOCHE
-           ============================================= */
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
-        
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') body.classList.add('dark-mode');
-        
-        themeToggle.addEventListener('click', function() {
-            body.classList.toggle('dark-mode');
-            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
-        });
-
-        /* =============================================
-           SELECTOR DE IDIOMA
-           ============================================= */
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                changeLanguage(btn.dataset.lang);
-            });
-        });
-
-        /* =============================================
-           DESTINOS - CARGA DESDE JSON
-           ============================================= */
-        let allDestinations = [];
-        let currentFilter = 'all';
-        let currentFilteredDestinations = [];
+        themeToggle.addEventListener('click', () => { body.classList.toggle('dark-mode'); localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light'); });
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => changeLanguage(btn.dataset.lang)));
 
         async function loadDestinations() {
             const grid = document.getElementById('destinationsGrid');
             const loading = document.getElementById('destinationsLoading');
-            
             try {
-                const response = await fetch('destinations/destinations.json');
-                if (!response.ok) throw new Error('No se pudo cargar destinations.json');
-                
+                const response = await fetch(`destinations/destinations-${currentLang}.json`);
+                if (!response.ok) throw new Error(`No se pudo cargar destinations-${currentLang}.json`);
                 allDestinations = await response.json();
                 loading.style.display = 'none';
-                
                 filterDestinations();
                 setupFilters();
-                
-            } catch (error) {
-                console.error('Error:', error);
-                loading.textContent = getTranslation('destinationsPage.states.error');
-            }
+            } catch (error) { console.error('Error:', error); loading.textContent = getTranslation('destinationsPage.states.error'); }
+        }
+
+        async function reloadDestinationsForLanguage() {
+            try {
+                const response = await fetch(`destinations/destinations-${currentLang}.json`);
+                if (!response.ok) throw new Error(`No se pudo cargar destinations-${currentLang}.json`);
+                allDestinations = await response.json();
+                filterDestinations();
+            } catch (error) { console.error('Error recargando destinos:', error); }
         }
 
         function renderDestinations(destinations) {
             const grid = document.getElementById('destinationsGrid');
             const noResults = document.getElementById('noResults');
-            
             currentFilteredDestinations = destinations;
-            
-            if (destinations.length === 0) {
-                grid.innerHTML = '';
-                noResults.style.display = 'block';
-                return;
-            }
-            
+            if (destinations.length === 0) { grid.innerHTML = ''; noResults.style.display = 'block'; return; }
             noResults.style.display = 'none';
-            
             grid.innerHTML = destinations.map(dest => `
                 <article class="destination-card" data-category="${dest.category}" data-slug="${dest.slug}">
-                    <!-- FRONTAL -->
                     <div class="destination-card-front">
-                        <div class="destination-image">
-                            <img src="${dest.image}" alt="${dest.title}" loading="lazy">
-                            ${dest.badge ? `<span class="destination-badge">${dest.badge}</span>` : ''}
-                            <div class="destination-rating">⭐ ${dest.rating}</div>
-                        </div>
-                        <div class="destination-info">
-                            <div class="destination-location">📍 ${dest.location}</div>
-                            <h3 class="destination-title">${dest.title}</h3>
-                            <div class="destination-price-preview">
-                                <span class="destination-price-value">$${dest.price}</span>
-                                ${dest.priceOriginal ? `<span class="destination-price-original">$${dest.priceOriginal}</span>` : ''}
-                            </div>
-                        </div>
-                        <div class="destination-hint" data-i18n="destinationsPage.card.hint">👆 ${getTranslation('destinationsPage.card.hint')}</div>
+                        <div class="destination-image"><img src="${dest.image}" alt="${dest.title}" loading="lazy">${dest.badge ? `<span class="destination-badge">${dest.badge}</span>` : ''}<div class="destination-rating">⭐ ${dest.rating}</div></div>
+                        <div class="destination-info"><div class="destination-location">📍 ${dest.location}</div><h3 class="destination-title">${dest.title}</h3><div class="destination-price-preview"><span class="destination-price-value">$${dest.price}</span>${dest.priceOriginal ? `<span class="destination-price-original">$${dest.priceOriginal}</span>` : ''}</div></div>
+                        <div class="destination-hint">👆 ${getTranslation('destinationsPage.card.hint')}</div>
                     </div>
-                    
-                    <!-- REVERSO COMPACTO -->
                     <div class="destination-card-back">
-                        <div class="destination-back-icon">🌟</div>
-                        <h3 class="destination-back-title">${dest.title}</h3>
-                        <p class="destination-back-description">${dest.excerpt}</p>
-                        <ul class="destination-back-features">
-                            <li>📅 ${dest.duration}</li>
-                            <li>⭐ ${dest.rating} · ${dest.reviews} reseñas</li>
-                            <li>💰 $${dest.price}</li>
-                        </ul>
-                        <button class="destination-btn-view" data-slug="${dest.slug}">
-                            ${getTranslation('destinationsPage.card.viewDetails')}
-                        </button>
+                        <div class="destination-back-icon">🌟</div><h3 class="destination-back-title">${dest.title}</h3><p class="destination-back-description">${dest.excerpt}</p>
+                        <ul class="destination-back-features"><li>📅 ${dest.duration}</li><li>⭐ ${dest.rating} · ${dest.reviews} reseñas</li><li>💰 $${dest.price}</li></ul>
+                        <button class="destination-btn-view" data-slug="${dest.slug}">${getTranslation('destinationsPage.card.viewDetails')}</button>
                     </div>
                 </article>
             `).join('');
-            
-            // Re-activar listeners de click en las tarjetas
             setupCardClicks();
         }
 
         function filterDestinations() {
             let filtered = allDestinations;
-            
-            if (currentFilter !== 'all') {
-                filtered = allDestinations.filter(dest => dest.category === currentFilter);
-            }
-            
+            if (currentFilter !== 'all') filtered = allDestinations.filter(d => d.category === currentFilter);
             renderDestinations(filtered);
         }
 
         function setupFilters() {
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentFilter = btn.dataset.filter;
-                    filterDestinations();
-                });
-            });
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active'); currentFilter = btn.dataset.filter; filterDestinations();
+            }));
         }
 
         function setupCardClicks() {
-            const cards = document.querySelectorAll('.destination-card');
-            
-            cards.forEach(card => {
-                card.addEventListener('click', (e) => {
-                    // Si el click fue en el botón "Ver Detalles", redirigir
-                    if (e.target.classList.contains('destination-btn-view')) {
-                        const slug = e.target.dataset.slug;
-                        window.location.href = `destinations/detalle.html?slug=${slug}`;
-                        return;
-                    }
-                    
-                    // Si el click fue en cualquier otra parte, voltear la tarjeta
-                    card.classList.toggle('flipped');
-                });
-            });
+            document.querySelectorAll('.destination-card').forEach(card => card.addEventListener('click', e => {
+                if (e.target.classList.contains('destination-btn-view')) { window.location.href = `destinations/detalle.html?slug=${e.target.dataset.slug}`; return; }
+                card.classList.toggle('flipped');
+            }));
         }
 
-        /* =============================================
-           INICIALIZACIÓN
-           ============================================= */
         document.addEventListener('DOMContentLoaded', async () => {
-            const preferredLang = detectPreferredLanguage();
-            
-            translations = await loadTranslations(preferredLang) || await loadTranslations('es');
-            currentLang = preferredLang;
-            
-            applyTranslations();
-            
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === currentLang);
-            });
-            
+            const lang = detectPreferredLanguage();
+            translations = await loadTranslations(lang) || await loadTranslations('es');
+            currentLang = lang; applyTranslations();
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
             loadDestinations();
         });
     </script>
