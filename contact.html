@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- =============================================
+         META TAGS Y CONFIGURACIÓN BÁSICA
+         ============================================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contáctanos - Estamos aquí para ayudarte">
+    <title>Mi Sitio Web - Contacto</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+    <!-- =============================================
+         FUENTES DE GOOGLE FONTS (Mochiy Pop One)
+         ============================================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+
+    <!-- =============================================
+         ESTILOS CSS
+         ============================================= -->
+    <style>
+        /* =============================================
+           VARIABLES CSS - TEMA DÍA (NO BLANCO PURO)
+           ============================================= */
+        :root {
+            --bg-color: #fafafa;                    /* Fondo principal - gris muy claro */
+            --text-color: #000000;                  /* Texto negro puro (legibilidad) */
+            --navbar-bg: #f5f5f5;                   /* Navbar - gris claro */
+            --navbar-text: #000000;                 /* Texto navbar negro puro */
+            --btn-bg: #ff7227;                      /* BOTONES - NARANJA */
+            --btn-text: #ffffff;                    /* Texto botones blanco puro */
+            --card-bg: #ffffff;                     /* Tarjetas - blanco */
+            --card-shadow: rgba(0,0,0,0.08);        /* Sombra suave */
+            --footer-bg: #1a1a1a;                   /* Footer - gris muy oscuro */
+            --footer-text: #ffffff;                 /* Footer texto blanco puro */
+            --accent-color: #ff7227;                /* Color de acento - NARANJA */
+            --input-bg: #fcfafd;                    /* Fondo de inputs */
+            --input-border: #d9c7e8;                /* Borde de inputs */
+            --input-focus: #c49dd9;                 /* Borde al focus */
+        }
+
+        /* =============================================
+           VARIABLES CSS - TEMA NOCHE (NO NEGRO PURO)
+           ============================================= */
+        body.dark-mode {
+            --bg-color: #121212;                    /* Fondo - gris muy oscuro */
+            --text-color: #ffffff;                  /* Texto blanco puro */
+            --navbar-bg: #1a1a1a;                   /* Navbar - gris oscuro */
+            --navbar-text: #ffffff;                 /* Texto navbar blanco puro */
+            --btn-bg: #ff7227;                      /* BOTONES - NARANJA (mismo) */
+            --btn-text: #ffffff;                    /* Texto botones blanco puro */
+            --card-bg: #1e1e1e;                     /* Tarjetas - gris oscuro */
+            --card-shadow: rgba(0,0,0,0.3);         /* Sombra más fuerte */
+            --footer-bg: #0a0a0a;                   /* Footer - casi negro */
+            --footer-text: #ffffff;                 /* Footer texto blanco puro */
+            --accent-color: #ff7227;                /* Color de acento - NARANJA */
+            --input-bg: #2a2a2a;                    /* Fondo de inputs oscuro */
+            --input-border: #444;                   /* Borde de inputs oscuro */
+            --input-focus: #ff7227;                 /* Borde al focus naranja */
+        }
+
+        /* =============================================
+           RESET Y ESTILOS BASE
+           ============================================= */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Mochiy Pop One', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        img { max-width: 100%; display: block; }
+        ul { list-style: none; }
+
+        /* =============================================
+           NAVBAR (IGUAL QUE LANDING/ABOUT)
+           ============================================= */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 1200px;
+            background: var(--navbar-bg);
+            z-index: 1000;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar:hover {
+            box-shadow: 0 6px 30px rgba(0,0,0,0.15);
+            transform: translateX(-50%) translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: var(--navbar-text);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            transform: translateY(-2px);
+        }
+
+        /* =============================================
+           BOTÓN TEMA DÍA/NOCHE
+           ============================================= */
+        .theme-toggle {
+            background: transparent;
+            border: 2px solid var(--navbar-text);
+            color: var(--navbar-text);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            margin-left: 15px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            transform: rotate(15deg) scale(1.1);
+            border-color: var(--btn-bg);
+        }
+
+        .theme-toggle .icon-sun { display: none; }
+        .theme-toggle .icon-moon { display: block; }
+        body.dark-mode .theme-toggle .icon-sun { display: block; }
+        body.dark-mode .theme-toggle .icon-moon { display: none; }
+
+        /* =============================================
+           HERO SECTION CONTACTO
+           ============================================= */
+        .contact-hero {
+            padding: 120px 20px 60px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 15px;
+            color: var(--accent-color);  /* NARANJA */
+        }
+
+        .contact-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* =============================================
+           SECCIÓN DE CONTACTO RÁPIDO (WhatsApp/Instagram)
+           ============================================= */
+        .quick-contact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .quick-card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quick-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .quick-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            background: var(--btn-bg);  /* NARANJA */
+            color: var(--btn-text);
+        }
+
+        .quick-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .quick-card p {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-bottom: 15px;
+        }
+
+        .quick-btn {
+            padding: 10px 25px;
+            background: var(--btn-bg);  /* NARANJA */
+            color: var(--btn-text);
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.3s;
+            font-family: inherit;
+        }
+
+        .quick-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* =============================================
+           SECCIÓN DEL FORMULARIO
+           ============================================= */
+        .contact-form-section {
+            max-width: 600px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .form-container {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 20px var(--card-shadow);
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin: 0 0 25px 0;
+            font-size: 1.6rem;
+            color: var(--accent-color);  /* NARANJA */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 500px) {
+            .form-row { grid-template-columns: 1fr; }
+        }
+
+        /* ===== CAMPOS DE ENTRADA ===== */
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--input-border);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--input-bg);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-control::placeholder {
+            color: var(--text-color);
+            opacity: 0.5;
+        }
+
+        .form-control:focus {
+            border-color: var(--input-focus);
+            background: var(--card-bg);
+            box-shadow: 0 0 0 3px rgba(255, 114, 39, 0.2);  /* Naranja suave */
+        }
+
+        textarea.form-control {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        /* ===== BOTÓN DE ENVÍO ===== */
+        .btn-submit {
+            padding: 16px 20px;
+            border: none;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: var(--btn-bg);  /* NARANJA */
+            color: var(--btn-text);
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 114, 39, 0.4);
+            opacity: 0.95;
+        }
+
+        .btn-submit:active { transform: translateY(0); }
+
+        .form-footer {
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 15px;
+        }
+
+        /* ===== ANIMACIÓN DE ENTRADA ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-container { animation: fadeInUp 0.5s ease-out; }
+
+        /* ===== ACCESIBILIDAD ===== */
+        .form-control:focus,
+        .btn-submit:focus,
+        .quick-btn:focus {
+            outline: 2px solid var(--btn-bg);
+            outline-offset: 2px;
+        }
+
+        /* =============================================
+           FOOTER (IGUAL QUE LANDING/ABOUT)
+           ============================================= */
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+            padding: 50px 20px;
+            margin: auto 20px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-top: auto;  /* Empuja el footer al final */
+        }
+
+        footer:hover {
+            box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+        }
+
+        footer a { color: var(--footer-text); text-decoration: underline; }
+        footer a:hover { opacity: 0.8; }
+
+        /* =============================================
+           RESPONSIVE (MÓVIL)
+           ============================================= */
+        @media (max-width: 768px) {
+            .navbar {
+                top: 10px;
+                width: calc(100% - 20px);
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+                border-radius: 30px;
+            }
+
+            .nav-links { margin: 15px 0; gap: 10px; }
+            .nav-links a { padding: 6px 12px; font-size: 11px; }
+            .theme-toggle { margin: 10px auto 0; }
+
+            .contact-hero { padding: 100px 20px 40px; }
+            .contact-hero h1 { font-size: 2rem; }
+            
+            .quick-contact { grid-template-columns: 1fr; }
+            
+            .form-container { padding: 25px 20px; }
+            
+            footer { margin: 40px 10px 10px; border-radius: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =============================================
+         BARRA DE NAVEGACIÓN
+         ============================================= -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="about.html">Nosotros</a></li>
+            <li><a href="index.html#servicios">Servicios</a></li>
+            <li><a href="index.html#galeria">Galería</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="index.html#blog">Blog</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+            <span class="icon-sun">☀️</span>
+            <span class="icon-moon">🌙</span>
+        </button>
+    </nav>
+
+    <!-- =============================================
+         HERO SECTION
+         ============================================= -->
+    <section class="contact-hero">
+        <h1>✨ Contáctanos ✨</h1>
+        <p>¿Tienes una pregunta o quieres trabajar con nosotros? ¡Estamos aquí para ayudarte!</p>
+    </section>
+
+    <!-- =============================================
+         CONTACTO RÁPIDO: WHATSAPP E INSTAGRAM
+         ============================================= -->
+    <section class="quick-contact">
+        <!-- WhatsApp Card -->
+        <div class="quick-card">
+            <div class="quick-icon">💬</div>
+            <h3>WhatsApp</h3>
+            <p>Chatea con nosotros en tiempo real para respuestas rápidas.</p>
+            <!-- Reemplaza el número con el tuyo: https://wa.me/521234567890 -->
+            <a href="https://wa.me/521234567890" target="_blank" class="quick-btn" aria-label="Contactar por WhatsApp">
+                Enviar mensaje
+            </a>
+        </div>
+
+        <!-- Instagram Card -->
+        <div class="quick-card">
+            <div class="quick-icon">📸</div>
+            <h3>Instagram</h3>
+            <p>Síguenos para ver nuestro trabajo y novedades diarias.</p>
+            <!-- Reemplaza con tu usuario de Instagram -->
+            <a href="https://instagram.com/tu_usuario" target="_blank" class="quick-btn" aria-label="Ver Instagram">
+                Visitar perfil
+            </a>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FORMULARIO DE CONTACTO (FormSubmit)
+         ============================================= -->
+    <section class="contact-form-section" id="contacto">
+        <div class="form-container">
+            <h2>📩 Envíanos un mensaje</h2>
+            
+            <!-- FormSubmit: Reemplaza "tu-email@ejemplo.com" con tu email real -->
+            <form target="_blank" action="https://formsubmit.co/tu-email@ejemplo.com" method="POST">
+                
+                <!-- Configuración opcional de FormSubmit -->
+                <input type="hidden" name="_subject" value="Nuevo mensaje desde mi web ✨">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <!-- Redirección después de enviar (opcional) -->
+                <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
+
+                <!-- Fila: Nombre y Email -->
+                <div class="form-group">
+                    <div class="form-row">
+                        <input type="text" name="name" class="form-control" placeholder="Tu nombre" required>
+                        <input type="email" name="email" class="form-control" placeholder="tu@email.com" required>
+                    </div>
+                </div>
+
+                <!-- Mensaje -->
+                <div class="form-group">
+                    <textarea placeholder="Escribe tu mensaje aquí... 🌸" class="form-control" name="message" rows="8" required></textarea>
+                </div>
+
+                <!-- Botón de envío -->
+                <button type="submit" class="btn-submit btn-block">Enviar mensaje ✉️</button>
+                
+                <p class="form-footer">Tus datos están seguros • Sin spam, lo prometemos 🐱</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer>
+        <p>&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- =============================================
+         JAVASCRIPT
+         ============================================= -->
+    <script>
+        /* =============================================
+           CAMBIO DE TEMA DÍA/NOCHE
+           ============================================= */
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Verificar preferencia guardada en localStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+        
+        // Event listener para el botón
+        themeToggle.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            
+            // Guardar preferencia para futuras visitas
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>
